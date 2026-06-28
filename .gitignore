@@ -28,7 +28,7 @@ npm-debug.log*
 
 # reference copy  not part of build
 lib/quizzical-main/
-lib/Quizzical/.next/
+lib/quizzical/.next/
 new_game/
 
 # typescript

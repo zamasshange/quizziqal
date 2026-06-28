@@ -4,7 +4,7 @@ import type {
   QuizzicalQuestion,
 } from "./quizzicalCatalog";
 import { getCategory } from "./quizzicalCatalog";
-import type { GeneratedQuestion } from "../Quizzical/lib/quizGenerator";
+import type { GeneratedQuestion } from "../quizzical/lib/quizGenerator";
 
 const REVEAL_OVERRIDES: Record<string, string> = {
   "sports-legends": "sports",
