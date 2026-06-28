@@ -39,36 +39,16 @@ export default function DiscoverPage() {
     return matchesSearch && matchesCategory;
   });
 
-  const handlePlay = async (quizId: string) => {
+  const handlePlay = (quizId: string) => {
     setLoadingQuiz(quizId);
-    try {
-      const res = await fetch("/api/games", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ quizId }),
-      });
-      const data = await res.json();
-      if (data.gameId) router.push(`/play/${data.gameId}`);
-    } finally {
-      setLoadingQuiz(null);
-    }
+    router.push(`/play/${quizId}`);
+    setLoadingQuiz(null);
   };
 
-  const handlePictureGame = async (category: string, key: string) => {
-    setLoadingQuiz(key);
-    try {
-      const res = await fetch("/api/games", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          intent: { type: "picture", slug: key, category },
-        }),
-      });
-      const data = await res.json();
-      if (data.gameId) router.push(`/play/${data.gameId}`);
-    } finally {
-      setLoadingQuiz(null);
-    }
+  const handlePictureGame = (slug: string) => {
+    setLoadingQuiz(slug);
+    router.push(`/play/pic-${slug}`);
+    setLoadingQuiz(null);
   };
 
   const pictureCard = (mode: (typeof IMAGE_GAME_MODES)[0]): Quiz => ({
@@ -145,11 +125,11 @@ export default function DiscoverPage() {
                 return (
                   <div
                     key={mode.slug}
-                    onClick={() => handlePictureGame(mode.category, mode.slug)}
+                    onClick={() => handlePictureGame(mode.slug)}
                   >
                     <QuizCard
                       quiz={card}
-                      onPlay={() => handlePictureGame(mode.category, mode.slug)}
+                      onPlay={() => handlePictureGame(mode.slug)}
                       loading={loadingQuiz === mode.slug}
                     />
                   </div>

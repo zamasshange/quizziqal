@@ -50,7 +50,13 @@ export default function AiQuizPage() {
         setError(data?.error ?? "Couldn't generate a quiz. Try again.");
         return;
       }
-      if (data.gameId) router.push(`/play/${data.gameId}`);
+      if (data.quiz?.id) {
+        sessionStorage.setItem(
+          `quizziqal:quiz:${data.quiz.id}`,
+          JSON.stringify(data.quiz)
+        );
+        router.push(`/play/${data.quiz.id}`);
+      }
     } catch {
       setError("Couldn't reach the server. Try again.");
     } finally {

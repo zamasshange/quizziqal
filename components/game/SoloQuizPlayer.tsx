@@ -32,11 +32,11 @@ function scoreAnswer(timeMs: number, timeLimit: number, streak: number): number 
 }
 
 type Props = {
-  gameId: string;
+  quizId: string;
   templateQuiz: Quiz;
 };
 
-export default function SoloQuizPlayer({ gameId, templateQuiz }: Props) {
+export default function SoloQuizPlayer({ quizId, templateQuiz }: Props) {
   const [phase, setPhase] = useState<Phase>("setup");
   const [difficulty, setDifficulty] = useState<Difficulty>(DEFAULT_DIFFICULTY);
   const [questionCount, setQuestionCount] =
@@ -73,11 +73,12 @@ export default function SoloQuizPlayer({ gameId, templateQuiz }: Props) {
     const timeout = setTimeout(() => controller.abort(), 90_000);
 
     try {
-      const res = await fetch(`/api/games/${gameId}`, {
+      const res = await fetch("/api/quiz/prepare", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          action: "prepare",
+          quizId,
+          template: templateQuiz,
           settings: { count: questionCount, difficulty, timerSeconds },
         }),
         signal: controller.signal,
