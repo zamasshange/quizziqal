@@ -3,6 +3,7 @@ import {
   generateImageQuizBatch,
   isImageCategory,
   normalizeDifficulty,
+  type GeneratedQuestion,
 } from "@/lib/quizzical/quizGenerator";
 import { generateFlagQuestions, isFlagsQuiz } from "@/lib/quizzical/flagQuiz";
 import { fromGeneratedQuestions, fromQuizzicalQuiz } from "./engine/adapter";
@@ -14,6 +15,8 @@ export type RoundSettings = {
   difficulty: Difficulty;
   timerSeconds: TimerSeconds;
 };
+
+const PREPARE_TIMEOUT_MS = 50_000;
 
 function shuffle<T>(arr: T[]): T[] {
   const a = [...arr];
@@ -28,6 +31,69 @@ function withTimeLimit(questions: Question[], timerSeconds: number): Question[] 
   return questions.map((q) => ({ ...q, timeLimit: timerSeconds }));
 }
 
+function isPictureQuiz(template: Quiz): boolean {
+  return (
+    template.tags.includes("intent") ||
+    template.tags.includes("generated") ||
+    template.tags.includes("picture")
+  );
+}
+
+/** Resolve Wikipedia/TMDB image category from quiz metadata. */
+function resolveImageCategory(template: Quiz): string | null {
+  const fromTag = template.tags.find((t) => isImageCategory(t));
+  if (fromTag) return fromTag;
+
+  if (template.revealCategory && isImageCategory(template.revealCategory)) {
+    return template.revealCategory;
+  }
+
+  for (const tag of template.tags) {
+    const mode = getPictureGameModes().find((m) => m.slug === tag);
+    if (mode) return mode.category;
+  }
+
+  return null;
+}
+
+async function generatePictureQuestions(
+  category: string,
+  count: number,
+  difficulty: Difficulty
+): Promise<GeneratedQuestion[]> {
+  const normalized = normalizeDifficulty(difficulty);
+
+  let rows: GeneratedQuestion[] = [];
+  try {
+    rows = await Promise.race([
+      generateImageQuizBatch(category, count, normalized, {}, { fastStart: true }),
+      new Promise<GeneratedQuestion[]>((_, reject) =>
+        setTimeout(() => reject(new Error("timeout")), PREPARE_TIMEOUT_MS)
+      ),
+    ]);
+  } catch {
+    rows = [];
+  }
+
+  if (rows.length === 0) {
+    rows = await generateImageQuizBatch(
+      category,
+      Math.min(count, 12),
+      normalized,
+      {},
+      { bootstrapOnly: true }
+    );
+  }
+
+  if (rows.length === 0) {
+    throw new Error(
+      "Could not load picture questions. Try again or pick Easy difficulty."
+    );
+  }
+
+  return rows.slice(0, count);
+}
+
 export async function buildQuizForRound(
   template: Quiz,
   settings: RoundSettings
@@ -35,25 +101,10 @@ export async function buildQuizForRound(
   const { count, difficulty, timerSeconds } = settings;
   const quizzicalId = template.quizzicalId ?? template.id.replace(/^qc-/, "");
 
-  if (template.tags.includes("intent") || template.tags.includes("generated")) {
-    const category =
-      template.tags.find((t) => isImageCategory(t)) ??
-      template.revealCategory ??
-      template.tags.find(
-        (t) => t !== "picture" && t !== "intent" && t !== "generated"
-      );
-
-    if (category && isImageCategory(category)) {
-      const rows = await generateImageQuizBatch(
-        category,
-        count,
-        normalizeDifficulty(difficulty),
-        {},
-        { fastStart: true }
-      );
-      if (rows.length === 0) {
-        throw new Error("Could not generate questions");
-      }
+  if (isPictureQuiz(template)) {
+    const category = resolveImageCategory(template);
+    if (category) {
+      const rows = await generatePictureQuestions(category, count, difficulty);
       const mode = getPictureGameModes().find((m) => m.category === category);
       const quiz = fromGeneratedQuestions(
         mode?.title ?? template.title,
@@ -81,6 +132,10 @@ export async function buildQuizForRound(
 
   const pool = shuffle(template.questions);
   const picked = pool.slice(0, Math.min(count, pool.length));
+  if (picked.length === 0) {
+    throw new Error("This quiz has no questions available.");
+  }
+
   return {
     ...template,
     id: `${template.id}-round-${Date.now()}`,

@@ -749,14 +749,11 @@ export async function generateImageQuizBatch(
   count = 10,
   difficulty: Difficulty = "Medium",
   exclude?: ExcludeSet,
-  options?: { cacheOnly?: boolean; fastStart?: boolean },
+  options?: { cacheOnly?: boolean; fastStart?: boolean; bootstrapOnly?: boolean },
 ): Promise<GeneratedQuestion[]> {
   if (!isImageCategory(category)) return [];
 
   const blocked = toExcludeSet(exclude);
-  const results: GeneratedQuestion[] = [];
-  const usedAnswer = new Set<string>(blocked.answers);
-  const usedImage = new Set<string>(blocked.images);
 
   const distractorPool = new Set<string>();
   for (const e of POOLS[category].entries) distractorPool.add(e.label);
@@ -766,6 +763,17 @@ export async function generateImageQuizBatch(
     for (const d of c.decoys) distractorPool.add(d);
   }
   const distractors = [...distractorPool];
+
+  if (options?.bootstrapOnly === true) {
+    return collectBootstrapQuestions(category, count, blocked, distractors).slice(
+      0,
+      count,
+    );
+  }
+
+  const results: GeneratedQuestion[] = [];
+  const usedAnswer = new Set<string>(blocked.answers);
+  const usedImage = new Set<string>(blocked.images);
 
   if (options?.fastStart === true) {
     return generateFastBatch(category, count, difficulty, exclude, distractors);

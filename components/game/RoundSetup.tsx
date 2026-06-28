@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useMemo } from "react";
 import type { Quiz } from "@/lib/types";
 import {
   QUESTION_COUNT_OPTIONS,
@@ -10,6 +11,11 @@ import {
   type Difficulty,
   type TimerSeconds,
 } from "@/lib/roundSettings";
+import {
+  DIFFICULTY_FLAVOR,
+  pickRandom,
+  SETUP_START_LINES,
+} from "@/lib/gameFlavor";
 
 type Props = {
   quiz: Quiz;
@@ -17,6 +23,7 @@ type Props = {
   questionCount: QuestionCount;
   timerSeconds: TimerSeconds;
   loading?: boolean;
+  error?: string | null;
   onDifficulty: (d: Difficulty) => void;
   onQuestionCount: (n: QuestionCount) => void;
   onTimer: (t: TimerSeconds) => void;
@@ -29,22 +36,24 @@ export default function RoundSetup({
   questionCount,
   timerSeconds,
   loading,
+  error,
   onDifficulty,
   onQuestionCount,
   onTimer,
   onStart,
 }: Props) {
+  const startLabel = useMemo(() => pickRandom(SETUP_START_LINES), []);
+
   return (
-    <div
-      className="flex min-h-screen flex-col items-center justify-center p-5"
-      style={{
-        background:
-          "linear-gradient(160deg, #46178f 0%, #6b2fd6 45%, #33348e 100%)",
-      }}
-    >
-      <div className="relative w-full max-w-md overflow-hidden rounded-3xl border-4 border-white/20 bg-white p-6 shadow-2xl lg:p-8">
+    <div className="play-arena relative flex min-h-screen flex-col items-center justify-center overflow-hidden p-5">
+      <div className="play-arena-glow pointer-events-none absolute inset-0" aria-hidden />
+      <span className="pointer-events-none absolute left-8 top-12 text-5xl opacity-30 animate-float" aria-hidden>🎪</span>
+      <span className="pointer-events-none absolute right-10 top-20 text-4xl opacity-30 animate-float-slow" aria-hidden>🤡</span>
+      <span className="pointer-events-none absolute bottom-16 left-12 text-4xl opacity-25 animate-wiggle" aria-hidden>🃏</span>
+
+      <div className="relative w-full max-w-md overflow-hidden rounded-3xl border-4 border-white/25 bg-white p-6 shadow-2xl lg:p-8">
         <div
-          className="pointer-events-none absolute -right-6 -top-6 text-6xl opacity-20"
+          className="pointer-events-none absolute -right-6 -top-6 text-6xl opacity-20 animate-wiggle"
           aria-hidden
         >
           {quiz.coverIcon}
@@ -52,20 +61,29 @@ export default function RoundSetup({
 
         <div className="relative mb-6 text-center">
           <div
-            className="mx-auto mb-4 flex h-20 w-20 items-center justify-center rounded-2xl border-3 border-black/10 text-5xl shadow-lg"
+            className="mx-auto mb-4 flex h-20 w-20 items-center justify-center rounded-2xl border-3 border-black/10 text-5xl shadow-lg animate-bounce-in"
             style={{ background: quiz.coverGradient }}
           >
             {quiz.coverIcon}
           </div>
           <h1 className="text-2xl font-extrabold text-gray-900">{quiz.title}</h1>
           <p className="mt-1 text-sm font-semibold text-gray-500">
-            Pick your round — then let&apos;s go! 🎯
+            Configure your chaos — then dominate (maybe) 🎯
           </p>
         </div>
 
+        {error ? (
+          <div
+            role="alert"
+            className="mb-5 rounded-xl border-2 border-red-200 bg-red-50 px-4 py-3 text-sm font-semibold text-red-700"
+          >
+            😬 {error}
+          </div>
+        ) : null}
+
         <div className="mb-5">
           <label className="mb-2 block text-xs font-extrabold uppercase tracking-wider text-gray-400">
-            Difficulty
+            How brave are you?
           </label>
           <div className="flex flex-col gap-2">
             {DIFFICULTIES.map((d) => (
@@ -81,7 +99,7 @@ export default function RoundSetup({
               >
                 {d}
                 <span className="ml-2 text-xs font-semibold opacity-70">
-                  {d === "Easy" ? "😊 Easy picks" : d === "Medium" ? "🔥 Solid" : "🧠 Expert"}
+                  {DIFFICULTY_FLAVOR[d]}
                 </span>
               </button>
             ))}
@@ -90,7 +108,7 @@ export default function RoundSetup({
 
         <div className="mb-5">
           <label className="mb-2 block text-xs font-extrabold uppercase tracking-wider text-gray-400">
-            Questions
+            How many rounds of pain?
           </label>
           <div className="grid grid-cols-5 gap-2">
             {QUESTION_COUNT_OPTIONS.map((n) => (
@@ -112,7 +130,7 @@ export default function RoundSetup({
 
         <div className="mb-6">
           <label className="mb-2 block text-xs font-extrabold uppercase tracking-wider text-gray-400">
-            Timer
+            Seconds before panic
           </label>
           <div className="grid grid-cols-5 gap-2">
             {TIMER_OPTIONS.map((t) => (
@@ -138,14 +156,14 @@ export default function RoundSetup({
           onClick={onStart}
           className="game-pill w-full rounded-full bg-[var(--kahoot-green)] py-4 text-lg font-extrabold text-white shadow-[0_5px_0_#1a5c08] disabled:opacity-50"
         >
-          {loading ? "Loading…" : "▶  Start game!"}
+          {loading ? "Summoning questions…" : startLabel}
         </button>
 
         <Link
           href="/discover"
           className="mt-4 block text-center text-sm font-semibold text-gray-400 underline"
         >
-          ← Back to Discover
+          🏃 Chicken out — back to Discover
         </Link>
       </div>
     </div>

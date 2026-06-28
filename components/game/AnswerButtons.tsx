@@ -17,6 +17,13 @@ const COLOR_SHINE: Record<AnswerColor, string> = {
   green: "linear-gradient(135deg, rgba(255,255,255,0.22) 0%, transparent 50%)",
 };
 
+const COLOR_EMOJI: Record<AnswerColor, string> = {
+  red: "🔴",
+  blue: "🔵",
+  yellow: "🟡",
+  green: "🟢",
+};
+
 interface AnswerButtonsProps {
   answers: { text: string; color: AnswerColor; correct?: boolean }[];
   onAnswer?: (index: number) => void;
@@ -36,7 +43,7 @@ export default function AnswerButtons({
 }: AnswerButtonsProps) {
   const gridClass =
     layout === "stage"
-      ? "answer-grid-stage grid h-full w-full grid-cols-2 grid-rows-2 gap-2.5 p-3 pb-4 lg:gap-4 lg:p-2 lg:pb-2"
+      ? "answer-grid-stage grid h-full w-full grid-cols-2 grid-rows-2 gap-2.5 p-3 pb-4 lg:gap-4 lg:p-0 lg:pb-0"
       : "grid h-full w-full grid-cols-2 grid-rows-2 gap-2.5 p-3 pb-4";
 
   return (
@@ -45,13 +52,14 @@ export default function AnswerButtons({
         const label = ANSWER_LABELS[i] ?? String(i + 1);
         const isSelected = selectedIndex === i;
         const showCorrect = reveal && answer.correct;
+        const showWrong = reveal && isSelected && !answer.correct;
         const isStatic = disabled && !onAnswer;
 
         const sharedClass = `answer-btn answer-btn-stage group relative flex items-center gap-2.5 overflow-hidden rounded-2xl px-3 py-3 text-white lg:flex-col lg:justify-center lg:gap-3 lg:px-4 lg:py-5 ${
-          showCorrect ? "ring-4 ring-white ring-offset-2 ring-offset-transparent" : ""
-        } ${isSelected ? "answer-btn-selected" : ""} ${
-          disabled && !reveal ? "cursor-not-allowed opacity-80" : ""
-        }`;
+          showCorrect ? "answer-btn-correct ring-4 ring-white ring-offset-2 ring-offset-transparent" : ""
+        } ${showWrong ? "answer-btn-wrong opacity-90" : ""} ${
+          isSelected && !reveal ? "answer-btn-selected" : ""
+        } ${disabled && !reveal ? "cursor-not-allowed opacity-80" : ""}`;
 
         const inner = (
           <>
@@ -65,6 +73,17 @@ export default function AnswerButtons({
             <span className="relative z-10 text-xs font-extrabold leading-tight lg:text-center lg:text-base xl:text-lg">
               {answer.text}
             </span>
+            {!reveal && (
+              <span className="absolute right-2 top-2 text-sm opacity-0 transition-opacity group-hover:opacity-70 lg:text-base">
+                {COLOR_EMOJI[answer.color]}
+              </span>
+            )}
+            {showCorrect && (
+              <span className="absolute right-2 top-2 text-xl">✅</span>
+            )}
+            {showWrong && (
+              <span className="absolute right-2 top-2 text-xl">❌</span>
+            )}
           </>
         );
 

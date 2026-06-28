@@ -7,6 +7,8 @@ import { QUESTION_COUNT_OPTIONS, DIFFICULTIES, TIMER_OPTIONS } from "@/lib/round
 
 type RouteContext = { params: Promise<{ gameId: string }> };
 
+export const maxDuration = 60;
+
 export async function GET(_request: NextRequest, context: RouteContext) {
   const { gameId } = await context.params;
   const session = getGame(gameId);
@@ -47,20 +49,30 @@ export async function POST(request: NextRequest, context: RouteContext) {
       : 20;
 
     try {
+      session.phase = "lobby";
+
       const quiz = await buildQuizForRound(template, {
         count,
         difficulty,
         timerSeconds,
       });
+
+      if (!quiz.questions.length) {
+        return NextResponse.json(
+          { error: "No questions could be generated. Try fewer questions or Easy mode." },
+          { status: 503 }
+        );
+      }
+
       registerQuiz(quiz);
       session.quizId = quiz.id;
       beginPlay(gameId, "Player");
       return NextResponse.json({ quiz, session });
-    } catch {
-      return NextResponse.json(
-        { error: "Could not prepare quiz. Try again." },
-        { status: 503 }
-      );
+    } catch (err) {
+      console.error("[games/prepare]", err);
+      const message =
+        err instanceof Error ? err.message : "Could not prepare quiz. Try again.";
+      return NextResponse.json({ error: message }, { status: 503 });
     }
   }
 

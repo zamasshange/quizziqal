@@ -1,7 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
-import Link from "next/link";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import type { Question, Quiz } from "@/lib/types";
 import {
   DEFAULT_DIFFICULTY,
@@ -17,6 +16,10 @@ import GameFooter from "./GameFooter";
 import GamePauseOverlay from "./GamePauseOverlay";
 import AnswerButtons from "./AnswerButtons";
 import QuizPlayStage from "./QuizPlayStage";
+import GameLoading from "./GameLoading";
+import GameResults from "./GameResults";
+import { pickRandom, REVEAL_NEXT_LINES } from "@/lib/gameFlavor";
+import GameReaction from "./GameReaction";
 import RevealPanel from "./RevealPanel";
 
 type Phase = "setup" | "loading" | "playing" | "reveal" | "finished";
@@ -48,6 +51,7 @@ export default function SoloQuizPlayer({ gameId, templateQuiz }: Props) {
   const [correctCount, setCorrectCount] = useState(0);
   const [timeLeft, setTimeLeft] = useState<number>(DEFAULT_TIMER);
   const [paused, setPaused] = useState(false);
+  const [prepareError, setPrepareError] = useState<string | null>(null);
   const questionStartedAt = useRef(Date.now());
 
   const question = questions[index];
@@ -56,8 +60,18 @@ export default function SoloQuizPlayer({ gameId, templateQuiz }: Props) {
   const revealCategory =
     quiz?.revealCategory ?? quiz?.tags[0] ?? quiz?.category.toLowerCase() ?? "trivia";
 
+  const nextLabel = useMemo(
+    () =>
+      isLast ? pickRandom(REVEAL_NEXT_LINES.last) : pickRandom(REVEAL_NEXT_LINES.next),
+    [isLast, index]
+  );
+
   const startRound = async () => {
+    setPrepareError(null);
     setPhase("loading");
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 90_000);
+
     try {
       const res = await fetch(`/api/games/${gameId}`, {
         method: "POST",
@@ -66,12 +80,26 @@ export default function SoloQuizPlayer({ gameId, templateQuiz }: Props) {
           action: "prepare",
           settings: { count: questionCount, difficulty, timerSeconds },
         }),
+        signal: controller.signal,
       });
       const data = await res.json();
+
       if (!res.ok) {
+        setPrepareError(
+          data.error ?? "Could not start the round. Try again."
+        );
         setPhase("setup");
         return;
       }
+
+      if (!data.quiz?.questions?.length) {
+        setPrepareError(
+          "No questions loaded. Try fewer questions or Easy difficulty."
+        );
+        setPhase("setup");
+        return;
+      }
+
       setQuiz(data.quiz);
       setQuestions(data.quiz.questions);
       setIndex(0);
@@ -82,8 +110,16 @@ export default function SoloQuizPlayer({ gameId, templateQuiz }: Props) {
       setTimeLeft(timerSeconds);
       questionStartedAt.current = Date.now();
       setPhase("playing");
-    } catch {
+    } catch (err) {
+      const aborted = err instanceof Error && err.name === "AbortError";
+      setPrepareError(
+        aborted
+          ? "That took too long — try fewer questions or Easy difficulty."
+          : "Something went wrong. Check your connection and try again."
+      );
       setPhase("setup");
+    } finally {
+      clearTimeout(timeout);
     }
   };
 
@@ -171,6 +207,7 @@ export default function SoloQuizPlayer({ gameId, templateQuiz }: Props) {
         questionCount={questionCount}
         timerSeconds={timerSeconds}
         loading={false}
+        error={prepareError}
         onDifficulty={setDifficulty}
         onQuestionCount={setQuestionCount}
         onTimer={setTimerSeconds}
@@ -180,67 +217,19 @@ export default function SoloQuizPlayer({ gameId, templateQuiz }: Props) {
   }
 
   if (phase === "loading") {
-    return (
-      <div
-        className="flex min-h-screen flex-col items-center justify-center text-white"
-        style={{
-          background:
-            "linear-gradient(160deg, #46178f 0%, #6b2fd6 50%, #33348e 100%)",
-        }}
-      >
-        <div className="mb-4 text-5xl animate-wiggle">🎯</div>
-        <div className="mb-4 h-12 w-12 animate-spin rounded-full border-4 border-white border-t-transparent" />
-        <p className="font-extrabold">Building your quiz…</p>
-      </div>
-    );
+    return <GameLoading />;
   }
 
   if (phase === "finished" && quiz) {
-    const total = questions.length;
-    const pct = total ? Math.round((correctCount / total) * 100) : 0;
-    const message =
-      pct === 100 ? "Perfect score! 🏆" : pct >= 60 ? "Great job! 🎉" : "Keep practising! 💪";
-
     return (
-      <div
-        className="flex min-h-screen flex-col items-center justify-center p-6"
-        style={{
-          background:
-            "linear-gradient(180deg, var(--kahoot-purple) 0%, #1a0533 100%)",
-        }}
-      >
-        <div className="mb-6 rounded-3xl border-4 border-white/20 bg-white/10 px-10 py-8 text-center backdrop-blur-sm">
-          <p className="mb-2 text-6xl">{quiz.coverIcon}</p>
-          <h1 className="mb-2 text-2xl font-extrabold text-white">{message}</h1>
-          <p className="text-5xl font-extrabold text-yellow-300 tabular-nums">{score}</p>
-          <p className="text-sm font-bold text-white/60">points</p>
-          <p className="mt-3 text-white/80">
-            {correctCount} / {total} correct · {pct}%
-          </p>
-        </div>
-        <div className="flex flex-col gap-3 sm:flex-row">
-          <button
-            type="button"
-            onClick={() => setPhase("setup")}
-            className="game-pill rounded-full bg-white px-8 py-3 font-extrabold text-[var(--kahoot-purple)]"
-          >
-            Change settings
-          </button>
-          <button
-            type="button"
-            onClick={startRound}
-            className="game-pill rounded-full bg-[var(--kahoot-green)] px-8 py-3 font-extrabold text-white shadow-[0_4px_0_#1a5c08]"
-          >
-            Play again
-          </button>
-          <Link
-            href="/discover"
-            className="game-pill rounded-full border-2 border-white/50 bg-white/10 px-8 py-3 text-center font-extrabold text-white"
-          >
-            Discover
-          </Link>
-        </div>
-      </div>
+      <GameResults
+        quiz={quiz}
+        score={score}
+        correctCount={correctCount}
+        total={questions.length}
+        onSetup={() => setPhase("setup")}
+        onPlayAgain={startRound}
+      />
     );
   }
 
@@ -261,6 +250,7 @@ export default function SoloQuizPlayer({ gameId, templateQuiz }: Props) {
       timeLeft={timeLeft}
       timerSeconds={timerSeconds}
       score={score}
+      streak={streak}
       paused={paused}
       phase={phase === "reveal" ? "reveal" : "playing"}
       onPause={() => setPaused((p) => !p)}
@@ -276,24 +266,16 @@ export default function SoloQuizPlayer({ gameId, templateQuiz }: Props) {
           : "var(--kahoot-purple-dark)";
 
     return (
-      <div className="flex min-h-screen flex-col" style={{ background: bg }}>
+      <div className="flex h-dvh flex-col overflow-hidden" style={{ background: bg }}>
         {hud}
         {paused && <GamePauseOverlay onResume={() => setPaused(false)} />}
 
         <div className="flex flex-1 flex-col overflow-y-auto">
           <div className="flex flex-1 flex-col items-center gap-4 px-4 py-5 lg:flex-row lg:items-start lg:justify-center lg:gap-8 lg:px-8 lg:py-8">
-            <div className="text-center lg:shrink-0 lg:pt-4">
-              <p className="text-5xl drop-shadow-lg lg:text-7xl">
-                {feedback === "correct" ? "🎉" : feedback === "wrong" ? "😅" : "⏱️"}
-              </p>
-              <h2 className="mt-2 text-2xl font-extrabold text-white lg:text-4xl">
-                {feedback === "correct"
-                  ? "Correct!"
-                  : feedback === "wrong"
-                    ? "Not quite"
-                    : "Time's up!"}
-              </h2>
-            </div>
+            <GameReaction
+              feedback={feedback}
+              streak={feedback === "correct" ? streak : 0}
+            />
 
             <div className="flex w-full max-w-4xl flex-col items-center gap-4 lg:flex-row lg:items-start lg:justify-center">
               {correctAnswer && (
@@ -321,7 +303,7 @@ export default function SoloQuizPlayer({ gameId, templateQuiz }: Props) {
           index={index}
           total={questions.length}
           canGoBack={index > 0}
-          primaryLabel={isLast ? "See results →" : "Next question →"}
+          primaryLabel={nextLabel}
           onPrevious={goPrevious}
           onPrimary={goNext}
           variant="dark"
@@ -331,7 +313,7 @@ export default function SoloQuizPlayer({ gameId, templateQuiz }: Props) {
   }
 
   return (
-    <div className="flex min-h-screen flex-col">
+    <div className="flex h-dvh flex-col overflow-hidden">
       {hud}
       {paused && <GamePauseOverlay onResume={() => setPaused(false)} />}
 

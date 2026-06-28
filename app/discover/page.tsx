@@ -79,7 +79,7 @@ export default function DiscoverPage() {
     questionCount: 10,
     plays: 120000,
     category: "Picture",
-    tags: ["picture", mode.slug, "wikipedia"],
+    tags: ["picture", mode.category, mode.slug, "wikipedia"],
     coverGradient: `linear-gradient(135deg, ${mode.color} 0%, ${mode.color}99 100%)`,
     coverIcon: mode.emoji,
     isFree: true,
