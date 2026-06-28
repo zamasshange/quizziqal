@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback, useRef } from "react";
 import { useParams } from "next/navigation";
 import Link from "next/link";
 import AnswerButtons from "@/components/game/AnswerButtons";
@@ -15,14 +15,12 @@ export default function PlayGamePage() {
   const [session, setSession] = useState<GameSession | null>(null);
   const [quiz, setQuiz] = useState<Quiz | null>(null);
   const [playerId, setPlayerId] = useState("");
-  const [nickname, setNickname] = useState("");
-  const [nicknameInput, setNicknameInput] = useState("");
   const [answered, setAnswered] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState<number | undefined>();
   const [timeLeft, setTimeLeft] = useState(0);
   const [feedback, setFeedback] = useState<"correct" | "incorrect" | null>(null);
-  const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const autoStartAttempted = useRef(false);
 
   const fetchGame = useCallback(async () => {
     const res = await fetch(`/api/games/${gameId}`);
@@ -33,6 +31,12 @@ export default function PlayGamePage() {
     const data = await res.json();
     setSession(data.session);
     setQuiz(data.quiz);
+
+    const soloPlayer = data.session.players[0];
+    if (soloPlayer) {
+      setPlayerId(soloPlayer.id);
+    }
+
     return data;
   }, [gameId]);
 
@@ -41,13 +45,25 @@ export default function PlayGamePage() {
   }, [fetchGame]);
 
   useEffect(() => {
-    const stored = sessionStorage.getItem(`player_${gameId}`);
-    if (stored) {
-      const { playerId: id, nickname: name } = JSON.parse(stored);
-      setPlayerId(id);
-      setNickname(name);
-    }
-  }, [gameId]);
+    if (!session || playerId || autoStartAttempted.current) return;
+    if (session.phase !== "lobby") return;
+
+    autoStartAttempted.current = true;
+    fetch(`/api/games/${gameId}`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ action: "begin", nickname: "Player" }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.player?.id) {
+          setPlayerId(data.player.id);
+          setSession(data.session);
+          setQuiz(data.quiz);
+        }
+      })
+      .catch(() => setError("Could not start game"));
+  }, [session, playerId, gameId]);
 
   const advance = useCallback(async () => {
     await fetch(`/api/games/${gameId}`, {
@@ -57,43 +73,6 @@ export default function PlayGamePage() {
     });
     fetchGame();
   }, [gameId, fetchGame]);
-
-  const handleStart = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!nicknameInput.trim()) return;
-
-    setLoading(true);
-    setError("");
-
-    try {
-      const res = await fetch(`/api/games/${gameId}`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ action: "begin", nickname: nicknameInput.trim() }),
-      });
-      const data = await res.json();
-      if (!res.ok) {
-        setError(data.error || "Could not start");
-        return;
-      }
-
-      sessionStorage.setItem(
-        `player_${gameId}`,
-        JSON.stringify({
-          playerId: data.player.id,
-          nickname: data.player.nickname,
-        })
-      );
-      setPlayerId(data.player.id);
-      setNickname(data.player.nickname);
-      setSession(data.session);
-      setQuiz(data.quiz);
-    } catch {
-      setError("Connection error. Try again.");
-    } finally {
-      setLoading(false);
-    }
-  };
 
   useEffect(() => {
     if (!playerId) return;
@@ -176,76 +155,10 @@ export default function PlayGamePage() {
     );
   }
 
-  if (!session || !quiz) {
+  if (!session || !quiz || !playerId || session.phase === "lobby") {
     return (
       <div className="flex min-h-screen items-center justify-center bg-[var(--kahoot-purple)]">
         <div className="h-12 w-12 animate-spin rounded-full border-4 border-white border-t-transparent" />
-      </div>
-    );
-  }
-
-  if (!playerId || session.phase === "lobby") {
-    return (
-      <div
-        className="flex min-h-screen flex-col items-center justify-center p-5 lg:p-8"
-        style={{
-          background:
-            "linear-gradient(180deg, var(--kahoot-purple) 0%, var(--kahoot-purple-dark) 100%)",
-        }}
-      >
-        <span className="mb-4 rounded-full bg-white/20 px-4 py-1.5 text-xs font-bold text-white">
-          Free to play
-        </span>
-
-        <div
-          className="mb-6 flex h-20 w-20 items-center justify-center rounded-2xl text-4xl shadow-lg lg:h-24 lg:w-24 lg:text-5xl"
-          style={{ background: quiz.coverGradient }}
-        >
-          {quiz.coverIcon}
-        </div>
-
-        <h1 className="mb-2 text-center text-xl font-extrabold text-white lg:text-2xl">
-          {quiz.title}
-        </h1>
-        <p className="mb-8 text-center text-sm text-white/70">
-          {quiz.questionCount} questions · No signup needed
-        </p>
-
-        <form
-          onSubmit={handleStart}
-          className="w-full max-w-xs rounded-2xl bg-white p-6 shadow-2xl"
-        >
-          <label className="mb-2 block text-center text-sm font-semibold text-gray-600">
-            Your nickname
-          </label>
-          <input
-            type="text"
-            maxLength={15}
-            value={nicknameInput}
-            onChange={(e) => setNicknameInput(e.target.value)}
-            placeholder="Enter a nickname"
-            className="mb-5 w-full rounded-lg border-2 border-gray-200 px-4 py-3 text-center text-lg font-semibold outline-none focus:border-[var(--kahoot-purple)]"
-            autoFocus
-          />
-
-          {error && (
-            <p className="mb-4 text-center text-sm font-semibold text-red-500">
-              {error}
-            </p>
-          )}
-
-          <button
-            type="submit"
-            disabled={loading || !nicknameInput.trim()}
-            className="w-full rounded-full bg-[var(--kahoot-purple)] py-3.5 text-lg font-extrabold text-white disabled:opacity-50"
-          >
-            {loading ? "Starting..." : "Start"}
-          </button>
-        </form>
-
-        <Link href="/discover" className="mt-6 text-sm text-white/70 underline">
-          Pick another quiz
-        </Link>
       </div>
     );
   }
@@ -264,7 +177,6 @@ export default function PlayGamePage() {
       >
         <p className="mb-2 text-6xl">🎉</p>
         <h1 className="mb-2 text-2xl font-extrabold text-white">Well done!</h1>
-        <p className="mb-2 text-lg text-white/80">{nickname}</p>
         <p className="mb-8 text-4xl font-extrabold text-yellow-300">
           {player?.score ?? 0} pts
         </p>
@@ -346,9 +258,9 @@ export default function PlayGamePage() {
   return (
     <div className="flex min-h-screen flex-col">
       <div className="flex items-center justify-between bg-[var(--kahoot-purple)] px-4 py-3 text-white">
-        <span className="text-sm font-semibold">{nickname}</span>
+        <span className="truncate text-sm font-semibold">{quiz.title}</span>
         <span
-          className="flex h-10 w-10 items-center justify-center rounded-full bg-white/20 text-lg font-extrabold"
+          className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white/20 text-lg font-extrabold"
           style={{ background: timeLeft <= 5 ? "var(--kahoot-red)" : undefined }}
         >
           {timeLeft}
