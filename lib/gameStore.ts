@@ -1,5 +1,5 @@
 import { GameSession, Player } from "./types";
-import { getQuizById } from "./quizzes";
+import { getQuizById, registerQuiz } from "./quizRegistry";
 
 const games = new Map<string, GameSession>();
 

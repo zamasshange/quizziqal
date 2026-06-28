@@ -7,7 +7,12 @@ import Header from "@/components/layout/Header";
 import MobileBottomNav from "@/components/layout/MobileBottomNav";
 import QuizCard from "@/components/discover/QuizCard";
 import CategoryChips from "@/components/discover/CategoryChips";
-import { quizzes, CATEGORIES } from "@/lib/quizzes";
+import {
+  discoverQuizzes,
+  DISCOVER_CATEGORIES,
+  IMAGE_GAME_MODES,
+} from "@/lib/discoverData";
+import type { Quiz } from "@/lib/types";
 
 export default function DiscoverPage() {
   const router = useRouter();
@@ -15,7 +20,7 @@ export default function DiscoverPage() {
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [loadingQuiz, setLoadingQuiz] = useState<string | null>(null);
 
-  const filtered = quizzes.filter((q) => {
+  const filtered = discoverQuizzes.filter((q) => {
     const matchesSearch =
       !searchQuery ||
       q.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -24,15 +29,16 @@ export default function DiscoverPage() {
 
     const matchesCategory =
       selectedCategory === "All" ||
-      q.category === selectedCategory ||
-      (selectedCategory === "Featured" && q.plays > 1_000_000);
+      q.category.toLowerCase().includes(selectedCategory.toLowerCase()) ||
+      q.tags.some((t) => t.toLowerCase() === selectedCategory.toLowerCase()) ||
+      (selectedCategory === "Featured" && q.plays > 50_000) ||
+      (selectedCategory === "Picture" && q.tags.includes("picture"));
 
     return matchesSearch && matchesCategory;
   });
 
   const handlePlay = async (quizId: string) => {
     setLoadingQuiz(quizId);
-
     try {
       const res = await fetch("/api/games", {
         method: "POST",
@@ -40,13 +46,43 @@ export default function DiscoverPage() {
         body: JSON.stringify({ quizId }),
       });
       const data = await res.json();
-      if (data.gameId) {
-        router.push(`/play/${data.gameId}`);
-      }
+      if (data.gameId) router.push(`/play/${data.gameId}`);
     } finally {
       setLoadingQuiz(null);
     }
   };
+
+  const handlePictureGame = async (category: string, key: string) => {
+    setLoadingQuiz(key);
+    try {
+      const res = await fetch("/api/games", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          generate: { category, count: 10, difficulty: "Medium" },
+        }),
+      });
+      const data = await res.json();
+      if (data.gameId) router.push(`/play/${data.gameId}`);
+    } finally {
+      setLoadingQuiz(null);
+    }
+  };
+
+  const pictureCard = (mode: (typeof IMAGE_GAME_MODES)[0]): Quiz => ({
+    id: `pic-${mode.slug}`,
+    title: mode.title,
+    description: mode.subtitle ?? "Wikipedia-powered picture quiz",
+    creator: "Quizziqal",
+    questionCount: 10,
+    plays: 120000,
+    category: "Picture",
+    tags: ["picture", mode.slug, "wikipedia"],
+    coverGradient: `linear-gradient(135deg, ${mode.color} 0%, ${mode.color}99 100%)`,
+    coverIcon: mode.emoji,
+    isFree: true,
+    questions: [],
+  });
 
   return (
     <div className="flex min-h-screen">
@@ -65,53 +101,39 @@ export default function DiscoverPage() {
           >
             <h1 className="mb-1 text-2xl font-extrabold lg:mb-2 lg:text-4xl">Discover</h1>
             <p className="mb-4 text-sm text-white/90 lg:mb-6 lg:max-w-xl lg:text-lg">
-              Explore ready-to-use quizzes made by teachers and students worldwide.
+              Free quizzes powered by Wikipedia — celebrities, movies, sports & more.
             </p>
-            <div className="flex gap-2 overflow-x-auto scrollbar-hide lg:flex-wrap lg:overflow-visible">
-              <button className="shrink-0 rounded-full bg-white px-4 py-2 text-xs font-bold text-[var(--kahoot-purple)] lg:px-6 lg:py-2.5 lg:text-sm">
-                Top picks
-              </button>
-              <button className="shrink-0 rounded-full border-2 border-white/50 px-4 py-2 text-xs font-bold text-white lg:px-6 lg:py-2.5 lg:text-sm lg:hover:bg-white/10">
-                Trending
-              </button>
-              <button className="shrink-0 rounded-full border-2 border-white/50 px-4 py-2 text-xs font-bold text-white lg:px-6 lg:py-2.5 lg:text-sm lg:hover:bg-white/10">
-                New
-              </button>
-            </div>
           </section>
 
           <section className="mb-5 lg:mb-8">
             <h2 className="mb-3 text-base font-bold text-gray-900 lg:mb-4 lg:text-xl">
-              Top picks for all
+              Picture games
             </h2>
-            <div className="flex gap-3 overflow-x-auto pb-1 scrollbar-hide lg:grid lg:grid-cols-4 lg:gap-4 lg:overflow-visible">
-              {[
-                { title: "Family Fun Night", emoji: "👨‍👩‍👧‍👦", color: "#46178f" },
-                { title: "Monday Motivation", emoji: "💪", color: "#1368ce" },
-                { title: "Science & Nature", emoji: "🌿", color: "#26890c" },
-                { title: "Pop Culture", emoji: "🎬", color: "#e21b3c" },
-              ].map((collection) => (
-                <div
-                  key={collection.title}
-                  className="flex w-[120px] shrink-0 flex-col items-center gap-2 rounded-xl bg-white p-3 shadow-sm lg:w-auto lg:flex-row lg:gap-4 lg:p-4 lg:hover:shadow-md"
-                >
+            <p className="mb-3 text-xs text-gray-500 lg:text-sm">
+              Live Wikipedia images — new questions every time
+            </p>
+            <div className="grid grid-cols-2 gap-3 lg:grid-cols-4 lg:gap-4">
+              {IMAGE_GAME_MODES.map((mode) => {
+                const card = pictureCard(mode);
+                return (
                   <div
-                    className="flex h-12 w-12 items-center justify-center rounded-xl text-xl lg:h-14 lg:w-14 lg:text-2xl"
-                    style={{ background: `${collection.color}20` }}
+                    key={mode.slug}
+                    onClick={() => handlePictureGame(mode.category, mode.slug)}
                   >
-                    {collection.emoji}
+                    <QuizCard
+                      quiz={card}
+                      onPlay={() => handlePictureGame(mode.category, mode.slug)}
+                      loading={loadingQuiz === mode.slug}
+                    />
                   </div>
-                  <span className="text-center text-[11px] font-bold leading-tight text-gray-800 lg:text-left lg:text-sm">
-                    {collection.title}
-                  </span>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </section>
 
           <section className="mb-4 lg:mb-6">
             <CategoryChips
-              categories={CATEGORIES}
+              categories={DISCOVER_CATEGORIES}
               selected={selectedCategory}
               onSelect={setSelectedCategory}
             />

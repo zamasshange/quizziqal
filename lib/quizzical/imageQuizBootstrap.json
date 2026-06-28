@@ -1,0 +1,842 @@
+{
+  "Celebrity|Tom Hanks": {
+    "name": "Tom Hanks",
+    "category": "Celebrity",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/TomHanksPrincEdw031223_%2811_of_41%29_%28cropped%29.jpg/330px-TomHanksPrincEdw031223_%2811_of_41%29_%28cropped%29.jpg",
+    "description": "American actor and filmmaker (born 1956)",
+    "correct_answer": "Tom Hanks",
+    "wrong_answers": [],
+    "poster_url": null,
+    "hint": null
+  },
+  "Celebrity|Leonardo DiCaprio": {
+    "name": "Leonardo DiCaprio",
+    "category": "Celebrity",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/LeoPTABFI191125-28_%28cropped%29.jpg/330px-LeoPTABFI191125-28_%28cropped%29.jpg",
+    "description": "American actor (born 1974)",
+    "correct_answer": "Leonardo DiCaprio",
+    "wrong_answers": [],
+    "poster_url": null,
+    "hint": null
+  },
+  "Celebrity|Meryl Streep": {
+    "name": "Meryl Streep",
+    "category": "Celebrity",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Meryl_Streep-_Press_conference_for_the_film_%22The_Devil_Wears_Prada_2%22_-_55194765350_%28cropped1%29.jpg/330px-Meryl_Streep-_Press_conference_for_the_film_%22The_Devil_Wears_Prada_2%22_-_55194765350_%28cropped1%29.jpg",
+    "description": "American actress (born 1949)",
+    "correct_answer": "Meryl Streep",
+    "wrong_answers": [],
+    "poster_url": null,
+    "hint": null
+  },
+  "Celebrity|Denzel Washington": {
+    "name": "Denzel Washington",
+    "category": "Celebrity",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Denzel_Washington_at_the_2025_Cannes_Film_Festival.jpg/330px-Denzel_Washington_at_the_2025_Cannes_Film_Festival.jpg",
+    "description": "American actor (born 1954)",
+    "correct_answer": "Denzel Washington",
+    "wrong_answers": [],
+    "poster_url": null,
+    "hint": null
+  },
+  "Celebrity|Zendaya": {
+    "name": "Zendaya",
+    "category": "Celebrity",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/Zendaya_-_2019_by_Glenn_Francis.jpg/330px-Zendaya_-_2019_by_Glenn_Francis.jpg",
+    "description": "American actress and singer (born 1996)",
+    "correct_answer": "Zendaya",
+    "wrong_answers": [],
+    "poster_url": null,
+    "hint": null
+  },
+  "Celebrity|Brad Pitt": {
+    "name": "Brad Pitt",
+    "category": "Celebrity",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Brad_Pitt-69858.jpg/330px-Brad_Pitt-69858.jpg",
+    "description": "American actor (born 1963)",
+    "correct_answer": "Brad Pitt",
+    "wrong_answers": [],
+    "poster_url": null,
+    "hint": null
+  },
+  "Celebrity|Scarlett Johansson": {
+    "name": "Scarlett Johansson",
+    "category": "Celebrity",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Scarlett_Johansson-8588.jpg/330px-Scarlett_Johansson-8588.jpg",
+    "description": "American actress (born 1984)",
+    "correct_answer": "Scarlett Johansson",
+    "wrong_answers": [],
+    "poster_url": null,
+    "hint": null
+  },
+  "Celebrity|Morgan Freeman": {
+    "name": "Morgan Freeman",
+    "category": "Celebrity",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Morgan_Freeman_at_The_Pentagon_on_2_August_2023_-_230802-D-PM193-3363_%28cropped%29.jpg/330px-Morgan_Freeman_at_The_Pentagon_on_2_August_2023_-_230802-D-PM193-3363_%28cropped%29.jpg",
+    "description": "American actor and producer (born 1937)",
+    "correct_answer": "Morgan Freeman",
+    "wrong_answers": [],
+    "poster_url": null,
+    "hint": null
+  },
+  "Celebrity|Will Smith": {
+    "name": "Will Smith",
+    "category": "Celebrity",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/TechCrunch_Disrupt_San_Francisco_2019_-_Day_1_%2848834070763%29_%28cropped%29.jpg/330px-TechCrunch_Disrupt_San_Francisco_2019_-_Day_1_%2848834070763%29_%28cropped%29.jpg",
+    "description": "American actor and rapper (born 1968)",
+    "correct_answer": "Will Smith",
+    "wrong_answers": [],
+    "poster_url": null,
+    "hint": null
+  },
+  "Celebrity|Margot Robbie": {
+    "name": "Margot Robbie",
+    "category": "Celebrity",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/29th_Critics_Choice_Awards_-_Margot_Robbie_%28cropped%29.png/330px-29th_Critics_Choice_Awards_-_Margot_Robbie_%28cropped%29.png",
+    "description": "Australian actress and producer (born 1990)",
+    "correct_answer": "Margot Robbie",
+    "wrong_answers": [],
+    "poster_url": null,
+    "hint": null
+  },
+  "Celebrity|Keanu Reeves": {
+    "name": "Keanu Reeves",
+    "category": "Celebrity",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Keanu_Reeves_at_TIFF_2025_02_%28Cropped%29.jpg/330px-Keanu_Reeves_at_TIFF_2025_02_%28Cropped%29.jpg",
+    "description": "Canadian actor (born 1964)",
+    "correct_answer": "Keanu Reeves",
+    "wrong_answers": [],
+    "poster_url": null,
+    "hint": null
+  },
+  "Celebrity|Angelina Jolie": {
+    "name": "Angelina Jolie",
+    "category": "Celebrity",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Angelina_Jolie-643531_%28cropped%29.jpg/330px-Angelina_Jolie-643531_%28cropped%29.jpg",
+    "description": "American actress (born 1975)",
+    "correct_answer": "Angelina Jolie",
+    "wrong_answers": [],
+    "poster_url": null,
+    "hint": null
+  },
+  "Athlete|Serena Williams": {
+    "name": "Serena Williams",
+    "category": "Athlete",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Guests_at_the_2026_Met_Gala_209_%28cropped%29.jpg/330px-Guests_at_the_2026_Met_Gala_209_%28cropped%29.jpg",
+    "description": "American tennis player (born 1981)",
+    "correct_answer": "Serena Williams",
+    "wrong_answers": [],
+    "poster_url": null,
+    "hint": null
+  },
+  "Athlete|Roger Federer": {
+    "name": "Roger Federer",
+    "category": "Athlete",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Roger_Federer_2015_%28cropped%29.jpg/330px-Roger_Federer_2015_%28cropped%29.jpg",
+    "description": "Swiss tennis player (born 1981)",
+    "correct_answer": "Roger Federer",
+    "wrong_answers": [],
+    "poster_url": null,
+    "hint": null
+  },
+  "Athlete|Rafael Nadal": {
+    "name": "Rafael Nadal",
+    "category": "Athlete",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Rafael_Nadal_en_2024_%28cropped%29.jpg/330px-Rafael_Nadal_en_2024_%28cropped%29.jpg",
+    "description": "Spanish tennis player (born 1986)",
+    "correct_answer": "Rafael Nadal",
+    "wrong_answers": [],
+    "poster_url": null,
+    "hint": null
+  },
+  "Athlete|Naomi Osaka": {
+    "name": "Naomi Osaka",
+    "category": "Athlete",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/NaomiOsaka-smile-2020_%28cropped_tight%29.png/330px-NaomiOsaka-smile-2020_%28cropped_tight%29.png",
+    "description": "Japanese tennis player (born 1997)",
+    "correct_answer": "Naomi Osaka",
+    "wrong_answers": [],
+    "poster_url": null,
+    "hint": null
+  },
+  "Athlete|Usain Bolt": {
+    "name": "Usain Bolt",
+    "category": "Athlete",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Usain_Bolt_smiling_Berlin_2009.JPG/330px-Usain_Bolt_smiling_Berlin_2009.JPG",
+    "description": "Jamaican sprinter (born 1986)",
+    "correct_answer": "Usain Bolt",
+    "wrong_answers": [],
+    "poster_url": null,
+    "hint": null
+  },
+  "Athlete|Eliud Kipchoge": {
+    "name": "Eliud Kipchoge",
+    "category": "Athlete",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Eliud_Kipchoge_in_Berlin_-_2015_%28cropped%29.jpg/330px-Eliud_Kipchoge_in_Berlin_-_2015_%28cropped%29.jpg",
+    "description": "Kenyan long-distance runner (born 1984)",
+    "correct_answer": "Eliud Kipchoge",
+    "wrong_answers": [],
+    "poster_url": null,
+    "hint": null
+  },
+  "Athlete|Simone Biles": {
+    "name": "Simone Biles",
+    "category": "Athlete",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Simone_Biles_National_Team_2024.jpg/330px-Simone_Biles_National_Team_2024.jpg",
+    "description": "American artistic gymnast (born 1997)",
+    "correct_answer": "Simone Biles",
+    "wrong_answers": [],
+    "poster_url": null,
+    "hint": null
+  },
+  "Athlete|Michael Phelps": {
+    "name": "Michael Phelps",
+    "category": "Athlete",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Michael_Phelps_Rio_Olympics_2016.jpg/330px-Michael_Phelps_Rio_Olympics_2016.jpg",
+    "description": "American swimmer (born 1985)",
+    "correct_answer": "Michael Phelps",
+    "wrong_answers": [],
+    "poster_url": null,
+    "hint": null
+  },
+  "Athlete|Lewis Hamilton": {
+    "name": "Lewis Hamilton",
+    "category": "Athlete",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Prime_Minister_Keir_Starmer_meets_Sir_Lewis_Hamilton_%2854566928382%29_%28cropped%29.jpg/330px-Prime_Minister_Keir_Starmer_meets_Sir_Lewis_Hamilton_%2854566928382%29_%28cropped%29.jpg",
+    "description": "British racing driver (born 1985)",
+    "correct_answer": "Lewis Hamilton",
+    "wrong_answers": [],
+    "poster_url": null,
+    "hint": null
+  },
+  "Athlete|Tiger Woods": {
+    "name": "Tiger Woods",
+    "category": "Athlete",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/President_Donald_Trump_hosts_a_reception_honoring_Black_History_Month_%2854341713089%29_%28cropped%29.jpg/330px-President_Donald_Trump_hosts_a_reception_honoring_Black_History_Month_%2854341713089%29_%28cropped%29.jpg",
+    "description": "American professional golfer (born 1975)",
+    "correct_answer": "Tiger Woods",
+    "wrong_answers": [],
+    "poster_url": null,
+    "hint": null
+  },
+  "Athlete|Ian Thorpe": {
+    "name": "Ian Thorpe",
+    "category": "Athlete",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Ian_Thorpe_2012.jpg/330px-Ian_Thorpe_2012.jpg",
+    "description": "Australian swimmer (born 1982)",
+    "correct_answer": "Ian Thorpe",
+    "wrong_answers": [],
+    "poster_url": null,
+    "hint": null
+  },
+  "Athlete|Chloe Kim": {
+    "name": "Chloe Kim",
+    "category": "Athlete",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Chloe_Kim_PCSFN_Headshot_2023.jpg/330px-Chloe_Kim_PCSFN_Headshot_2023.jpg",
+    "description": "American snowboarder (born 2000)",
+    "correct_answer": "Chloe Kim",
+    "wrong_answers": [],
+    "poster_url": null,
+    "hint": null
+  },
+  "Football|Lionel Messi": {
+    "name": "Lionel Messi",
+    "category": "Football",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Lionel_Messi_White_House_2026_%283x4_cropped%29.jpg/330px-Lionel_Messi_White_House_2026_%283x4_cropped%29.jpg",
+    "description": "Argentine footballer (born 1987)",
+    "correct_answer": "Lionel Messi",
+    "wrong_answers": [],
+    "poster_url": null,
+    "hint": null
+  },
+  "Football|Cristiano Ronaldo": {
+    "name": "Cristiano Ronaldo",
+    "category": "Football",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/President_Donald_Trump_meets_with_Cristiano_Ronaldo_in_the_Oval_Office_%2854933344262%29_%28cropped_and_rotated%29.jpg/330px-President_Donald_Trump_meets_with_Cristiano_Ronaldo_in_the_Oval_Office_%2854933344262%29_%28cropped_and_rotated%29.jpg",
+    "description": "Portuguese footballer (born 1985)",
+    "correct_answer": "Cristiano Ronaldo",
+    "wrong_answers": [],
+    "poster_url": null,
+    "hint": null
+  },
+  "Football|Kylian Mbappé": {
+    "name": "Kylian Mbappé",
+    "category": "Football",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Picture_with_Mbapp%C3%A9_%28cropped_and_rotated%29.jpg/330px-Picture_with_Mbapp%C3%A9_%28cropped_and_rotated%29.jpg",
+    "description": "French footballer (born 1998)",
+    "correct_answer": "Kylian Mbappé",
+    "wrong_answers": [],
+    "poster_url": null,
+    "hint": null
+  },
+  "Football|Neymar": {
+    "name": "Neymar",
+    "category": "Football",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/Neymar_Junior_Brazil_V_Morocco_13_June_2026-40.jpg/330px-Neymar_Junior_Brazil_V_Morocco_13_June_2026-40.jpg",
+    "description": "Brazilian footballer (born 1992)",
+    "correct_answer": "Neymar",
+    "wrong_answers": [],
+    "poster_url": null,
+    "hint": null
+  },
+  "Football|Erling Haaland": {
+    "name": "Erling Haaland",
+    "category": "Football",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Erling_Haaland_Morocco_v_Norway_7_June_2026-51.jpg/330px-Erling_Haaland_Morocco_v_Norway_7_June_2026-51.jpg",
+    "description": "Norwegian footballer (born 2000)",
+    "correct_answer": "Erling Haaland",
+    "wrong_answers": [],
+    "poster_url": null,
+    "hint": null
+  },
+  "Football|Mohamed Salah": {
+    "name": "Mohamed Salah",
+    "category": "Football",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Mohamed_Salah_2018.jpg/330px-Mohamed_Salah_2018.jpg",
+    "description": "Egyptian footballer (born 1992)",
+    "correct_answer": "Mohamed Salah",
+    "wrong_answers": [],
+    "poster_url": null,
+    "hint": null
+  },
+  "Football|Kevin De Bruyne": {
+    "name": "Kevin De Bruyne",
+    "category": "Football",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Kevin_De_Bruyne_USMNT_v_Belgium_Mar_28_2026-64_%28cropped%29.jpg/330px-Kevin_De_Bruyne_USMNT_v_Belgium_Mar_28_2026-64_%28cropped%29.jpg",
+    "description": "Belgian footballer (born 1991)",
+    "correct_answer": "Kevin De Bruyne",
+    "wrong_answers": [],
+    "poster_url": null,
+    "hint": null
+  },
+  "Football|Robert Lewandowski": {
+    "name": "Robert Lewandowski",
+    "category": "Football",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/2019147183134_2019-05-27_Fussball_1.FC_Kaiserslautern_vs_FC_Bayern_M%C3%BCnchen_-_Sven_-_1D_X_MK_II_-_0228_-_B70I8527_%28cropped%29.jpg/330px-2019147183134_2019-05-27_Fussball_1.FC_Kaiserslautern_vs_FC_Bayern_M%C3%BCnchen_-_Sven_-_1D_X_MK_II_-_0228_-_B70I8527_%28cropped%29.jpg",
+    "description": "Polish footballer (born 1988)",
+    "correct_answer": "Robert Lewandowski",
+    "wrong_answers": [],
+    "poster_url": null,
+    "hint": null
+  },
+  "Football|Harry Kane": {
+    "name": "Harry Kane",
+    "category": "Football",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Harry_Kane_on_October_10%2C_2023.jpg/330px-Harry_Kane_on_October_10%2C_2023.jpg",
+    "description": "English footballer (born 1993)",
+    "correct_answer": "Harry Kane",
+    "wrong_answers": [],
+    "poster_url": null,
+    "hint": null
+  },
+  "Football|Luka Modrić": {
+    "name": "Luka Modrić",
+    "category": "Football",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Ofrenda_de_la_Liga_y_la_Champions-57-L.Mill%C3%A1n_%2852109310843%29_%28Luka_Modri%C4%87%29.jpg/330px-Ofrenda_de_la_Liga_y_la_Champions-57-L.Mill%C3%A1n_%2852109310843%29_%28Luka_Modri%C4%87%29.jpg",
+    "description": "Croatian footballer (born 1985)",
+    "correct_answer": "Luka Modrić",
+    "wrong_answers": [],
+    "poster_url": null,
+    "hint": null
+  },
+  "Football|Pelé": {
+    "name": "Pelé",
+    "category": "Football",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Pele_con_brasil_%28cropped%29.jpg/330px-Pele_con_brasil_%28cropped%29.jpg",
+    "description": "Brazilian footballer (1940–2022)",
+    "correct_answer": "Pelé",
+    "wrong_answers": [],
+    "poster_url": null,
+    "hint": null
+  },
+  "Football|Zinedine Zidane": {
+    "name": "Zinedine Zidane",
+    "category": "Football",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Zinedine_Zidane_by_Tasnim_03.jpg/330px-Zinedine_Zidane_by_Tasnim_03.jpg",
+    "description": "French football player and manager (born 1972)",
+    "correct_answer": "Zinedine Zidane",
+    "wrong_answers": [],
+    "poster_url": null,
+    "hint": null
+  },
+  "Basketball|LeBron James": {
+    "name": "LeBron James",
+    "category": "Basketball",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/LeBron_James_%2851959977144%29_%28cropped2%29.jpg/330px-LeBron_James_%2851959977144%29_%28cropped2%29.jpg",
+    "description": "American basketball player (born 1984)",
+    "correct_answer": "LeBron James",
+    "wrong_answers": [],
+    "poster_url": null,
+    "hint": null
+  },
+  "Basketball|Michael Jordan": {
+    "name": "Michael Jordan",
+    "category": "Basketball",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Michael_Jordan_in_2014.jpg/330px-Michael_Jordan_in_2014.jpg",
+    "description": "American basketball player and businessman (born 1963)",
+    "correct_answer": "Michael Jordan",
+    "wrong_answers": [],
+    "poster_url": null,
+    "hint": null
+  },
+  "Basketball|Stephen Curry": {
+    "name": "Stephen Curry",
+    "category": "Basketball",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Stephen_Curry%2C_Olympic_Games_2024_%28cropped%29.jpg/330px-Stephen_Curry%2C_Olympic_Games_2024_%28cropped%29.jpg",
+    "description": "American professional basketball player (born 1988)",
+    "correct_answer": "Stephen Curry",
+    "wrong_answers": [],
+    "poster_url": null,
+    "hint": null
+  },
+  "Basketball|Kobe Bryant": {
+    "name": "Kobe Bryant",
+    "category": "Basketball",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Kobe_Bryant_Dec_2014.jpg/330px-Kobe_Bryant_Dec_2014.jpg",
+    "description": "American basketball player (1978–2020)",
+    "correct_answer": "Kobe Bryant",
+    "wrong_answers": [],
+    "poster_url": null,
+    "hint": null
+  },
+  "Basketball|Shaquille O'Neal": {
+    "name": "Shaquille O'Neal",
+    "category": "Basketball",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/TechCrunch_Disrupt_2023_-_Day_1_%28cropped%29.jpg/330px-TechCrunch_Disrupt_2023_-_Day_1_%28cropped%29.jpg",
+    "description": "American basketball player and analyst (born 1972)",
+    "correct_answer": "Shaquille O'Neal",
+    "wrong_answers": [],
+    "poster_url": null,
+    "hint": null
+  },
+  "Basketball|Kevin Durant": {
+    "name": "Kevin Durant",
+    "category": "Basketball",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Kevin_Durant%2C_Paris_2024_%28cropped%29.jpg/330px-Kevin_Durant%2C_Paris_2024_%28cropped%29.jpg",
+    "description": "American basketball player (born 1988)",
+    "correct_answer": "Kevin Durant",
+    "wrong_answers": [],
+    "poster_url": null,
+    "hint": null
+  },
+  "Basketball|Giannis Antetokounmpo": {
+    "name": "Giannis Antetokounmpo",
+    "category": "Basketball",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Giannis_Antetokounmpo_%2851915153421%29_%28cropped%29.jpg/330px-Giannis_Antetokounmpo_%2851915153421%29_%28cropped%29.jpg",
+    "description": "Nigerian-Greek basketball player (born 1994)",
+    "correct_answer": "Giannis Antetokounmpo",
+    "wrong_answers": [],
+    "poster_url": null,
+    "hint": null
+  },
+  "Basketball|Magic Johnson": {
+    "name": "Magic Johnson",
+    "category": "Basketball",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Magic_Johnson_at_SXSW_2022_%2851958828669%29_%28cropped%29.jpg/330px-Magic_Johnson_at_SXSW_2022_%2851958828669%29_%28cropped%29.jpg",
+    "description": "American basketball player and entrepreneur (born 1959)",
+    "correct_answer": "Magic Johnson",
+    "wrong_answers": [],
+    "poster_url": null,
+    "hint": null
+  },
+  "Basketball|Larry Bird": {
+    "name": "Larry Bird",
+    "category": "Basketball",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Larrybird.jpg/330px-Larrybird.jpg",
+    "description": "American basketball player (born 1956)",
+    "correct_answer": "Larry Bird",
+    "wrong_answers": [],
+    "poster_url": null,
+    "hint": null
+  },
+  "Basketball|Tim Duncan": {
+    "name": "Tim Duncan",
+    "category": "Basketball",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Tim_Duncan_Walks_Verizon_Center%27s_Floor_%28cropped%29_%28cropped%29.jpg/330px-Tim_Duncan_Walks_Verizon_Center%27s_Floor_%28cropped%29_%28cropped%29.jpg",
+    "description": "American basketball player (born 1976)",
+    "correct_answer": "Tim Duncan",
+    "wrong_answers": [],
+    "poster_url": null,
+    "hint": null
+  },
+  "Basketball|Dirk Nowitzki": {
+    "name": "Dirk Nowitzki",
+    "category": "Basketball",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Dirk_Nowitzki_2_%28cropped%29.jpg/330px-Dirk_Nowitzki_2_%28cropped%29.jpg",
+    "description": "German basketball player (born 1978)",
+    "correct_answer": "Dirk Nowitzki",
+    "wrong_answers": [],
+    "poster_url": null,
+    "hint": null
+  },
+  "Basketball|Hakeem Olajuwon": {
+    "name": "Hakeem Olajuwon",
+    "category": "Basketball",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Nigerian_President_Buhari_Stands_With_Secretary_Kerry%2C_U.S._Delegation_After_They_Attended_His_Inauguration_Ceremony_%28cropped%29.jpg/330px-Nigerian_President_Buhari_Stands_With_Secretary_Kerry%2C_U.S._Delegation_After_They_Attended_His_Inauguration_Ceremony_%28cropped%29.jpg",
+    "description": "Nigerian-American basketball player (born 1963)",
+    "correct_answer": "Hakeem Olajuwon",
+    "wrong_answers": [],
+    "poster_url": null,
+    "hint": null
+  },
+  "Cricket|Virat Kohli": {
+    "name": "Virat Kohli",
+    "category": "Cricket",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Virat_Kohli_in_PMO_New_Delhi.jpg/330px-Virat_Kohli_in_PMO_New_Delhi.jpg",
+    "description": "Indian cricketer (born 1988)",
+    "correct_answer": "Virat Kohli",
+    "wrong_answers": [],
+    "poster_url": null,
+    "hint": null
+  },
+  "Cricket|Sachin Tendulkar": {
+    "name": "Sachin Tendulkar",
+    "category": "Cricket",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/The_cricket_legend_Sachin_Tendulkar_at_the_Oval_Maidan_in_Mumbai_During_the_Duke_and_Duchess_of_Cambridge_Visit%2826271019082%29.jpg/330px-The_cricket_legend_Sachin_Tendulkar_at_the_Oval_Maidan_in_Mumbai_During_the_Duke_and_Duchess_of_Cambridge_Visit%2826271019082%29.jpg",
+    "description": "Indian cricketer (born 1973)",
+    "correct_answer": "Sachin Tendulkar",
+    "wrong_answers": [],
+    "poster_url": null,
+    "hint": null
+  },
+  "Cricket|MS Dhoni": {
+    "name": "MS Dhoni",
+    "category": "Cricket",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/MS_Dhoni_%28Prabhav_%2723_-_RiGI_2023%29.jpg/330px-MS_Dhoni_%28Prabhav_%2723_-_RiGI_2023%29.jpg",
+    "description": "Indian cricketer (born 1981)",
+    "correct_answer": "MS Dhoni",
+    "wrong_answers": [],
+    "poster_url": null,
+    "hint": null
+  },
+  "Cricket|Ben Stokes": {
+    "name": "Ben Stokes",
+    "category": "Cricket",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/3_14_Captain_Ben_%28cropped%29_%28cropped%29.jpg/330px-3_14_Captain_Ben_%28cropped%29_%28cropped%29.jpg",
+    "description": "English cricketer (born 1991)",
+    "correct_answer": "Ben Stokes",
+    "wrong_answers": [],
+    "poster_url": null,
+    "hint": null
+  },
+  "Cricket|Jacques Kallis": {
+    "name": "Jacques Kallis",
+    "category": "Cricket",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Jacques_Kallis_6.jpg/330px-Jacques_Kallis_6.jpg",
+    "description": "South African cricketer (born 1975)",
+    "correct_answer": "Jacques Kallis",
+    "wrong_answers": [],
+    "poster_url": null,
+    "hint": null
+  },
+  "Cricket|Shane Warne": {
+    "name": "Shane Warne",
+    "category": "Cricket",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/Shane_Warne_February_2015.jpg/330px-Shane_Warne_February_2015.jpg",
+    "description": "Australian cricketer (1969–2022)",
+    "correct_answer": "Shane Warne",
+    "wrong_answers": [],
+    "poster_url": null,
+    "hint": null
+  },
+  "Movie|Inception": {
+    "name": "Inception",
+    "category": "Movie",
+    "image_url": "https://image.tmdb.org/t/p/w1280/8ZTVqvKDQ8emSGUEMjsS4yHAwrp.jpg",
+    "description": "Released 2010",
+    "correct_answer": "Inception",
+    "wrong_answers": [],
+    "poster_url": "https://image.tmdb.org/t/p/w500/xlaY2zyzMfkhk0HSC5VUwzoZPU1.jpg",
+    "hint": "Released 2010"
+  },
+  "Movie|Titanic": {
+    "name": "Titanic",
+    "category": "Movie",
+    "image_url": "https://image.tmdb.org/t/p/w1280/xnHVX37XZEp33hhCbYlQFq7ux1J.jpg",
+    "description": "Released 1997",
+    "correct_answer": "Titanic",
+    "wrong_answers": [],
+    "poster_url": "https://image.tmdb.org/t/p/w500/9xjZS2rlVxm8SFx8kPC3aIGCOYQ.jpg",
+    "hint": "Released 1997"
+  },
+  "Movie|The Matrix": {
+    "name": "The Matrix",
+    "category": "Movie",
+    "image_url": "https://image.tmdb.org/t/p/w1280/oMsxZEvz9a708d49b6UdZK1KAo5.jpg",
+    "description": "Released 1999",
+    "correct_answer": "The Matrix",
+    "wrong_answers": [],
+    "poster_url": "https://image.tmdb.org/t/p/w500/dXNAPwY7VrqMAo51EKhhCJfaGb5.jpg",
+    "hint": "Released 1999"
+  },
+  "Movie|The Dark Knight": {
+    "name": "The Dark Knight",
+    "category": "Movie",
+    "image_url": "https://image.tmdb.org/t/p/w1280/cfT29Im5VDvjE0RpyKOSdCKZal7.jpg",
+    "description": "Released 2008",
+    "correct_answer": "The Dark Knight",
+    "wrong_answers": [],
+    "poster_url": "https://image.tmdb.org/t/p/w500/qJ2tW6WMUDux911r6m7haRef0WH.jpg",
+    "hint": "Released 2008"
+  },
+  "Movie|Joker": {
+    "name": "Joker",
+    "category": "Movie",
+    "image_url": "https://image.tmdb.org/t/p/w1280/rlay2M5QYvi6igbGcFjq8jxeusY.jpg",
+    "description": "Released 2019",
+    "correct_answer": "Joker",
+    "wrong_answers": [],
+    "poster_url": "https://image.tmdb.org/t/p/w500/udDclJoHjfjb8Ekgsd4FDteOkCU.jpg",
+    "hint": "Released 2019"
+  },
+  "Movie|Avatar": {
+    "name": "Avatar",
+    "category": "Movie",
+    "image_url": "https://image.tmdb.org/t/p/w1280/vL5LR6WdxWPjLPFRLe133jXWsh5.jpg",
+    "description": "Released 2009",
+    "correct_answer": "Avatar",
+    "wrong_answers": [],
+    "poster_url": "https://image.tmdb.org/t/p/w500/gKY6q7SjCkAU6FqvqWybDYgUKIF.jpg",
+    "hint": "Released 2009"
+  },
+  "Movie|Parasite": {
+    "name": "Parasite",
+    "category": "Movie",
+    "image_url": "https://image.tmdb.org/t/p/w1280/8eihUxjQsJ7WvGySkVMC0EwbPAD.jpg",
+    "description": "Released 2019",
+    "correct_answer": "Parasite",
+    "wrong_answers": [],
+    "poster_url": "https://image.tmdb.org/t/p/w500/7IiTTgloJzvGI1TAYymCfbfl3vT.jpg",
+    "hint": "Released 2019"
+  },
+  "Movie|Interstellar": {
+    "name": "Interstellar",
+    "category": "Movie",
+    "image_url": "https://image.tmdb.org/t/p/w1280/2ssWTSVklAEc98frZUQhgtGHx7s.jpg",
+    "description": "Released 2014",
+    "correct_answer": "Interstellar",
+    "wrong_answers": [],
+    "poster_url": "https://image.tmdb.org/t/p/w500/yQvGrMoipbRoddT0ZR8tPoR7NfX.jpg",
+    "hint": "Released 2014"
+  },
+  "Movie|Gladiator": {
+    "name": "Gladiator",
+    "category": "Movie",
+    "image_url": "https://image.tmdb.org/t/p/w1280/jhk6D8pim3yaByu1801kMoxXFaX.jpg",
+    "description": "Released 2000",
+    "correct_answer": "Gladiator",
+    "wrong_answers": [],
+    "poster_url": "https://image.tmdb.org/t/p/w500/wN2xWp1eIwCKOD0BHTcErTBv1Uq.jpg",
+    "hint": "Released 2000"
+  },
+  "Movie|Forrest Gump": {
+    "name": "Forrest Gump",
+    "category": "Movie",
+    "image_url": "https://image.tmdb.org/t/p/w1280/66Kn4XWhkuPkJxOJyPEx4U2CUfN.jpg",
+    "description": "Released 1994",
+    "correct_answer": "Forrest Gump",
+    "wrong_answers": [],
+    "poster_url": "https://image.tmdb.org/t/p/w500/Cw4hIUIAmSYfK9QfaUW5igp9La.jpg",
+    "hint": "Released 1994"
+  },
+  "Movie|The Godfather": {
+    "name": "The Godfather",
+    "category": "Movie",
+    "image_url": "https://image.tmdb.org/t/p/w1280/ejdD20cdHNFAYAN2DlqPToXKyzx.jpg",
+    "description": "Released 1972",
+    "correct_answer": "The Godfather",
+    "wrong_answers": [],
+    "poster_url": "https://image.tmdb.org/t/p/w500/3bhkrj58Vtu7enYsRolD1fZdja1.jpg",
+    "hint": "Released 1972"
+  },
+  "Movie|Pulp Fiction": {
+    "name": "Pulp Fiction",
+    "category": "Movie",
+    "image_url": "https://image.tmdb.org/t/p/w1280/suaEOtk1N1sgg2MTM7oZd2cfVp3.jpg",
+    "description": "Released 1994",
+    "correct_answer": "Pulp Fiction",
+    "wrong_answers": [],
+    "poster_url": "https://image.tmdb.org/t/p/w500/vQWk5YBFWF4bZaofAbv0tShwBvQ.jpg",
+    "hint": "Released 1994"
+  },
+  "Music|Beyoncé": {
+    "name": "Beyoncé",
+    "category": "Music",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Beyonc%C3%A9_-_Tottenham_Hotspur_Stadium_-_1st_June_2023_%2810_of_118%29_%2852946364598%29_%28best_crop%29.jpg/330px-Beyonc%C3%A9_-_Tottenham_Hotspur_Stadium_-_1st_June_2023_%2810_of_118%29_%2852946364598%29_%28best_crop%29.jpg",
+    "description": "American singer and songwriter (born 1981)",
+    "correct_answer": "Beyoncé",
+    "wrong_answers": [],
+    "poster_url": null,
+    "hint": null
+  },
+  "Music|Taylor Swift": {
+    "name": "Taylor Swift",
+    "category": "Music",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Taylor_Swift_at_the_2023_MTV_Video_Music_Awards_%283%29.png/330px-Taylor_Swift_at_the_2023_MTV_Video_Music_Awards_%283%29.png",
+    "description": "American singer-songwriter (born 1989)",
+    "correct_answer": "Taylor Swift",
+    "wrong_answers": [],
+    "poster_url": null,
+    "hint": null
+  },
+  "Music|Rihanna": {
+    "name": "Rihanna",
+    "category": "Music",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Rihanna_Fenty_2018.png/330px-Rihanna_Fenty_2018.png",
+    "description": "Barbadian singer (born 1988)",
+    "correct_answer": "Rihanna",
+    "wrong_answers": [],
+    "poster_url": null,
+    "hint": null
+  },
+  "Music|Ed Sheeran": {
+    "name": "Ed Sheeran",
+    "category": "Music",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Ed_Sheeran-6886_%28cropped%29.jpg/330px-Ed_Sheeran-6886_%28cropped%29.jpg",
+    "description": "English singer-songwriter (born 1991)",
+    "correct_answer": "Ed Sheeran",
+    "wrong_answers": [],
+    "poster_url": null,
+    "hint": null
+  },
+  "Music|Ariana Grande": {
+    "name": "Ariana Grande",
+    "category": "Music",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Ariana_Grande_promoting_Wicked_%282024%29.jpg/330px-Ariana_Grande_promoting_Wicked_%282024%29.jpg",
+    "description": "American singer and actress (born 1993)",
+    "correct_answer": "Ariana Grande",
+    "wrong_answers": [],
+    "poster_url": null,
+    "hint": null
+  },
+  "Music|Billie Eilish": {
+    "name": "Billie Eilish",
+    "category": "Music",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/BillieEilishO2140725-39_-_54665577407_%28cropped%29.jpg/330px-BillieEilishO2140725-39_-_54665577407_%28cropped%29.jpg",
+    "description": "American singer-songwriter (born 2001)",
+    "correct_answer": "Billie Eilish",
+    "wrong_answers": [],
+    "poster_url": null,
+    "hint": null
+  },
+  "Music|Kendrick Lamar": {
+    "name": "Kendrick Lamar",
+    "category": "Music",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/KendrickSZASPurs230725-144_%28cropped%29_desaturated.jpg/330px-KendrickSZASPurs230725-144_%28cropped%29_desaturated.jpg",
+    "description": "American rapper and songwriter (born 1987)",
+    "correct_answer": "Kendrick Lamar",
+    "wrong_answers": [],
+    "poster_url": null,
+    "hint": null
+  },
+  "Cricket|Babar Azam": {
+    "name": "Babar Azam",
+    "category": "Cricket",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Babar_azam_2023.jpg/330px-Babar_azam_2023.jpg",
+    "description": "Pakistani cricketer (born 1994)",
+    "correct_answer": "Babar Azam",
+    "wrong_answers": [],
+    "poster_url": null,
+    "hint": null
+  },
+  "Cricket|Steve Smith": {
+    "name": "Steve Smith",
+    "category": "Cricket",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/STEVE_SMITH_%2811705303043%29.jpg/330px-STEVE_SMITH_%2811705303043%29.jpg",
+    "description": "Australian cricketer (born 1989)",
+    "correct_answer": "Steve Smith",
+    "wrong_answers": [],
+    "poster_url": null,
+    "hint": null
+  },
+  "Cricket|Brian Lara": {
+    "name": "Brian Lara",
+    "category": "Cricket",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/9/92/Brian_Lara_at_2012_Mumbai_Marathon_pre_bash.jpg",
+    "description": "Trinidadian cricketer (born 1969)",
+    "correct_answer": "Brian Lara",
+    "wrong_answers": [],
+    "poster_url": null,
+    "hint": null
+  },
+  "Cricket|AB de Villiers": {
+    "name": "AB de Villiers",
+    "category": "Cricket",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/AB_de_Villiers_2.jpg/330px-AB_de_Villiers_2.jpg",
+    "description": "AB de Villiers",
+    "correct_answer": "AB de Villiers",
+    "wrong_answers": [],
+    "poster_url": null,
+    "hint": null
+  },
+  "Cricket|Rohit Sharma": {
+    "name": "Rohit Sharma",
+    "category": "Cricket",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Prime_Minister_Of_Bharat_Shri_Narendra_Damodardas_Modi_with_Shri_Rohit_Gurunath_Sharma_%28Cropped%29.jpg/330px-Prime_Minister_Of_Bharat_Shri_Narendra_Damodardas_Modi_with_Shri_Rohit_Gurunath_Sharma_%28Cropped%29.jpg",
+    "description": "Indian cricketer (born 1987)",
+    "correct_answer": "Rohit Sharma",
+    "wrong_answers": [],
+    "poster_url": null,
+    "hint": null
+  },
+  "Cricket|Joe Root": {
+    "name": "Joe Root",
+    "category": "Cricket",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Joe_Root_HIP1487_%28cropped%29.jpg/330px-Joe_Root_HIP1487_%28cropped%29.jpg",
+    "description": "English cricketer (born 1990)",
+    "correct_answer": "Joe Root",
+    "wrong_answers": [],
+    "poster_url": null,
+    "hint": null
+  },
+  "Music|Drake": {
+    "name": "Drake",
+    "category": "Music",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Drake_at_The_Carter_Effect_2017_%2836818935200%29_%28cropped%29.jpg/330px-Drake_at_The_Carter_Effect_2017_%2836818935200%29_%28cropped%29.jpg",
+    "description": "Canadian rapper and singer (born 1986)",
+    "correct_answer": "Drake",
+    "wrong_answers": [],
+    "poster_url": null,
+    "hint": null
+  },
+  "Music|Adele": {
+    "name": "Adele",
+    "category": "Music",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Adele_2016.jpg/330px-Adele_2016.jpg",
+    "description": "English singer-songwriter (born 1988)",
+    "correct_answer": "Adele",
+    "wrong_answers": [],
+    "poster_url": null,
+    "hint": null
+  },
+  "Music|The Weeknd": {
+    "name": "The Weeknd",
+    "category": "Music",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/The_Weeknd_Portrait_by_Brian_Ziff.jpg/330px-The_Weeknd_Portrait_by_Brian_Ziff.jpg",
+    "description": "Canadian singer-songwriter (born 1990)",
+    "correct_answer": "The Weeknd",
+    "wrong_answers": [],
+    "poster_url": null,
+    "hint": null
+  },
+  "Music|Eminem": {
+    "name": "Eminem",
+    "category": "Music",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Eminem_2021_Color_Corrected.jpg/330px-Eminem_2021_Color_Corrected.jpg",
+    "description": "American rapper (born 1972)",
+    "correct_answer": "Eminem",
+    "wrong_answers": [],
+    "poster_url": null,
+    "hint": null
+  },
+  "Music|Bruno Mars": {
+    "name": "Bruno Mars",
+    "category": "Music",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/BrunoMars24KMagicWorldTourLive_%28cropped%29.jpg/330px-BrunoMars24KMagicWorldTourLive_%28cropped%29.jpg",
+    "description": "American singer-songwriter (born 1985)",
+    "correct_answer": "Bruno Mars",
+    "wrong_answers": [],
+    "poster_url": null,
+    "hint": null
+  }
+}

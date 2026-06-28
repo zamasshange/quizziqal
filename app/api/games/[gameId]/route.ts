@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getGame, beginPlay, submitAnswer, advanceGame } from "@/lib/gameStore";
-import { getQuizById } from "@/lib/quizzes";
+import { getQuizById } from "@/lib/quizRegistry";
 
 type RouteContext = { params: Promise<{ gameId: string }> };
 

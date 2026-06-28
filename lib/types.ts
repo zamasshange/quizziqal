@@ -6,6 +6,7 @@ export interface Question {
   answers: { text: string; color: AnswerColor; correct: boolean }[];
   timeLimit: number;
   image?: string;
+  imageQuery?: string;
 }
 
 export interface Quiz {

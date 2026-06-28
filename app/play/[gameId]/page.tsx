@@ -4,6 +4,7 @@ import { useEffect, useState, useCallback } from "react";
 import { useParams } from "next/navigation";
 import Link from "next/link";
 import AnswerButtons from "@/components/game/AnswerButtons";
+import QuestionImage from "@/components/game/QuestionImage";
 import { GameSession, Quiz } from "@/lib/types";
 
 export default function PlayGamePage() {
@@ -348,6 +349,13 @@ export default function PlayGamePage() {
           <span className="block text-center text-xs text-gray-400">
             {session.currentQuestion + 1} / {quiz.questions.length}
           </span>
+        </div>
+        <div className="flex items-center justify-center px-4 pb-2">
+          <QuestionImage
+            image={question?.image}
+            imageQuery={question?.imageQuery}
+            alt={question?.text ?? "Question"}
+          />
         </div>
         <div className="flex items-center justify-center px-4 pb-4">
           <h1 className="text-center text-base font-extrabold text-gray-900 lg:text-xl">
