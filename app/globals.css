@@ -1,0 +1,118 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("https://files-cdn.kahoot.it/shared-assets/fonts/Montserrat-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("https://files-cdn.kahoot.it/shared-assets/fonts/Montserrat-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("https://files-cdn.kahoot.it/shared-assets/fonts/Montserrat-ExtraBold.woff2") format("woff2");
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --kahoot-purple: #46178f;
+  --kahoot-purple-dark: #33348e;
+  --kahoot-purple-darker: #2a0a5e;
+  --kahoot-purple-light: #864cbf;
+  --kahoot-bg: #f2f2f2;
+  --kahoot-sidebar: #33348e;
+  --kahoot-sidebar-hover: #3d3ea0;
+  --kahoot-red: #e21b3c;
+  --kahoot-blue: #1368ce;
+  --kahoot-yellow: #d89e00;
+  --kahoot-green: #26890c;
+  --kahoot-text: #333333;
+  --kahoot-text-light: #666666;
+  --background: #f2f2f2;
+  --foreground: #333333;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-kahoot-purple: var(--kahoot-purple);
+  --color-kahoot-purple-dark: var(--kahoot-purple-dark);
+  --color-kahoot-red: var(--kahoot-red);
+  --color-kahoot-blue: var(--kahoot-blue);
+  --color-kahoot-yellow: var(--kahoot-yellow);
+  --color-kahoot-green: var(--kahoot-green);
+  --font-sans: "Montserrat", Arial, Helvetica, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: "Montserrat", Arial, Helvetica, sans-serif;
+  margin: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+@keyframes slide-up {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes countdown-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+.animate-slide-up {
+  animation: slide-up 0.4s ease-out forwards;
+}
+
+.quiz-card:active {
+  transform: scale(0.98);
+}
+
+@media (min-width: 1024px) {
+  .quiz-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(70, 23, 143, 0.2);
+  }
+}
+
+.answer-btn {
+  transition: transform 0.1s ease, filter 0.1s ease;
+  touch-action: manipulation;
+}
+
+.answer-btn:active:not(:disabled) {
+  filter: brightness(1.1);
+  transform: scale(0.97);
+}
+
+@media (min-width: 1024px) {
+  .answer-btn:hover:not(:disabled) {
+    filter: brightness(1.1);
+    transform: scale(1.02);
+  }
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
