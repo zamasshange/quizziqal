@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Sidebar from "@/components/layout/Sidebar";
 import Header from "@/components/layout/Header";
+import MobileBottomNav from "@/components/layout/MobileBottomNav";
 import QuizCard from "@/components/discover/QuizCard";
 import CategoryChips from "@/components/discover/CategoryChips";
 import { quizzes, CATEGORIES } from "@/lib/quizzes";
@@ -51,10 +52,10 @@ export default function DiscoverPage() {
     <div className="flex min-h-screen">
       <Sidebar />
 
-      <div className="flex min-w-0 flex-1 flex-col pl-[56px] lg:pl-[220px]">
+      <div className="flex min-w-0 flex-1 flex-col lg:pl-[220px]">
         <Header searchQuery={searchQuery} onSearchChange={setSearchQuery} />
 
-        <main className="flex-1 p-3 pb-6 lg:p-8">
+        <main className="flex-1 p-3 pb-24 lg:p-8 lg:pb-8">
           <section
             className="mb-5 overflow-hidden rounded-xl p-5 text-white lg:mb-8 lg:rounded-2xl lg:p-12"
             style={{
@@ -147,6 +148,8 @@ export default function DiscoverPage() {
           </section>
         </main>
       </div>
+
+      <MobileBottomNav />
     </div>
   );
 }

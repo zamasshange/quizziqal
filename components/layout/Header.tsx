@@ -10,29 +10,44 @@ interface HeaderProps {
 export default function Header({ searchQuery, onSearchChange }: HeaderProps) {
   return (
     <header className="sticky top-0 z-30 border-b border-gray-200 bg-white lg:h-16">
-      {/* Mobile header */}
-      <div className="flex h-12 items-center gap-2 px-3 lg:hidden">
-        <Link
-          href="/discover"
-          className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[var(--kahoot-purple)] text-white"
-          aria-label="Create"
-        >
-          <PlusIcon className="h-5 w-5" />
-        </Link>
+      {/* Mobile header — full width, logo + search + actions */}
+      <div className="flex flex-col gap-2 px-3 py-2.5 lg:hidden">
+        <div className="flex items-center justify-between">
+          <Link href="/discover" className="flex items-center gap-2">
+            <svg width="28" height="28" viewBox="0 0 40 40" fill="none">
+              <circle cx="20" cy="20" r="20" fill="#46178f" />
+              <text x="20" y="27" textAnchor="middle" fontSize="22" fontWeight="800" fill="white">
+                Q
+              </text>
+            </svg>
+            <span className="text-base font-extrabold text-[var(--kahoot-purple)]">
+              Quizziqal
+            </span>
+          </Link>
 
-        <div className="relative min-w-0 flex-1">
+          <div className="flex items-center gap-2">
+            <Link
+              href="/discover"
+              className="flex h-9 w-9 items-center justify-center rounded-full bg-[var(--kahoot-purple)] text-white shadow-md"
+              aria-label="Create quiz"
+            >
+              <PlusIcon className="h-5 w-5" />
+            </Link>
+            <div className="flex h-9 w-9 items-center justify-center rounded-full bg-[var(--kahoot-purple)] text-xs font-bold text-white">
+              G
+            </div>
+          </div>
+        </div>
+
+        <div className="relative">
           <SearchIcon className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
           <input
             type="text"
-            placeholder="Search kahoots..."
+            placeholder="Search quizzes..."
             value={searchQuery}
             onChange={(e) => onSearchChange(e.target.value)}
-            className="w-full rounded-full border border-gray-200 bg-gray-50 py-2 pl-9 pr-3 text-xs outline-none focus:border-[var(--kahoot-purple)] focus:bg-white"
+            className="w-full rounded-full border border-gray-200 bg-gray-50 py-2.5 pl-9 pr-3 text-sm outline-none focus:border-[var(--kahoot-purple)] focus:bg-white"
           />
-        </div>
-
-        <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[var(--kahoot-purple)] text-xs font-bold text-white">
-          G
         </div>
       </div>
 
@@ -42,7 +57,7 @@ export default function Header({ searchQuery, onSearchChange }: HeaderProps) {
           <SearchIcon className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400" />
           <input
             type="text"
-            placeholder="Search for kahoots, creators, or tags..."
+            placeholder="Search for quizzes, creators, or tags..."
             value={searchQuery}
             onChange={(e) => onSearchChange(e.target.value)}
             className="w-full rounded-full border border-gray-200 bg-gray-50 py-2.5 pl-12 pr-4 text-sm outline-none transition-colors focus:border-[var(--kahoot-purple)] focus:bg-white"

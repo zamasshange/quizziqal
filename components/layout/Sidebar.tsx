@@ -17,17 +17,17 @@ export default function Sidebar() {
 
   return (
     <aside
-      className="fixed left-0 top-0 z-40 flex h-full w-[56px] flex-col items-center py-3 lg:w-[220px] lg:items-stretch lg:px-3 lg:py-4"
+      className="fixed left-0 top-0 z-40 hidden h-full w-[220px] flex-col px-3 py-4 lg:flex"
       style={{ background: "var(--kahoot-sidebar)" }}
     >
       <Link
         href="/discover"
-        className="mb-4 flex items-center justify-center lg:mb-6 lg:justify-start lg:px-3"
+        className="mb-6 flex items-center gap-2 px-3"
       >
         <KahootLogo />
       </Link>
 
-      <nav className="flex flex-1 flex-col gap-0.5 lg:gap-1">
+      <nav className="flex flex-1 flex-col gap-1">
         {navItems.map((item) => {
           const isActive = pathname === item.href && item.label === "Discover";
           const Icon = item.icon;
@@ -35,15 +35,14 @@ export default function Sidebar() {
             <Link
               key={item.label}
               href={item.href}
-              className={`flex items-center justify-center gap-3 rounded-lg p-2.5 text-sm font-semibold text-white transition-colors lg:justify-start lg:px-3 lg:py-2.5 ${
+              className={`flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-semibold text-white transition-colors ${
                 isActive
                   ? "bg-white/20"
-                  : "active:bg-[var(--kahoot-sidebar-hover)] lg:hover:bg-[var(--kahoot-sidebar-hover)]"
+                  : "hover:bg-[var(--kahoot-sidebar-hover)]"
               }`}
-              aria-label={item.label}
             >
-              <Icon className="h-5 w-5 shrink-0 lg:h-6 lg:w-6" />
-              <span className="hidden lg:inline">{item.label}</span>
+              <Icon className="h-6 w-6 shrink-0" />
+              <span>{item.label}</span>
             </Link>
           );
         })}
@@ -55,19 +54,13 @@ export default function Sidebar() {
 function KahootLogo() {
   return (
     <div className="flex items-center gap-2">
-      <svg width="32" height="32" viewBox="0 0 40 40" fill="none" className="lg:hidden">
+      <svg width="36" height="36" viewBox="0 0 40 40" fill="none">
         <circle cx="20" cy="20" r="20" fill="white" />
         <text x="20" y="27" textAnchor="middle" fontSize="22" fontWeight="800" fill="#46178f">
           K
         </text>
       </svg>
-      <svg width="36" height="36" viewBox="0 0 40 40" fill="none" className="hidden lg:block">
-        <circle cx="20" cy="20" r="20" fill="white" />
-        <text x="20" y="27" textAnchor="middle" fontSize="22" fontWeight="800" fill="#46178f">
-          K
-        </text>
-      </svg>
-      <span className="hidden text-xl font-extrabold text-white lg:inline">Kahoot!</span>
+      <span className="text-xl font-extrabold text-white">Quizziqal</span>
     </div>
   );
 }
