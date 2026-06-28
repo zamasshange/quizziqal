@@ -19,7 +19,8 @@
       }
     ],
     "paths": {
-      "@/*": ["./*"]
+      "@/*": ["./*"],
+      "@/lib/quizzical/*": ["./lib/Quizzical/lib/*"]
     }
   },
   "include": [
@@ -30,5 +31,44 @@
     ".next/dev/types/**/*.ts",
     "**/*.mts"
   ],
-  "exclude": ["node_modules", "lib/quizzical-main"]
+  "exclude": [
+    "node_modules",
+    "lib/quizzical-main",
+    "lib/Quizzical/app",
+    "lib/Quizzical/components",
+    "lib/Quizzical/quizzical",
+    "lib/Quizzical/proxy.ts",
+    "lib/Quizzical/next.config.ts",
+    "lib/Quizzical/lib/actions",
+    "lib/Quizzical/lib/emails",
+    "lib/Quizzical/lib/progression",
+    "lib/Quizzical/lib/platform",
+    "lib/Quizzical/lib/atmosphere",
+    "lib/Quizzical/lib/icons",
+    "lib/Quizzical/lib/seo.ts",
+    "lib/Quizzical/lib/seoEntities.ts",
+    "lib/Quizzical/lib/seoEntityRoute.ts",
+    "lib/Quizzical/lib/seoStructuredData.ts",
+    "lib/Quizzical/lib/seoTopics.ts",
+    "lib/Quizzical/lib/seoKeywords.ts",
+    "lib/Quizzical/lib/seoEntitySlugs.ts",
+    "lib/Quizzical/lib/categorySlugs.ts",
+    "lib/Quizzical/lib/categoryBrowse.ts",
+    "lib/Quizzical/lib/clerkAppearance.ts",
+    "lib/Quizzical/lib/completeGame.ts",
+    "lib/Quizzical/lib/gameProgress.ts",
+    "lib/Quizzical/lib/playHistory.ts",
+    "lib/Quizzical/lib/revealPrefetch.ts",
+    "lib/Quizzical/lib/imagePreviewBootstrap.ts",
+    "lib/Quizzical/lib/imageQuestionsStore.ts",
+    "lib/Quizzical/lib/userMetadata.ts",
+    "lib/Quizzical/lib/debounce.ts",
+    "lib/Quizzical/lib/motion.ts",
+    "lib/Quizzical/lib/sound.ts",
+    "lib/Quizzical/lib/statusServices.ts",
+    "lib/Quizzical/lib/quizImages.ts",
+    "lib/Quizzical/lib/supabaseBrowser.ts",
+    "lib/Quizzical/app/sitemap.ts",
+    "lib/Quizzical/app/robots.ts"
+  ]
 }

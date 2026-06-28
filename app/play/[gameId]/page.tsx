@@ -5,6 +5,7 @@ import { useParams } from "next/navigation";
 import Link from "next/link";
 import AnswerButtons from "@/components/game/AnswerButtons";
 import QuestionImage from "@/components/game/QuestionImage";
+import RevealPanel from "@/components/game/RevealPanel";
 import { GameSession, Quiz } from "@/lib/types";
 
 export default function PlayGamePage() {
@@ -121,7 +122,7 @@ export default function PlayGamePage() {
 
   useEffect(() => {
     if (!session || session.phase !== "reveal") return;
-    const timer = setTimeout(advance, 2000);
+    const timer = setTimeout(advance, 4500);
     return () => clearTimeout(timer);
   }, [session?.phase, session?.currentQuestion, advance]);
 
@@ -315,16 +316,29 @@ export default function PlayGamePage() {
           ? "var(--kahoot-red)"
           : "var(--kahoot-purple-dark)";
 
+    const correctAnswer =
+      question?.answers.find((a) => a.correct)?.text ?? "";
+    const revealCategory =
+      quiz.revealCategory ?? quiz.tags[0] ?? quiz.category.toLowerCase();
+
     return (
       <div
-        className="flex min-h-screen flex-col items-center justify-center p-6"
+        className="flex min-h-screen flex-col items-center justify-center gap-4 p-6"
         style={{ background: bg }}
       >
-        <p className="mb-4 text-6xl">{feedback === "correct" ? "✓" : "✗"}</p>
-        <h1 className="text-3xl font-extrabold text-white">
+        <p className="text-5xl">{feedback === "correct" ? "✓" : "✗"}</p>
+        <h1 className="text-2xl font-extrabold text-white">
           {feedback === "correct" ? "Correct!" : "Wrong!"}
         </h1>
-        <p className="mt-4 text-xl text-white/80">Score: {player?.score ?? 0}</p>
+        <p className="text-lg text-white/80">Score: {player?.score ?? 0}</p>
+
+        {correctAnswer && (
+          <RevealPanel
+            category={revealCategory}
+            term={correctAnswer}
+            status={feedback === "correct" ? "correct" : "wrong"}
+          />
+        )}
       </div>
     );
   }

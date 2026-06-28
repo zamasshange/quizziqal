@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import Sidebar from "@/components/layout/Sidebar";
 import Header from "@/components/layout/Header";
 import MobileBottomNav from "@/components/layout/MobileBottomNav";
@@ -103,6 +104,29 @@ export default function DiscoverPage() {
             <p className="mb-4 text-sm text-white/90 lg:mb-6 lg:max-w-xl lg:text-lg">
               Free quizzes powered by Wikipedia — celebrities, movies, sports & more.
             </p>
+          </section>
+
+          <section className="mb-5 lg:mb-8">
+            <Link
+              href="/ai"
+              className="block overflow-hidden rounded-xl p-5 text-white transition-transform hover:scale-[1.01] lg:rounded-2xl lg:p-8"
+              style={{
+                background:
+                  "linear-gradient(135deg, #5b19df 0%, #7c3aed 50%, #a855f7 100%)",
+              }}
+            >
+              <div className="flex items-center gap-4">
+                <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-white/20 text-3xl">
+                  🤖
+                </span>
+                <div>
+                  <h2 className="text-lg font-extrabold lg:text-2xl">AI Quiz Generator</h2>
+                  <p className="text-sm text-white/85 lg:text-base">
+                    Type any topic — get a custom quiz in seconds
+                  </p>
+                </div>
+              </div>
+            </Link>
           </section>
 
           <section className="mb-5 lg:mb-8">

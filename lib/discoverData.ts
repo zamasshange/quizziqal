@@ -1,9 +1,9 @@
 import { quizzes as legacyQuizzes } from "./quizzes";
-import { quizzes as quizzicalQuizzes, categories } from "./quizzical/quizzicalCatalog";
-import { fromQuizzicalQuiz } from "./quizzical/adapter";
+import { quizzes as quizzicalQuizzes, categories } from "@/lib/engine/quizzicalCatalog";
+import { fromQuizzicalQuiz } from "@/lib/engine/adapter";
 
-export { IMAGE_GAME_MODES } from "./quizzical/imageQuestions";
-export type { GameMode } from "./quizzical/imageQuestions";
+export { IMAGE_GAME_MODES } from "@/lib/quizzical/imageQuestions";
+export type { GameMode } from "@/lib/quizzical/imageQuestions";
 
 export const discoverQuizzes = [
   ...quizzicalQuizzes.map(fromQuizzicalQuiz),

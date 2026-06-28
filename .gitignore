@@ -1,5 +1,6 @@
 # dependencies
 /node_modules
+**/node_modules
 /.pnp
 .pnp.*
 
@@ -27,6 +28,7 @@ npm-debug.log*
 
 # reference copy  not part of build
 lib/quizzical-main/
+lib/Quizzical/.next/
 new_game/
 
 # typescript

@@ -3,9 +3,9 @@ import { quizzes as legacyQuizzes } from "./quizzes";
 import {
   quizzes as quizzicalQuizzes,
   getQuiz as getQuizzicalQuiz,
-} from "./quizzical/quizzicalCatalog";
-import { fromQuizzicalQuiz } from "./quizzical/adapter";
-import { IMAGE_GAME_MODES, type GameMode } from "./quizzical/imageQuestions";
+} from "@/lib/engine/quizzicalCatalog";
+import { fromQuizzicalQuiz } from "@/lib/engine/adapter";
+import { IMAGE_GAME_MODES, type GameMode } from "@/lib/quizzical/imageQuestions";
 
 const catalogQuizzes: Quiz[] = quizzicalQuizzes.map(fromQuizzicalQuiz);
 const dynamicQuizzes = new Map<string, Quiz>();

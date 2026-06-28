@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 const navItems = [
   { label: "Home", href: "/discover", icon: HomeIcon, match: "home" },
   { label: "Discover", href: "/discover", icon: DiscoverIcon, match: "discover" },
+  { label: "AI", href: "/ai", icon: AiIcon, match: "ai" },
   { label: "Library", href: "/discover", icon: LibraryIcon, match: "library" },
   { label: "You", href: "/discover", icon: ProfileIcon, match: "profile" },
 ] as const;
@@ -26,7 +27,11 @@ export default function MobileBottomNav() {
         {navItems.map((item) => {
           const Icon = item.icon;
           const isActive =
-            item.match === "discover" ? isDiscover : false;
+            item.match === "discover"
+              ? isDiscover
+              : item.match === "ai"
+                ? pathname === "/ai"
+                : false;
 
           return (
             <Link
@@ -70,6 +75,14 @@ function DiscoverIcon({ className }: { className?: string }) {
   return (
     <svg className={className} viewBox="0 0 24 24" fill="currentColor">
       <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C8.01 14 6 11.99 6 9.5S8.01 5 10.5 5 15 7.01 15 9.5 12.99 14 10.5 14z" />
+    </svg>
+  );
+}
+
+function AiIcon({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12 2a2 2 0 012 2c0 .74-.4 1.39-1 1.73V7h1a7 7 0 017 7h1a2 2 0 010 4h-1.07A7.001 7.001 0 0113 22h-2a7.001 7.001 0 01-6.93-6H3a2 2 0 010-4h1a7 7 0 017-7h1V5.73c-.6-.34-1-.99-1-1.73a2 2 0 012-2M7.5 13A2.5 2.5 0 005 15.5 2.5 2.5 0 007.5 18a2.5 2.5 0 002.5-2.5A2.5 2.5 0 007.5 13m9 0a2.5 2.5 0 00-2.5 2.5 2.5 2.5 0 002.5 2.5 2.5 2.5 0 002.5-2.5 2.5 2.5 0 00-2.5-2.5" />
     </svg>
   );
 }

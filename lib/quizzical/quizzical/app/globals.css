@@ -1,0 +1,212 @@
+@import "tailwindcss";
+
+@theme {
+  /* Brand palette — values matched to the reference design */
+  --color-cream: #fffdf4;
+  --color-cream-dark: #e6e4dc;
+  --color-ink: #0a0a0a;
+
+  /* Brand surfaces — derived from the Quizzical logo (purple + gold) */
+  --color-petrol: #3a0ca3;
+  --color-petrol-dark: #2a0a78;
+
+  --color-grass: #5b19df;
+  --color-sky: #ffc83a;
+  --color-lime: #ffd95e;
+
+  --color-coral: #c9b3ff;
+
+  /* Quiz gameplay answer colors */
+  --color-answer1: #ff6b6b;
+  --color-answer2: #4d8dff;
+  --color-answer3: #ffc24b;
+  --color-answer4: #00a76d;
+
+  /* Fonts wired from next/font in layout.tsx */
+  --font-sans: var(--font-nunito);
+  --font-display: var(--font-nunito);
+}
+
+:root {
+  --background: var(--color-cream);
+}
+
+body {
+  background-color: var(--background);
+  color: var(--color-ink);
+  font-family: var(--font-sans), system-ui, sans-serif;
+}
+
+/* Responsive page container, matched to reference breakpoints.
+   Horizontal padding is applied in markup (px-4 md:px-0). */
+.custom-container {
+  position: relative;
+  width: 100%;
+  margin-inline: auto;
+}
+@media (min-width: 640px) {
+  .custom-container {
+    max-width: 608px;
+  }
+}
+@media (min-width: 768px) {
+  .custom-container {
+    max-width: 736px;
+  }
+}
+@media (min-width: 1024px) {
+  .custom-container {
+    max-width: 992px;
+  }
+}
+@media (min-width: 1280px) {
+  .custom-container {
+    max-width: 1248px;
+  }
+}
+@media (min-width: 1536px) {
+  .custom-container {
+    max-width: 1504px;
+  }
+}
+
+/* Subtle dotted page background, rendered behind content */
+.bg-quiz-pattern {
+  background-image: radial-gradient(var(--color-ink) 1.1px, transparent 1.1px);
+  background-size: 28px 28px;
+}
+
+/* Gameplay motion — keep subtle so it reads as polish, not noise */
+@keyframes quiz-pop-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.96) translateY(8px);
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+.animate-quiz-pop {
+  animation: quiz-pop-in 0.3s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+@keyframes quiz-rise {
+  0% {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+.animate-quiz-rise {
+  animation: quiz-rise 0.35s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+@keyframes quiz-correct {
+  0% {
+    transform: scale(1);
+  }
+  40% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1.02);
+  }
+}
+.animate-quiz-correct {
+  animation: quiz-correct 0.45s ease-out both;
+}
+
+/* Reveal card — slide up from below */
+@keyframes reveal-slide-up {
+  0% {
+    opacity: 0;
+    transform: translateY(28px) scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+.animate-reveal {
+  animation: reveal-slide-up 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+/* Correct / wrong glow pulses for the reveal card */
+@keyframes glow-correct {
+  0% {
+    box-shadow: 0 6px 0 0 #0d0d0d, 0 0 0 0 rgba(0, 167, 109, 0);
+  }
+  35% {
+    box-shadow: 0 6px 0 0 #0d0d0d, 0 0 0 10px rgba(0, 167, 109, 0.35);
+  }
+  100% {
+    box-shadow: 0 6px 0 0 #0d0d0d, 0 0 0 0 rgba(0, 167, 109, 0);
+  }
+}
+.glow-correct {
+  animation: reveal-slide-up 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) both,
+    glow-correct 1.1s ease-out 0.1s 1;
+}
+
+@keyframes glow-wrong {
+  0% {
+    box-shadow: 0 6px 0 0 #0d0d0d, 0 0 0 0 rgba(255, 107, 107, 0);
+  }
+  35% {
+    box-shadow: 0 6px 0 0 #0d0d0d, 0 0 0 10px rgba(255, 107, 107, 0.4);
+  }
+  100% {
+    box-shadow: 0 6px 0 0 #0d0d0d, 0 0 0 0 rgba(255, 107, 107, 0);
+  }
+}
+.glow-wrong {
+  animation: reveal-slide-up 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) both,
+    glow-wrong 1.1s ease-out 0.1s 1;
+}
+
+@keyframes quiz-float {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(-3deg);
+  }
+}
+.animate-quiz-float {
+  animation: quiz-float 4s ease-in-out infinite;
+}
+
+@keyframes quiz-blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+.animate-quiz-blink {
+  animation: quiz-blink 1.1s step-end infinite;
+}
+
+/* Dark "matrix" backdrop for the AI generator */
+.bg-matrix {
+  background-color: #0c2e30;
+  background-image:
+    repeating-linear-gradient(
+      90deg,
+      rgba(111, 238, 255, 0.05) 0,
+      rgba(111, 238, 255, 0.05) 1px,
+      transparent 1px,
+      transparent 22px
+    ),
+    radial-gradient(rgba(111, 238, 255, 0.12) 1px, transparent 1px);
+  background-size:
+    22px 100%,
+    22px 22px;
+}

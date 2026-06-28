@@ -9,6 +9,8 @@ export interface Question {
   imageQuery?: string;
 }
 
+export type VisualMode = "question-image" | "answer-images" | "both";
+
 export interface Quiz {
   id: string;
   title: string;
@@ -23,6 +25,10 @@ export interface Quiz {
   coverIcon: string;
   isFree: boolean;
   questions: Question[];
+  /** Quizzical category slug for reveal API */
+  revealCategory?: string;
+  quizzicalId?: string;
+  visualMode?: VisualMode;
 }
 
 export interface Player {
