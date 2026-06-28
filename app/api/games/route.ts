@@ -4,16 +4,16 @@ import {
   isImageCategory,
   normalizeDifficulty,
 } from "@/lib/quizzical/quizGenerator";
-import { generateFlagQuestions, isFlagsQuiz } from "@/lib/quizzical/flagQuiz";
+import { isFlagsQuiz } from "@/lib/quizzical/flagQuiz";
 import { generateAiQuiz } from "@/lib/quizzical/aiQuiz";
 import {
   fromGeneratedQuestions,
   fromQuizzicalQuiz,
   fromAiQuiz,
 } from "@/lib/engine/adapter";
-import { getPictureGameModes, registerQuiz } from "@/lib/quizRegistry";
+import { getPictureGameModes, registerQuiz, getQuizzicalQuizRaw } from "@/lib/quizRegistry";
 import { createGame } from "@/lib/gameStore";
-import { getQuizzicalQuizRaw } from "@/lib/quizRegistry";
+import type { Quiz } from "@/lib/types";
 
 export async function POST(request: NextRequest) {
   const body = await request.json();
@@ -30,6 +30,39 @@ export async function POST(request: NextRequest) {
     }
 
     const quiz = fromAiQuiz(result.quiz);
+    registerQuiz(quiz);
+    const session = createGame(quiz.id);
+    if (!session) {
+      return NextResponse.json({ error: "Failed to create game" }, { status: 500 });
+    }
+    return NextResponse.json({ gameId: session.id, session, quiz });
+  }
+
+  if (body.intent?.type === "picture") {
+    const { slug, category } = body.intent;
+    const mode = getPictureGameModes().find(
+      (m) => m.slug === slug || m.category === category
+    );
+    if (!mode) {
+      return NextResponse.json({ error: "Unknown picture game" }, { status: 400 });
+    }
+
+    const quiz: Quiz = {
+      id: `intent-${mode.slug}-${Date.now()}`,
+      title: mode.title,
+      description: mode.subtitle ?? "Wikipedia-powered picture quiz",
+      creator: "Quizziqal",
+      questionCount: 10,
+      plays: 0,
+      category: "Picture",
+      tags: ["picture", mode.category, "intent", mode.slug],
+      coverGradient: `linear-gradient(135deg, ${mode.color} 0%, ${mode.color}99 100%)`,
+      coverIcon: mode.emoji,
+      isFree: true,
+      questions: [],
+      revealCategory: mode.category,
+    };
+
     registerQuiz(quiz);
     const session = createGame(quiz.id);
     if (!session) {
@@ -89,11 +122,7 @@ export async function POST(request: NextRequest) {
     if (!raw) {
       return NextResponse.json({ error: "Quiz not found" }, { status: 404 });
     }
-    const quiz = fromQuizzicalQuiz({
-      ...raw,
-      id: `flags-${Date.now()}`,
-      questions: generateFlagQuestions(10),
-    });
+    const quiz = fromQuizzicalQuiz({ ...raw, questions: [] });
     registerQuiz(quiz);
     const session = createGame(quiz.id);
     if (!session) {

@@ -60,7 +60,7 @@ export default function DiscoverPage() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          generate: { category, count: 10, difficulty: "Medium" },
+          intent: { type: "picture", slug: key, category },
         }),
       });
       const data = await res.json();

@@ -18,9 +18,7 @@ export function createGame(quizId: string): GameSession | null {
     createdAt: Date.now(),
   };
   games.set(id, session);
-
-  const started = beginPlay(id, "Player");
-  return started?.session ?? session;
+  return session;
 }
 
 export function getGame(gameId: string): GameSession | undefined {

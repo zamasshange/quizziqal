@@ -1,19 +1,13 @@
 "use client";
 
 import { AnswerColor } from "@/lib/types";
+import { ANSWER_LABELS } from "@/lib/roundSettings";
 
 const COLOR_MAP: Record<AnswerColor, string> = {
   red: "var(--kahoot-red)",
   blue: "var(--kahoot-blue)",
   yellow: "var(--kahoot-yellow)",
   green: "var(--kahoot-green)",
-};
-
-const SHAPE_MAP: Record<AnswerColor, string> = {
-  red: "▲",
-  blue: "◆",
-  yellow: "●",
-  green: "■",
 };
 
 interface AnswerButtonsProps {
@@ -33,47 +27,57 @@ export default function AnswerButtons({
   selectedIndex,
   layout = "grid",
 }: AnswerButtonsProps) {
-  if (layout === "host") {
-    return (
-      <div className="grid h-full w-full grid-cols-2 grid-rows-2 gap-2 p-3 lg:gap-3 lg:p-6">
-        {answers.map((answer, i) => (
-          <div
+  const gridClass =
+    layout === "host"
+      ? "grid h-full w-full grid-cols-2 grid-rows-2 gap-2 p-3 lg:gap-3 lg:p-6"
+      : "grid h-full w-full grid-cols-2 grid-rows-2 gap-2 p-3 lg:gap-3 lg:p-4";
+
+  return (
+    <div className={gridClass}>
+      {answers.map((answer, i) => {
+        const label = ANSWER_LABELS[i] ?? String(i + 1);
+        const isSelected = selectedIndex === i;
+        const showCorrect = reveal && answer.correct;
+
+        if (layout === "host" || disabled) {
+          return (
+            <div
+              key={i}
+              className={`answer-btn flex items-center gap-3 rounded-lg p-3 text-white shadow-lg lg:p-5 ${
+                showCorrect ? "ring-4 ring-white ring-offset-2" : ""
+              } ${isSelected ? "ring-4 ring-white scale-[0.98]" : ""}`}
+              style={{ background: COLOR_MAP[answer.color] }}
+            >
+              <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-black/20 text-lg font-extrabold lg:h-10 lg:w-10 lg:text-xl">
+                {label}
+              </span>
+              <span className="text-sm font-bold leading-tight lg:text-base">{answer.text}</span>
+            </div>
+          );
+        }
+
+        return (
+          <button
             key={i}
-            className={`answer-btn flex items-center justify-center rounded-lg p-3 text-center text-white shadow-lg lg:p-6 ${
-              reveal && answer.correct ? "ring-4 ring-white ring-offset-2" : ""
+            type="button"
+            onClick={() => onAnswer?.(i)}
+            disabled={disabled}
+            className={`answer-btn flex items-center gap-2 rounded-lg p-3 text-left text-white shadow-md lg:gap-3 lg:p-5 ${
+              showCorrect ? "ring-4 ring-white" : ""
+            } ${isSelected ? "ring-4 ring-white scale-[0.98]" : ""} ${
+              disabled ? "cursor-not-allowed opacity-70" : ""
             }`}
             style={{ background: COLOR_MAP[answer.color] }}
           >
-            <div>
-              <span className="mb-1 block text-2xl lg:mb-2 lg:text-3xl">{SHAPE_MAP[answer.color]}</span>
-              <span className="text-sm font-bold lg:text-lg">{answer.text}</span>
-            </div>
-          </div>
-        ))}
-      </div>
-    );
-  }
-
-  return (
-    <div className="grid h-full w-full grid-cols-2 grid-rows-2 gap-2 p-3 lg:gap-3 lg:p-4">
-      {answers.map((answer, i) => (
-        <button
-          key={i}
-          onClick={() => onAnswer?.(i)}
-          disabled={disabled}
-          className={`answer-btn flex flex-col items-center justify-center rounded-lg p-3 text-white shadow-md lg:p-6 ${
-            reveal && answer.correct ? "ring-4 ring-white" : ""
-          } ${selectedIndex === i ? "ring-4 ring-white scale-95" : ""} ${
-            disabled ? "cursor-not-allowed opacity-70" : ""
-          }`}
-          style={{ background: COLOR_MAP[answer.color] }}
-        >
-          <span className="mb-1 text-2xl lg:mb-2 lg:text-3xl">{SHAPE_MAP[answer.color]}</span>
-          <span className="text-xs font-bold leading-tight lg:text-base">{answer.text}</span>
-        </button>
-      ))}
+            <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-black/20 text-base font-extrabold lg:h-10 lg:w-10 lg:text-lg">
+              {label}
+            </span>
+            <span className="text-xs font-bold leading-tight lg:text-sm">{answer.text}</span>
+          </button>
+        );
+      })}
     </div>
   );
 }
 
-export { COLOR_MAP, SHAPE_MAP };
+export { COLOR_MAP };
