@@ -38,6 +38,7 @@
   --kahoot-green: #26890c;
   --kahoot-text: #333333;
   --kahoot-text-light: #666666;
+  --game-ink: #1a0a33;
   --background: #f2f2f2;
   --foreground: #333333;
 }
@@ -66,53 +67,160 @@ body {
   -webkit-tap-highlight-color: transparent;
 }
 
+/* ── Animations ── */
 @keyframes slide-up {
   from { transform: translateY(20px); opacity: 0; }
   to { transform: translateY(0); opacity: 1; }
 }
 
-@keyframes countdown-pulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.05); }
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(4deg); }
 }
 
-.animate-slide-up {
-  animation: slide-up 0.4s ease-out forwards;
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0) rotate(-3deg); }
+  50% { transform: translateY(-14px) rotate(3deg); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.35); }
+  50% { box-shadow: 0 0 0 12px rgba(255, 255, 255, 0); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes wiggle {
+  0%, 100% { transform: rotate(-2deg); }
+  50% { transform: rotate(2deg); }
+}
+
+.animate-slide-up { animation: slide-up 0.4s ease-out forwards; }
+.animate-float { animation: float 3.5s ease-in-out infinite; }
+.animate-float-slow { animation: float-slow 4.5s ease-in-out infinite; }
+.animate-wiggle { animation: wiggle 2s ease-in-out infinite; }
+.animate-pulse-glow { animation: pulse-glow 2s ease-in-out infinite; }
+
+/* ── Discover hero ── */
+.game-hero {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(
+    135deg,
+    #46178f 0%,
+    #6b2fd6 40%,
+    #a855f7 70%,
+    #ff6b9d 100%
+  );
+}
+
+.game-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.12) 1px, transparent 1px);
+  background-size: 22px 22px;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.game-hero-emoji {
+  position: absolute;
+  font-size: 2rem;
+  opacity: 0.35;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* ── Quiz cards ── */
+.quiz-card {
+  border: 2px solid rgba(70, 23, 143, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 }
 
 .quiz-card:active {
-  transform: scale(0.98);
+  transform: scale(0.97) translateY(2px);
 }
 
 @media (min-width: 1024px) {
   .quiz-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 24px rgba(70, 23, 143, 0.2);
+    transform: translateY(-6px);
+    border-color: rgba(70, 23, 143, 0.25);
+    box-shadow:
+      0 12px 28px rgba(70, 23, 143, 0.18),
+      0 0 0 3px rgba(134, 76, 191, 0.12);
   }
 }
 
+/* ── Answer buttons — chunky game style ── */
 .answer-btn {
-  transition: transform 0.1s ease, filter 0.1s ease;
+  position: relative;
+  border: 3px solid rgba(0, 0, 0, 0.22);
+  box-shadow: 0 5px 0 rgba(0, 0, 0, 0.28);
+  transition: transform 0.1s ease, box-shadow 0.1s ease, filter 0.1s ease;
   touch-action: manipulation;
 }
 
+.answer-btn::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  border: 2px solid rgba(255, 255, 255, 0.22);
+  pointer-events: none;
+}
+
 .answer-btn:active:not(:disabled) {
-  filter: brightness(1.1);
-  transform: scale(0.97);
+  transform: translateY(4px);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.28);
+  filter: brightness(1.05);
 }
 
 @media (min-width: 1024px) {
   .answer-btn:hover:not(:disabled) {
-    filter: brightness(1.1);
-    transform: scale(1.02);
+    filter: brightness(1.08);
+    transform: translateY(-2px);
+    box-shadow: 0 7px 0 rgba(0, 0, 0, 0.28);
   }
 }
 
-.scrollbar-hide::-webkit-scrollbar {
-  display: none;
+.answer-btn-selected {
+  outline: 3px solid white;
+  outline-offset: 2px;
+  box-shadow:
+    0 5px 0 rgba(0, 0, 0, 0.28),
+    0 0 0 4px rgba(255, 255, 255, 0.5);
 }
 
-.scrollbar-hide {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+/* ── Game stage image ── */
+.stage-frame {
+  position: relative;
+  overflow: hidden;
+  border: 3px solid rgba(70, 23, 143, 0.15);
+  box-shadow:
+    0 8px 24px rgba(70, 23, 143, 0.15),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.1);
 }
+
+/* ── Pill buttons ── */
+.game-pill {
+  border: 2px solid rgba(0, 0, 0, 0.12);
+  box-shadow: 0 3px 0 rgba(0, 0, 0, 0.12);
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+.game-pill:active {
+  transform: translateY(2px);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.12);
+}
+
+.game-pill-active {
+  border-color: var(--kahoot-purple);
+  box-shadow: 0 3px 0 #2a0a5e;
+}
+
+.scrollbar-hide::-webkit-scrollbar { display: none; }
+.scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }

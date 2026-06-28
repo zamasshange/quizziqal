@@ -34,32 +34,37 @@ export default function RoundSetup({
   onTimer,
   onStart,
 }: Props) {
-  const isPicture = quiz.tags.includes("picture") || quiz.tags.includes("intent");
-
   return (
     <div
       className="flex min-h-screen flex-col items-center justify-center p-5"
       style={{
         background:
-          "linear-gradient(180deg, var(--kahoot-purple) 0%, var(--kahoot-purple-dark) 100%)",
+          "linear-gradient(160deg, #46178f 0%, #6b2fd6 45%, #33348e 100%)",
       }}
     >
-      <div className="w-full max-w-md rounded-2xl bg-white p-6 shadow-2xl lg:p-8">
-        <div className="mb-6 text-center">
+      <div className="relative w-full max-w-md overflow-hidden rounded-3xl border-4 border-white/20 bg-white p-6 shadow-2xl lg:p-8">
+        <div
+          className="pointer-events-none absolute -right-6 -top-6 text-6xl opacity-20"
+          aria-hidden
+        >
+          {quiz.coverIcon}
+        </div>
+
+        <div className="relative mb-6 text-center">
           <div
-            className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl text-4xl"
+            className="mx-auto mb-4 flex h-20 w-20 items-center justify-center rounded-2xl border-3 border-black/10 text-5xl shadow-lg"
             style={{ background: quiz.coverGradient }}
           >
             {quiz.coverIcon}
           </div>
-          <h1 className="text-xl font-extrabold text-gray-900">{quiz.title}</h1>
-          <p className="mt-1 text-sm text-gray-500">
-            Choose your settings, then start playing
+          <h1 className="text-2xl font-extrabold text-gray-900">{quiz.title}</h1>
+          <p className="mt-1 text-sm font-semibold text-gray-500">
+            Pick your round — then let&apos;s go! 🎯
           </p>
         </div>
 
         <div className="mb-5">
-          <label className="mb-2 block text-xs font-bold uppercase tracking-wide text-gray-500">
+          <label className="mb-2 block text-xs font-extrabold uppercase tracking-wider text-gray-400">
             Difficulty
           </label>
           <div className="flex flex-col gap-2">
@@ -68,19 +73,15 @@ export default function RoundSetup({
                 key={d}
                 type="button"
                 onClick={() => onDifficulty(d)}
-                className={`rounded-xl border-2 px-4 py-2.5 text-left text-sm font-bold transition-colors ${
+                className={`game-pill rounded-xl px-4 py-2.5 text-left text-sm font-extrabold ${
                   difficulty === d
-                    ? "border-[var(--kahoot-purple)] bg-[var(--kahoot-purple)] text-white"
-                    : "border-gray-200 bg-gray-50 text-gray-700 hover:border-[var(--kahoot-purple)]"
+                    ? "game-pill-active bg-[var(--kahoot-purple)] text-white"
+                    : "bg-gray-50 text-gray-700 hover:bg-gray-100"
                 }`}
               >
                 {d}
                 <span className="ml-2 text-xs font-semibold opacity-70">
-                  {d === "Easy"
-                    ? "household names"
-                    : d === "Medium"
-                      ? "well-known"
-                      : "deep cuts"}
+                  {d === "Easy" ? "😊 Easy picks" : d === "Medium" ? "🔥 Solid" : "🧠 Expert"}
                 </span>
               </button>
             ))}
@@ -88,7 +89,7 @@ export default function RoundSetup({
         </div>
 
         <div className="mb-5">
-          <label className="mb-2 block text-xs font-bold uppercase tracking-wide text-gray-500">
+          <label className="mb-2 block text-xs font-extrabold uppercase tracking-wider text-gray-400">
             Questions
           </label>
           <div className="grid grid-cols-5 gap-2">
@@ -97,10 +98,10 @@ export default function RoundSetup({
                 key={n}
                 type="button"
                 onClick={() => onQuestionCount(n)}
-                className={`rounded-lg py-2 text-sm font-bold ${
+                className={`game-pill rounded-xl py-2.5 text-sm font-extrabold ${
                   questionCount === n
-                    ? "bg-[var(--kahoot-purple)] text-white"
-                    : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+                    ? "game-pill-active bg-[var(--kahoot-purple)] text-white"
+                    : "bg-gray-100 text-gray-600"
                 }`}
               >
                 {n}
@@ -110,8 +111,8 @@ export default function RoundSetup({
         </div>
 
         <div className="mb-6">
-          <label className="mb-2 block text-xs font-bold uppercase tracking-wide text-gray-500">
-            Timer per question
+          <label className="mb-2 block text-xs font-extrabold uppercase tracking-wider text-gray-400">
+            Timer
           </label>
           <div className="grid grid-cols-5 gap-2">
             {TIMER_OPTIONS.map((t) => (
@@ -119,10 +120,10 @@ export default function RoundSetup({
                 key={t}
                 type="button"
                 onClick={() => onTimer(t)}
-                className={`rounded-lg py-2 text-sm font-bold ${
+                className={`game-pill rounded-xl py-2.5 text-sm font-extrabold ${
                   timerSeconds === t
-                    ? "bg-[var(--kahoot-blue)] text-white"
-                    : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+                    ? "bg-[var(--kahoot-blue)] text-white shadow-[0_3px_0_#0a3d7a]"
+                    : "bg-gray-100 text-gray-600"
                 }`}
               >
                 {t}s
@@ -131,26 +132,20 @@ export default function RoundSetup({
           </div>
         </div>
 
-        {isPicture && (
-          <p className="mb-4 text-center text-xs text-gray-400">
-            Wikipedia-powered images · new questions every round
-          </p>
-        )}
-
         <button
           type="button"
           disabled={loading}
           onClick={onStart}
-          className="w-full rounded-full bg-[var(--kahoot-purple)] py-3.5 text-lg font-extrabold text-white disabled:opacity-50"
+          className="game-pill w-full rounded-full bg-[var(--kahoot-green)] py-4 text-lg font-extrabold text-white shadow-[0_5px_0_#1a5c08] disabled:opacity-50"
         >
-          {loading ? "Loading quiz…" : "▶ Start"}
+          {loading ? "Loading…" : "▶  Start game!"}
         </button>
 
         <Link
           href="/discover"
-          className="mt-4 block text-center text-sm text-gray-500 underline"
+          className="mt-4 block text-center text-sm font-semibold text-gray-400 underline"
         >
-          Back to Discover
+          ← Back to Discover
         </Link>
       </div>
     </div>

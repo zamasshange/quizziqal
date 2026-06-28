@@ -13,6 +13,7 @@ import {
 } from "@/lib/roundSettings";
 import RoundSetup from "./RoundSetup";
 import GameHud from "./GameHud";
+import GameFooter from "./GameFooter";
 import GamePauseOverlay from "./GamePauseOverlay";
 import AnswerButtons from "./AnswerButtons";
 import QuestionImage from "./QuestionImage";
@@ -47,7 +48,6 @@ export default function SoloQuizPlayer({ gameId, templateQuiz }: Props) {
   const [correctCount, setCorrectCount] = useState(0);
   const [timeLeft, setTimeLeft] = useState<number>(DEFAULT_TIMER);
   const [paused, setPaused] = useState(false);
-  const [error, setError] = useState("");
   const questionStartedAt = useRef(Date.now());
 
   const question = questions[index];
@@ -58,7 +58,6 @@ export default function SoloQuizPlayer({ gameId, templateQuiz }: Props) {
 
   const startRound = async () => {
     setPhase("loading");
-    setError("");
     try {
       const res = await fetch(`/api/games/${gameId}`, {
         method: "POST",
@@ -70,7 +69,6 @@ export default function SoloQuizPlayer({ gameId, templateQuiz }: Props) {
       });
       const data = await res.json();
       if (!res.ok) {
-        setError(data.error ?? "Could not load quiz");
         setPhase("setup");
         return;
       }
@@ -85,7 +83,6 @@ export default function SoloQuizPlayer({ gameId, templateQuiz }: Props) {
       questionStartedAt.current = Date.now();
       setPhase("playing");
     } catch {
-      setError("Connection error. Try again.");
       setPhase("setup");
     }
   };
@@ -157,10 +154,14 @@ export default function SoloQuizPlayer({ gameId, templateQuiz }: Props) {
       if (phase === "playing" && k in map && map[k] < (question?.answers.length ?? 0)) {
         lockAnswer(map[k]);
       }
+      if (phase === "reveal" && (k === "Enter" || k === " ")) {
+        e.preventDefault();
+        goNext();
+      }
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [phase, paused, question, lockAnswer]);
+  }, [phase, paused, question, lockAnswer, goNext]);
 
   if (phase === "setup") {
     return (
@@ -180,9 +181,16 @@ export default function SoloQuizPlayer({ gameId, templateQuiz }: Props) {
 
   if (phase === "loading") {
     return (
-      <div className="flex min-h-screen flex-col items-center justify-center bg-[var(--kahoot-purple)] text-white">
+      <div
+        className="flex min-h-screen flex-col items-center justify-center text-white"
+        style={{
+          background:
+            "linear-gradient(160deg, #46178f 0%, #6b2fd6 50%, #33348e 100%)",
+        }}
+      >
+        <div className="mb-4 text-5xl animate-wiggle">🎯</div>
         <div className="mb-4 h-12 w-12 animate-spin rounded-full border-4 border-white border-t-transparent" />
-        <p className="font-semibold">Building your quiz…</p>
+        <p className="font-extrabold">Building your quiz…</p>
       </div>
     );
   }
@@ -201,30 +209,33 @@ export default function SoloQuizPlayer({ gameId, templateQuiz }: Props) {
             "linear-gradient(180deg, var(--kahoot-purple) 0%, #1a0533 100%)",
         }}
       >
-        <p className="mb-2 text-6xl">{quiz.coverIcon}</p>
-        <h1 className="mb-2 text-2xl font-extrabold text-white">{message}</h1>
-        <p className="mb-1 text-4xl font-extrabold text-yellow-300">{score} pts</p>
-        <p className="mb-8 text-white/70">
-          {correctCount} / {total} correct
-        </p>
+        <div className="mb-6 rounded-3xl border-4 border-white/20 bg-white/10 px-10 py-8 text-center backdrop-blur-sm">
+          <p className="mb-2 text-6xl">{quiz.coverIcon}</p>
+          <h1 className="mb-2 text-2xl font-extrabold text-white">{message}</h1>
+          <p className="text-5xl font-extrabold text-yellow-300 tabular-nums">{score}</p>
+          <p className="text-sm font-bold text-white/60">points</p>
+          <p className="mt-3 text-white/80">
+            {correctCount} / {total} correct · {pct}%
+          </p>
+        </div>
         <div className="flex flex-col gap-3 sm:flex-row">
           <button
             type="button"
             onClick={() => setPhase("setup")}
-            className="rounded-full bg-white px-8 py-3 font-bold text-[var(--kahoot-purple)]"
+            className="game-pill rounded-full bg-white px-8 py-3 font-extrabold text-[var(--kahoot-purple)]"
           >
             Change settings
           </button>
           <button
             type="button"
             onClick={startRound}
-            className="rounded-full border-2 border-white px-8 py-3 font-bold text-white"
+            className="game-pill rounded-full bg-[var(--kahoot-green)] px-8 py-3 font-extrabold text-white shadow-[0_4px_0_#1a5c08]"
           >
             Play again
           </button>
           <Link
             href="/discover"
-            className="rounded-full border-2 border-white/50 px-8 py-3 text-center font-bold text-white/90"
+            className="game-pill rounded-full border-2 border-white/50 bg-white/10 px-8 py-3 text-center font-extrabold text-white"
           >
             Discover
           </Link>
@@ -243,6 +254,19 @@ export default function SoloQuizPlayer({ gameId, templateQuiz }: Props) {
         : "wrong";
   const correctAnswer = question.answers.find((a) => a.correct)?.text ?? "";
 
+  const hud = (
+    <GameHud
+      index={index}
+      total={questions.length}
+      timeLeft={timeLeft}
+      timerSeconds={timerSeconds}
+      score={score}
+      paused={paused}
+      phase={phase === "reveal" ? "reveal" : "playing"}
+      onPause={() => setPaused((p) => !p)}
+    />
+  );
+
   if (phase === "reveal") {
     const bg =
       feedback === "correct"
@@ -252,114 +276,96 @@ export default function SoloQuizPlayer({ gameId, templateQuiz }: Props) {
           : "var(--kahoot-purple-dark)";
 
     return (
-      <div className="flex min-h-screen flex-col">
-        <GameHud
-          title={quiz.title}
-          index={index}
-          total={questions.length}
-          timeLeft={timeLeft}
-          timerSeconds={timerSeconds}
-          score={score}
-          paused={paused}
-          canGoBack={index > 0}
-          showNav
-          onPause={() => setPaused((p) => !p)}
-          onPrevious={goPrevious}
-          onNext={goNext}
-        />
+      <div className="flex min-h-screen flex-col" style={{ background: bg }}>
+        {hud}
         {paused && <GamePauseOverlay onResume={() => setPaused(false)} />}
 
-        <div
-          className="flex flex-1 flex-col items-center justify-center gap-4 p-4"
-          style={{ background: bg }}
-        >
-          <p className="text-5xl">
-            {feedback === "correct" ? "✓" : feedback === "wrong" ? "✗" : "⏱"}
-          </p>
-          <h2 className="text-xl font-extrabold text-white">
-            {feedback === "correct"
-              ? "Correct!"
-              : feedback === "wrong"
-                ? "Wrong!"
-                : "Time's up!"}
-          </h2>
-          {correctAnswer && (
-            <>
-              <p className="text-lg text-white/90">Answer: {correctAnswer}</p>
+        <div className="flex flex-1 flex-col overflow-y-auto">
+          <div className="flex flex-1 flex-col items-center gap-4 px-4 py-5">
+            <div className="text-center">
+              <p className="text-5xl drop-shadow-lg">
+                {feedback === "correct" ? "🎉" : feedback === "wrong" ? "😅" : "⏱️"}
+              </p>
+              <h2 className="mt-1 text-2xl font-extrabold text-white">
+                {feedback === "correct"
+                  ? "Correct!"
+                  : feedback === "wrong"
+                    ? "Not quite"
+                    : "Time's up!"}
+              </h2>
+            </div>
+
+            {correctAnswer && (
               <RevealPanel
                 category={revealCategory}
                 term={correctAnswer}
-                status={feedback === "correct" ? "correct" : "wrong"}
+                imageUrl={hasImage ? question.image : undefined}
               />
-            </>
-          )}
-          <button
-            type="button"
-            onClick={goNext}
-            className="mt-2 rounded-full bg-white px-8 py-3 font-extrabold text-[var(--kahoot-purple)]"
-          >
-            {isLast ? "See results" : "Next question →"}
-          </button>
+            )}
+
+            <div className="w-full max-w-md px-1">
+              <AnswerButtons
+                answers={question.answers}
+                reveal
+                selectedIndex={selected ?? undefined}
+                disabled
+              />
+            </div>
+          </div>
         </div>
+
+        <GameFooter
+          index={index}
+          total={questions.length}
+          canGoBack={index > 0}
+          primaryLabel={isLast ? "See results →" : "Next question →"}
+          onPrevious={goPrevious}
+          onPrimary={goNext}
+          variant="dark"
+        />
       </div>
     );
   }
 
   return (
-    <div className="flex min-h-screen flex-col bg-white">
-      <GameHud
-        title={quiz.title}
-        index={index}
-        total={questions.length}
-        timeLeft={timeLeft}
-        timerSeconds={timerSeconds}
-        score={score}
-        paused={paused}
-        canGoBack={index > 0 && selected === null}
-        showNav={selected === null}
-        onPause={() => setPaused((p) => !p)}
-        onPrevious={goPrevious}
-        onNext={() => {
-          if (selected !== null) goNext();
-        }}
-      />
+    <div className="flex min-h-screen flex-col bg-gray-100">
+      {hud}
       {paused && <GamePauseOverlay onResume={() => setPaused(false)} />}
 
-      <div className="flex flex-1 flex-col">
+      <div className="flex flex-1 flex-col overflow-hidden">
         {hasImage ? (
-          <div className="flex flex-col gap-3 px-4 pt-4 lg:grid lg:grid-cols-2 lg:gap-6 lg:px-6 lg:pt-6">
-            <div className="flex flex-col items-center justify-center">
+          <>
+            <div className="shrink-0 bg-white px-4 pb-2 pt-3 shadow-sm">
               <QuestionImage
                 image={question.image}
                 imageQuery={question.imageQuery}
                 alt={question.text}
-                portrait
               />
-              <p className="mt-3 text-center text-base font-extrabold text-gray-900 lg:text-lg">
+              <p className="mt-3 text-center text-base font-extrabold leading-snug text-gray-900">
                 {question.text}
               </p>
             </div>
-            <div className="min-h-[220px] flex-1 lg:min-h-0">
+            <div className="min-h-0 flex-1 bg-white">
               <AnswerButtons
                 answers={question.answers}
                 onAnswer={lockAnswer}
-                disabled={selected !== null || paused}
+                disabled={paused}
                 selectedIndex={selected ?? undefined}
               />
             </div>
-          </div>
+          </>
         ) : (
           <>
-            <div className="flex items-center justify-center px-4 py-6">
-              <h1 className="text-center text-lg font-extrabold text-gray-900 lg:text-2xl">
+            <div className="shrink-0 bg-[var(--kahoot-purple)] px-4 py-6 text-center shadow-md">
+              <p className="text-lg font-extrabold leading-snug text-white lg:text-xl">
                 {question.text}
-              </h1>
+              </p>
             </div>
-            <div className="min-h-[220px] flex-1">
+            <div className="min-h-0 flex-1 bg-white">
               <AnswerButtons
                 answers={question.answers}
                 onAnswer={lockAnswer}
-                disabled={selected !== null || paused}
+                disabled={paused}
                 selectedIndex={selected ?? undefined}
               />
             </div>

@@ -1,92 +1,98 @@
 "use client";
 
 type Props = {
-  title: string;
   index: number;
   total: number;
   timeLeft: number;
   timerSeconds: number;
   score: number;
   paused: boolean;
-  canGoBack: boolean;
-  showNav: boolean;
+  phase: "playing" | "reveal";
   onPause: () => void;
-  onPrevious: () => void;
-  onNext: () => void;
 };
 
 export default function GameHud({
-  title,
   index,
   total,
   timeLeft,
   timerSeconds,
   score,
   paused,
-  canGoBack,
-  showNav,
+  phase,
   onPause,
-  onPrevious,
-  onNext,
 }: Props) {
   const lowTime = timeLeft <= Math.max(3, Math.floor(timerSeconds * 0.25));
+  const timerFrac = Math.max(0, timeLeft / timerSeconds);
 
   return (
-    <div className="bg-[var(--kahoot-purple)] text-white">
-      <div className="flex items-center gap-2 px-3 py-2">
+    <header className="shrink-0 bg-[var(--kahoot-purple)] text-white shadow-md">
+      <div className="flex items-center gap-2 px-3 py-2.5">
+        <a
+          href="/discover"
+          className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border-2 border-white/25 bg-white/10 text-sm font-bold"
+        >
+          ✕
+        </a>
         <button
           type="button"
           onClick={onPause}
-          className="flex h-9 shrink-0 items-center rounded-full bg-white/15 px-3 text-xs font-bold"
+          className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border-2 border-white/25 bg-white/10 text-sm font-bold"
         >
           {paused ? "▶" : "⏸"}
         </button>
-        <span className="min-w-0 flex-1 truncate text-sm font-semibold">{title}</span>
-        <span
-          className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-sm font-extrabold tabular-nums ${
-            lowTime ? "bg-[var(--kahoot-red)]" : "bg-white/20"
-          }`}
-        >
-          {timeLeft}
-        </span>
-        <span className="shrink-0 text-sm font-bold text-yellow-300 tabular-nums">
-          {score}
-        </span>
-      </div>
 
-      <div className="flex items-center gap-1 px-3 pb-2">
-        {Array.from({ length: total }).map((_, i) => (
-          <span
-            key={i}
-            className={`h-1.5 flex-1 rounded-full transition-colors ${
-              i < index ? "bg-[var(--kahoot-green)]" : i === index ? "bg-yellow-300" : "bg-white/25"
-            }`}
-          />
-        ))}
-      </div>
-
-      {showNav && (
-        <div className="flex gap-2 border-t border-white/10 px-3 py-2">
-          <button
-            type="button"
-            disabled={!canGoBack}
-            onClick={onPrevious}
-            className="flex-1 rounded-lg bg-white/10 py-2 text-xs font-bold disabled:opacity-40"
-          >
-            ← Previous
-          </button>
-          <span className="flex items-center px-2 text-xs font-semibold text-white/70">
-            {index + 1} / {total}
-          </span>
-          <button
-            type="button"
-            onClick={onNext}
-            className="flex-1 rounded-lg bg-white/15 py-2 text-xs font-bold"
-          >
-            Next →
-          </button>
+        <div className="flex flex-1 items-center gap-1 px-1">
+          {Array.from({ length: total }).map((_, i) => (
+            <span
+              key={i}
+              className={`h-2 flex-1 rounded-full transition-all duration-300 ${
+                i < index
+                  ? "bg-[var(--kahoot-green)]"
+                  : i === index
+                    ? "bg-yellow-300 shadow-[0_0_8px_rgba(253,224,71,0.6)]"
+                    : "bg-white/20"
+              }`}
+            />
+          ))}
         </div>
-      )}
-    </div>
+
+        {phase === "playing" && (
+          <div className="relative h-11 w-11 shrink-0">
+            <svg viewBox="0 0 44 44" className="h-full w-full -rotate-90">
+              <circle cx="22" cy="22" r="18" fill="rgba(255,255,255,0.15)" />
+              <circle
+                cx="22"
+                cy="22"
+                r="18"
+                fill="none"
+                stroke={lowTime ? "var(--kahoot-red)" : "#fde047"}
+                strokeWidth="3"
+                strokeLinecap="round"
+                strokeDasharray={2 * Math.PI * 18}
+                strokeDashoffset={2 * Math.PI * 18 * (1 - timerFrac)}
+                className="transition-all duration-300"
+              />
+            </svg>
+            <span
+              className={`absolute inset-0 flex items-center justify-center text-sm font-extrabold tabular-nums ${
+                lowTime ? "text-red-200" : ""
+              }`}
+            >
+              {timeLeft}
+            </span>
+          </div>
+        )}
+
+        <div className="shrink-0 rounded-full border-2 border-yellow-300/50 bg-black/20 px-3 py-1">
+          <span className="text-sm font-extrabold text-yellow-300 tabular-nums">
+            {score.toLocaleString()}
+          </span>
+        </div>
+      </div>
+
+      <div className="border-t border-white/10 px-3 py-1.5 text-center text-xs font-bold text-white/60">
+        Question {index + 1} of {total}
+      </div>
+    </header>
   );
 }

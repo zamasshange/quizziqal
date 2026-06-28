@@ -29,8 +29,8 @@ export default function AnswerButtons({
 }: AnswerButtonsProps) {
   const gridClass =
     layout === "host"
-      ? "grid h-full w-full grid-cols-2 grid-rows-2 gap-2 p-3 lg:gap-3 lg:p-6"
-      : "grid h-full w-full grid-cols-2 grid-rows-2 gap-2 p-3 lg:gap-3 lg:p-4";
+      ? "grid h-full w-full grid-cols-2 grid-rows-2 gap-2.5 p-3 lg:gap-3 lg:p-5"
+      : "grid h-full w-full grid-cols-2 grid-rows-2 gap-2.5 p-3 pb-4 lg:gap-3 lg:p-4";
 
   return (
     <div className={gridClass}>
@@ -38,20 +38,25 @@ export default function AnswerButtons({
         const label = ANSWER_LABELS[i] ?? String(i + 1);
         const isSelected = selectedIndex === i;
         const showCorrect = reveal && answer.correct;
+        const sharedClass = `answer-btn flex min-h-[72px] items-center gap-2.5 rounded-xl px-3 py-3 text-white lg:min-h-[88px] lg:gap-3 lg:px-4 lg:py-4 ${
+          showCorrect ? "ring-4 ring-white ring-offset-2" : ""
+        } ${isSelected ? "answer-btn-selected" : ""} ${
+          disabled && !reveal ? "cursor-not-allowed opacity-80" : ""
+        }`;
 
-        if (layout === "host" || disabled) {
+        if (layout === "host" || (disabled && !onAnswer)) {
           return (
             <div
               key={i}
-              className={`answer-btn flex items-center gap-3 rounded-lg p-3 text-white shadow-lg lg:p-5 ${
-                showCorrect ? "ring-4 ring-white ring-offset-2" : ""
-              } ${isSelected ? "ring-4 ring-white scale-[0.98]" : ""}`}
+              className={sharedClass}
               style={{ background: COLOR_MAP[answer.color] }}
             >
-              <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-black/20 text-lg font-extrabold lg:h-10 lg:w-10 lg:text-xl">
+              <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border-2 border-black/20 bg-black/25 text-lg font-extrabold shadow-inner lg:h-11 lg:w-11 lg:text-xl">
                 {label}
               </span>
-              <span className="text-sm font-bold leading-tight lg:text-base">{answer.text}</span>
+              <span className="text-xs font-extrabold leading-tight lg:text-sm">
+                {answer.text}
+              </span>
             </div>
           );
         }
@@ -62,17 +67,15 @@ export default function AnswerButtons({
             type="button"
             onClick={() => onAnswer?.(i)}
             disabled={disabled}
-            className={`answer-btn flex items-center gap-2 rounded-lg p-3 text-left text-white shadow-md lg:gap-3 lg:p-5 ${
-              showCorrect ? "ring-4 ring-white" : ""
-            } ${isSelected ? "ring-4 ring-white scale-[0.98]" : ""} ${
-              disabled ? "cursor-not-allowed opacity-70" : ""
-            }`}
+            className={`${sharedClass} text-left`}
             style={{ background: COLOR_MAP[answer.color] }}
           >
-            <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-black/20 text-base font-extrabold lg:h-10 lg:w-10 lg:text-lg">
+            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border-2 border-black/20 bg-black/25 text-lg font-extrabold shadow-inner lg:h-11 lg:w-11 lg:text-xl">
               {label}
             </span>
-            <span className="text-xs font-bold leading-tight lg:text-sm">{answer.text}</span>
+            <span className="text-xs font-extrabold leading-tight lg:text-sm">
+              {answer.text}
+            </span>
           </button>
         );
       })}

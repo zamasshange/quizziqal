@@ -34,11 +34,12 @@ function revealImage(data: RevealData | null): string | null {
 export default function RevealPanel({
   category,
   term,
-  status,
+  imageUrl,
 }: {
   category: string;
   term: string;
-  status: RevealStatus;
+  imageUrl?: string;
+  status?: RevealStatus;
 }) {
   const [data, setData] = useState<RevealData | null>(null);
   const [loading, setLoading] = useState(true);
@@ -62,56 +63,43 @@ export default function RevealPanel({
     };
   }, [category, term]);
 
-  const correct = status === "correct";
-  const image = revealImage(data);
+  const img = imageUrl ?? revealImage(data);
   const title = revealTitle(data, term);
   const description = revealDescription(data);
 
   return (
-    <div className="mx-auto w-full max-w-md rounded-2xl bg-white/10 p-4 text-white backdrop-blur-sm">
-      <p className="mb-2 text-center text-sm font-bold uppercase tracking-wide text-white/70">
-        {correct ? "Correct answer" : "The answer was"}
-      </p>
-      <p className="mb-3 text-center text-xl font-extrabold">{term}</p>
-
-      {loading && (
-        <div className="flex justify-center py-4">
+    <div className="w-full max-w-sm overflow-hidden rounded-2xl border-3 border-white/30 bg-white/15 shadow-xl backdrop-blur-md">
+      {loading ? (
+        <div className="flex justify-center py-10">
           <div className="h-8 w-8 animate-spin rounded-full border-2 border-white border-t-transparent" />
         </div>
-      )}
-
-      {!loading && data && (
+      ) : (
         <>
-          {image && (
-            <div className="mb-3 overflow-hidden rounded-xl">
+          {img && (
+            <div className="relative aspect-[4/3] w-full bg-black/30">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src={image}
+                src={img}
                 alt={title}
-                className="mx-auto max-h-40 w-full object-cover"
+                referrerPolicy="no-referrer"
+                className="h-full w-full object-contain object-top"
               />
             </div>
           )}
-          <p className="mb-1 text-center text-lg font-bold">{title}</p>
-          {description && (
-            <p className="line-clamp-4 text-center text-sm text-white/80">
-              {description}
-            </p>
-          )}
-          {data.kind === "country" && data.capital && (
-            <p className="mt-2 text-center text-xs text-white/60">
-              Capital: {data.capital}
-              {data.population
-                ? ` · Pop. ${(data.population / 1_000_000).toFixed(1)}M`
-                : ""}
-            </p>
-          )}
-          {data.kind === "movie" && data.year && (
-            <p className="mt-2 text-center text-xs text-white/60">
-              {data.year}
-              {data.rating ? ` · ★ ${data.rating.toFixed(1)}` : ""}
-            </p>
-          )}
+          <div className="p-4 text-center text-white">
+            <p className="text-lg font-extrabold">{title}</p>
+            {description && (
+              <p className="mt-2 line-clamp-3 text-sm leading-relaxed text-white/85">
+                {description}
+              </p>
+            )}
+            {data?.kind === "player" && data.sport && (
+              <p className="mt-2 text-xs font-semibold text-white/60">
+                {data.sport}
+                {data.team ? ` · ${data.team}` : ""}
+              </p>
+            )}
+          </div>
         </>
       )}
     </div>

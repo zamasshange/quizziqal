@@ -6,16 +6,9 @@ interface QuestionImageProps {
   image?: string;
   imageQuery?: string;
   alt: string;
-  /** Portrait-friendly stage for faces (celebrities, athletes). */
-  portrait?: boolean;
 }
 
-export default function QuestionImage({
-  image,
-  imageQuery,
-  alt,
-  portrait = true,
-}: QuestionImageProps) {
+export default function QuestionImage({ image, imageQuery, alt }: QuestionImageProps) {
   const [src, setSrc] = useState(image ?? "");
   const [loading, setLoading] = useState(!image && !!imageQuery);
   const [failed, setFailed] = useState(false);
@@ -43,7 +36,7 @@ export default function QuestionImage({
         else if (!cancelled) setFailed(true);
       })
       .catch(() => {
-        if (!cancelled) setFailed(false);
+        if (!cancelled) setFailed(true);
       })
       .finally(() => {
         if (!cancelled) setLoading(false);
@@ -54,30 +47,30 @@ export default function QuestionImage({
     };
   }, [image, imageQuery]);
 
-  const frameClass = portrait
-    ? "aspect-[3/4] max-h-[min(42vh,320px)] w-full max-w-[280px]"
-    : "aspect-[16/10] w-full max-w-lg";
-
   if (loading) {
     return (
-      <div
-        className={`mx-auto animate-pulse rounded-2xl bg-gray-100 ${frameClass}`}
-      />
+      <div className="stage-frame mx-auto aspect-[4/5] w-full max-w-sm animate-pulse rounded-2xl bg-gradient-to-br from-purple-100 to-purple-200" />
     );
   }
 
   if (!src || failed) return null;
 
   return (
-    <div
-      className={`mx-auto overflow-hidden rounded-2xl border-2 border-gray-200 bg-gray-900 shadow-lg ${frameClass}`}
-    >
+    <div className="stage-frame mx-auto aspect-[4/5] w-full max-w-sm rounded-2xl bg-gray-900">
+      {/* Blurred fill — kills black bars */}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src={src}
+        alt=""
+        aria-hidden
+        className="absolute inset-0 h-full w-full scale-110 object-cover opacity-50 blur-2xl"
+      />
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src={src}
         alt={alt}
         referrerPolicy="no-referrer"
-        className="h-full w-full object-contain object-center"
+        className="relative z-10 h-full w-full object-contain object-top"
         onError={() => setFailed(true)}
       />
     </div>

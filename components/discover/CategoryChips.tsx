@@ -17,10 +17,10 @@ export default function CategoryChips({
         <button
           key={cat}
           onClick={() => onSelect(cat)}
-          className={`shrink-0 rounded-full px-3 py-1.5 text-xs font-semibold transition-colors lg:px-4 lg:py-2 lg:text-sm ${
+          className={`game-pill shrink-0 rounded-full px-3 py-1.5 text-xs font-extrabold lg:px-4 lg:py-2 lg:text-sm ${
             selected === cat
-              ? "bg-[var(--kahoot-purple)] text-white"
-              : "bg-white text-gray-600 active:bg-gray-100 lg:hover:bg-gray-100"
+              ? "game-pill-active bg-[var(--kahoot-purple)] text-white"
+              : "bg-white text-gray-600"
           }`}
         >
           {cat}
