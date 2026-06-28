@@ -6,9 +6,15 @@ interface QuestionImageProps {
   image?: string;
   imageQuery?: string;
   alt: string;
+  compact?: boolean;
 }
 
-export default function QuestionImage({ image, imageQuery, alt }: QuestionImageProps) {
+export default function QuestionImage({
+  image,
+  imageQuery,
+  alt,
+  compact,
+}: QuestionImageProps) {
   const [src, setSrc] = useState(image ?? "");
   const [loading, setLoading] = useState(!image && !!imageQuery);
   const [failed, setFailed] = useState(false);
@@ -49,14 +55,22 @@ export default function QuestionImage({ image, imageQuery, alt }: QuestionImageP
 
   if (loading) {
     return (
-      <div className="stage-frame mx-auto aspect-[4/5] w-full max-w-sm animate-pulse rounded-2xl bg-gradient-to-br from-purple-100 to-purple-200" />
+      <div
+        className={`stage-frame mx-auto w-full animate-pulse rounded-2xl bg-gradient-to-br from-purple-100 to-purple-200 ${
+          compact ? "aspect-[3/4] max-h-[34dvh]" : "aspect-[4/5] max-w-sm"
+        }`}
+      />
     );
   }
 
   if (!src || failed) return null;
 
   return (
-    <div className="stage-frame mx-auto aspect-[4/5] w-full max-w-sm rounded-2xl bg-gray-900">
+    <div
+      className={`stage-frame relative mx-auto w-full overflow-hidden rounded-2xl bg-gray-900 ${
+        compact ? "aspect-[3/4] max-h-[34dvh]" : "aspect-[4/5] max-w-sm"
+      }`}
+    >
       {/* Blurred fill — kills black bars */}
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img

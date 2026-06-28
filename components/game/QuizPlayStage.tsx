@@ -44,14 +44,19 @@ export default function QuizPlayStage({
 
   return (
     <div className="play-arena relative flex min-h-0 flex-1 flex-col overflow-hidden lg:flex-row">
-      {/* ── LEFT: image + question (full height on PC) ── */}
-      <section className="play-panel-left flex min-h-0 shrink-0 flex-col lg:h-full lg:w-1/2">
+      {/* ── TOP / LEFT: image + question ── */}
+      <section className="play-panel-left flex shrink-0 flex-col overflow-hidden lg:min-h-0 lg:h-full lg:w-1/2">
         {hasImage ? (
           <>
-            {/* Mobile */}
-            <div className="px-3 pt-3 lg:hidden">
-              <QuestionImage image={image} imageQuery={imageQuery} alt={question} />
-              <p className="px-1 py-3 text-center text-base font-extrabold leading-snug text-white">
+            {/* Mobile: fixed-height top zone — never bleeds into answers */}
+            <div className="play-mobile-top shrink-0 overflow-hidden px-3 pt-2 lg:hidden">
+              <QuestionImage
+                image={image}
+                imageQuery={imageQuery}
+                alt={question}
+                compact
+              />
+              <p className="line-clamp-2 px-1 py-2 text-center text-sm font-extrabold leading-snug text-white">
                 {question}
               </p>
             </div>
@@ -90,26 +95,22 @@ export default function QuizPlayStage({
             </div>
           </>
         ) : (
-          <>
-            <div className="flex flex-col items-center justify-center px-6 py-10 lg:h-full lg:bg-black/20 lg:py-0">
-              <span className="mb-4 text-6xl drop-shadow-lg lg:mb-6 lg:text-8xl">{quizIcon}</span>
-              <p className="text-center text-xl font-extrabold leading-snug text-white lg:max-w-lg lg:text-3xl xl:text-4xl">
-                {question}
-              </p>
-            </div>
-          </>
+          <div className="flex shrink-0 flex-col items-center justify-center overflow-hidden px-6 py-6 lg:h-full lg:shrink lg:bg-black/20 lg:py-0">
+            <span className="mb-3 text-5xl drop-shadow-lg lg:mb-6 lg:text-8xl">{quizIcon}</span>
+            <p className="text-center text-lg font-extrabold leading-snug text-white lg:max-w-lg lg:text-3xl xl:text-4xl">
+              {question}
+            </p>
+          </div>
         )}
       </section>
 
-      {/* ── RIGHT: answers (full height on PC) ── */}
-      <section className="play-panel-right flex min-h-0 flex-1 flex-col lg:h-full lg:w-1/2 lg:border-l lg:border-white/10 lg:bg-black/20">
-        <div className="flex min-h-0 flex-1 flex-col p-2 pb-[max(0.5rem,env(safe-area-inset-bottom))] lg:p-6 lg:pb-6">
+      {/* ── BOTTOM / RIGHT: answers ── */}
+      <section className="play-panel-right flex min-h-0 flex-1 flex-col overflow-hidden border-t border-white/10 lg:h-full lg:w-1/2 lg:border-l lg:border-t-0 lg:bg-black/20">
+        <div className="flex min-h-0 flex-1 flex-col overflow-hidden p-2 pb-[max(0.5rem,env(safe-area-inset-bottom))] lg:p-6 lg:pb-6">
           <p className="mb-2 hidden shrink-0 text-center text-sm font-extrabold uppercase tracking-widest text-white/50 lg:block">
             Pick your answer
           </p>
-          <div className="flex min-h-0 flex-1 flex-col justify-end lg:justify-center">
-            {children}
-          </div>
+          <div className="min-h-0 flex-1 overflow-hidden">{children}</div>
           <p className="mt-3 hidden shrink-0 text-center text-xs font-semibold text-white/35 lg:block">
             <kbd className="rounded border border-white/20 bg-white/10 px-1.5 py-0.5 font-mono">1</kbd>–<kbd className="rounded border border-white/20 bg-white/10 px-1.5 py-0.5 font-mono">4</kbd>
             {" "}or{" "}
