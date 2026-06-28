@@ -25,8 +25,8 @@ export default function GameHud({
   const timerFrac = Math.max(0, timeLeft / timerSeconds);
 
   return (
-    <header className="shrink-0 bg-[var(--kahoot-purple)] text-white shadow-md">
-      <div className="flex items-center gap-2 px-3 py-2.5">
+    <header className="shrink-0 bg-[var(--kahoot-purple)] text-white shadow-lg lg:border-b-4 lg:border-[#2a0a5e]">
+      <div className="flex items-center gap-2 px-3 py-2.5 lg:mx-auto lg:max-w-7xl lg:px-5 lg:py-3">
         <a
           href="/discover"
           className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border-2 border-white/25 bg-white/10 text-sm font-bold"

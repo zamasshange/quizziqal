@@ -16,7 +16,7 @@ import GameHud from "./GameHud";
 import GameFooter from "./GameFooter";
 import GamePauseOverlay from "./GamePauseOverlay";
 import AnswerButtons from "./AnswerButtons";
-import QuestionImage from "./QuestionImage";
+import QuizPlayStage from "./QuizPlayStage";
 import RevealPanel from "./RevealPanel";
 
 type Phase = "setup" | "loading" | "playing" | "reveal" | "finished";
@@ -281,12 +281,12 @@ export default function SoloQuizPlayer({ gameId, templateQuiz }: Props) {
         {paused && <GamePauseOverlay onResume={() => setPaused(false)} />}
 
         <div className="flex flex-1 flex-col overflow-y-auto">
-          <div className="flex flex-1 flex-col items-center gap-4 px-4 py-5">
-            <div className="text-center">
-              <p className="text-5xl drop-shadow-lg">
+          <div className="flex flex-1 flex-col items-center gap-4 px-4 py-5 lg:flex-row lg:items-start lg:justify-center lg:gap-8 lg:px-8 lg:py-8">
+            <div className="text-center lg:shrink-0 lg:pt-4">
+              <p className="text-5xl drop-shadow-lg lg:text-7xl">
                 {feedback === "correct" ? "🎉" : feedback === "wrong" ? "😅" : "⏱️"}
               </p>
-              <h2 className="mt-1 text-2xl font-extrabold text-white">
+              <h2 className="mt-2 text-2xl font-extrabold text-white lg:text-4xl">
                 {feedback === "correct"
                   ? "Correct!"
                   : feedback === "wrong"
@@ -295,21 +295,24 @@ export default function SoloQuizPlayer({ gameId, templateQuiz }: Props) {
               </h2>
             </div>
 
-            {correctAnswer && (
-              <RevealPanel
-                category={revealCategory}
-                term={correctAnswer}
-                imageUrl={hasImage ? question.image : undefined}
-              />
-            )}
+            <div className="flex w-full max-w-4xl flex-col items-center gap-4 lg:flex-row lg:items-start lg:justify-center">
+              {correctAnswer && (
+                <RevealPanel
+                  category={revealCategory}
+                  term={correctAnswer}
+                  imageUrl={hasImage ? question.image : undefined}
+                />
+              )}
 
-            <div className="w-full max-w-md px-1">
-              <AnswerButtons
-                answers={question.answers}
-                reveal
-                selectedIndex={selected ?? undefined}
-                disabled
-              />
+              <div className="w-full max-w-md flex-1 lg:max-w-lg">
+                <AnswerButtons
+                  answers={question.answers}
+                  reveal
+                  selectedIndex={selected ?? undefined}
+                  disabled
+                  layout="stage"
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -328,50 +331,24 @@ export default function SoloQuizPlayer({ gameId, templateQuiz }: Props) {
   }
 
   return (
-    <div className="flex min-h-screen flex-col bg-gray-100">
+    <div className="flex min-h-screen flex-col">
       {hud}
       {paused && <GamePauseOverlay onResume={() => setPaused(false)} />}
 
-      <div className="flex flex-1 flex-col overflow-hidden">
-        {hasImage ? (
-          <>
-            <div className="shrink-0 bg-white px-4 pb-2 pt-3 shadow-sm">
-              <QuestionImage
-                image={question.image}
-                imageQuery={question.imageQuery}
-                alt={question.text}
-              />
-              <p className="mt-3 text-center text-base font-extrabold leading-snug text-gray-900">
-                {question.text}
-              </p>
-            </div>
-            <div className="min-h-0 flex-1 bg-white">
-              <AnswerButtons
-                answers={question.answers}
-                onAnswer={lockAnswer}
-                disabled={paused}
-                selectedIndex={selected ?? undefined}
-              />
-            </div>
-          </>
-        ) : (
-          <>
-            <div className="shrink-0 bg-[var(--kahoot-purple)] px-4 py-6 text-center shadow-md">
-              <p className="text-lg font-extrabold leading-snug text-white lg:text-xl">
-                {question.text}
-              </p>
-            </div>
-            <div className="min-h-0 flex-1 bg-white">
-              <AnswerButtons
-                answers={question.answers}
-                onAnswer={lockAnswer}
-                disabled={paused}
-                selectedIndex={selected ?? undefined}
-              />
-            </div>
-          </>
-        )}
-      </div>
+      <QuizPlayStage
+        question={question.text}
+        image={question.image}
+        imageQuery={question.imageQuery}
+        quizIcon={quiz.coverIcon}
+      >
+        <AnswerButtons
+          answers={question.answers}
+          onAnswer={lockAnswer}
+          disabled={paused}
+          selectedIndex={selected ?? undefined}
+          layout="stage"
+        />
+      </QuizPlayStage>
     </div>
   );
 }
