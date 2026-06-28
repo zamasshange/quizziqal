@@ -43,7 +43,7 @@ export default function AnswerButtons({
 }: AnswerButtonsProps) {
   const gridClass =
     layout === "stage"
-      ? "answer-grid-stage grid h-full w-full grid-cols-2 grid-rows-2 gap-2.5 p-3 pb-4 lg:gap-4 lg:p-0 lg:pb-0"
+      ? "answer-grid-stage answer-grid-mobile grid h-full w-full grid-cols-2 grid-rows-2 gap-2 p-2 pb-2 lg:gap-4 lg:p-0 lg:pb-0"
       : "grid h-full w-full grid-cols-2 grid-rows-2 gap-2.5 p-3 pb-4";
 
   return (
@@ -55,7 +55,7 @@ export default function AnswerButtons({
         const showWrong = reveal && isSelected && !answer.correct;
         const isStatic = disabled && !onAnswer;
 
-        const sharedClass = `answer-btn answer-btn-stage group relative flex items-center gap-2.5 overflow-hidden rounded-2xl px-3 py-3 text-white lg:flex-col lg:justify-center lg:gap-3 lg:px-4 lg:py-5 ${
+        const sharedClass = `answer-btn answer-btn-stage group relative flex items-center gap-3 overflow-hidden rounded-2xl px-3 py-4 text-white min-h-[72px] lg:min-h-0 lg:flex-col lg:justify-center lg:gap-3 lg:px-4 lg:py-5 ${
           showCorrect ? "answer-btn-correct ring-4 ring-white ring-offset-2 ring-offset-transparent" : ""
         } ${showWrong ? "answer-btn-wrong opacity-90" : ""} ${
           isSelected && !reveal ? "answer-btn-selected" : ""
@@ -67,10 +67,10 @@ export default function AnswerButtons({
               className="pointer-events-none absolute inset-0 opacity-80"
               style={{ background: COLOR_SHINE[answer.color] }}
             />
-            <span className="relative z-10 flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border-2 border-black/25 bg-black/30 text-lg font-extrabold shadow-inner lg:h-14 lg:w-14 lg:rounded-2xl lg:text-2xl">
+            <span className="relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border-2 border-black/25 bg-black/30 text-xl font-extrabold shadow-inner lg:h-14 lg:w-14 lg:rounded-2xl lg:text-2xl">
               {label}
             </span>
-            <span className="relative z-10 text-xs font-extrabold leading-tight lg:text-center lg:text-base xl:text-lg">
+            <span className="relative z-10 flex-1 text-sm font-extrabold leading-tight lg:flex-none lg:text-center lg:text-base xl:text-lg">
               {answer.text}
             </span>
             {!reveal && (

@@ -103,11 +103,13 @@ export default function QuizPlayStage({
 
       {/* ── RIGHT: answers (full height on PC) ── */}
       <section className="play-panel-right flex min-h-0 flex-1 flex-col lg:h-full lg:w-1/2 lg:border-l lg:border-white/10 lg:bg-black/20">
-        <div className="flex min-h-0 flex-1 flex-col p-3 pb-4 lg:p-6 lg:pb-6">
+        <div className="flex min-h-0 flex-1 flex-col p-2 pb-[max(0.5rem,env(safe-area-inset-bottom))] lg:p-6 lg:pb-6">
           <p className="mb-2 hidden shrink-0 text-center text-sm font-extrabold uppercase tracking-widest text-white/50 lg:block">
             Pick your answer
           </p>
-          <div className="min-h-0 flex-1">{children}</div>
+          <div className="flex min-h-0 flex-1 flex-col justify-end lg:justify-center">
+            {children}
+          </div>
           <p className="mt-3 hidden shrink-0 text-center text-xs font-semibold text-white/35 lg:block">
             <kbd className="rounded border border-white/20 bg-white/10 px-1.5 py-0.5 font-mono">1</kbd>–<kbd className="rounded border border-white/20 bg-white/10 px-1.5 py-0.5 font-mono">4</kbd>
             {" "}or{" "}
