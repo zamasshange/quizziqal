@@ -76,7 +76,7 @@ export default function DiscoverPage() {
         <main className="flex-1 p-3 pb-24 lg:p-8 lg:pb-8">
           <DiscoverHero />
 
-          <section className="mb-5 lg:mb-8">
+          <section className="mb-5 hidden lg:mb-8 lg:block">
             <Link
               href="/ai"
               className="quiz-card group block overflow-hidden rounded-2xl border-2 border-purple-200/60 bg-white p-0 shadow-lg transition-transform hover:scale-[1.01]"

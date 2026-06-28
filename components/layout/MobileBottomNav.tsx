@@ -3,47 +3,75 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-const navItems = [
-  { label: "Home", href: "/discover", icon: HomeIcon, match: "home" },
-  { label: "Discover", href: "/discover", icon: DiscoverIcon, match: "discover" },
-  { label: "AI", href: "/ai", icon: AiIcon, match: "ai" },
-  { label: "Library", href: "/discover", icon: LibraryIcon, match: "library" },
-  { label: "You", href: "/discover", icon: ProfileIcon, match: "profile" },
-] as const;
+type NavItem = {
+  label: string;
+  href: string;
+  icon: React.ComponentType<{ className?: string }>;
+  isActive: (pathname: string) => boolean;
+};
+
+const navItems: NavItem[] = [
+  {
+    label: "Home",
+    href: "/home",
+    icon: HomeIcon,
+    isActive: (p) => p === "/home" || p === "/",
+  },
+  {
+    label: "Discover",
+    href: "/discover",
+    icon: DiscoverIcon,
+    isActive: (p) => p === "/discover",
+  },
+  {
+    label: "AI",
+    href: "/ai",
+    icon: AiIcon,
+    isActive: (p) => p === "/ai",
+  },
+  {
+    label: "Library",
+    href: "/library",
+    icon: LibraryIcon,
+    isActive: (p) => p === "/library",
+  },
+  {
+    label: "You",
+    href: "/you",
+    icon: ProfileIcon,
+    isActive: (p) => p === "/you",
+  },
+];
 
 export default function MobileBottomNav() {
   const pathname = usePathname();
-  const isDiscover = pathname === "/discover" || pathname.startsWith("/discover");
 
   return (
     <nav
-      className="fixed bottom-0 left-0 right-0 z-50 border-t border-white/10 px-2 pb-[env(safe-area-inset-bottom)] pt-2 lg:hidden"
+      className="fixed bottom-0 left-0 right-0 z-50 border-t border-white/10 px-1 pb-[env(safe-area-inset-bottom)] pt-1.5 lg:hidden"
       style={{
         background: "linear-gradient(180deg, rgba(51,52,142,0.97) 0%, rgba(42,10,94,0.98) 100%)",
         backdropFilter: "blur(12px)",
       }}
+      aria-label="Main navigation"
     >
       <div className="mx-auto flex max-w-lg items-end justify-around">
         {navItems.map((item) => {
           const Icon = item.icon;
-          const isActive =
-            item.match === "discover"
-              ? isDiscover
-              : item.match === "ai"
-                ? pathname === "/ai"
-                : false;
+          const isActive = item.isActive(pathname);
 
           return (
             <Link
               key={item.label}
               href={item.href}
-              className={`flex min-w-[64px] flex-col items-center gap-1 rounded-xl px-3 py-2 transition-colors ${
+              aria-current={isActive ? "page" : undefined}
+              className={`flex min-w-[56px] flex-col items-center gap-0.5 rounded-xl px-2 py-1.5 transition-colors ${
                 isActive ? "text-white" : "text-white/55 active:text-white/80"
               }`}
             >
               <span
                 className={`flex h-8 w-8 items-center justify-center rounded-full transition-all ${
-                  isActive ? "bg-white/20 scale-110" : ""
+                  isActive ? "bg-white/20 scale-105" : ""
                 }`}
               >
                 <Icon className="h-5 w-5" />

@@ -13,7 +13,7 @@ export default function Header({ searchQuery, onSearchChange }: HeaderProps) {
       {/* Mobile header — full width, logo + search + actions */}
       <div className="flex flex-col gap-2 px-3 py-2.5 lg:hidden">
         <div className="flex items-center justify-between">
-          <Link href="/discover" className="flex items-center gap-2">
+          <Link href="/home" className="flex items-center gap-2">
             <svg width="28" height="28" viewBox="0 0 40 40" fill="none">
               <circle cx="20" cy="20" r="20" fill="#46178f" />
               <text x="20" y="27" textAnchor="middle" fontSize="22" fontWeight="800" fill="white">
@@ -27,15 +27,19 @@ export default function Header({ searchQuery, onSearchChange }: HeaderProps) {
 
           <div className="flex items-center gap-2">
             <Link
-              href="/discover"
+              href="/ai"
               className="flex h-9 w-9 items-center justify-center rounded-full bg-[var(--kahoot-purple)] text-white shadow-md"
-              aria-label="Create quiz"
+              aria-label="Create AI quiz"
             >
               <PlusIcon className="h-5 w-5" />
             </Link>
-            <div className="flex h-9 w-9 items-center justify-center rounded-full bg-[var(--kahoot-purple)] text-xs font-bold text-white">
+            <Link
+              href="/you"
+              className="flex h-9 w-9 items-center justify-center rounded-full bg-[var(--kahoot-purple)] text-xs font-bold text-white"
+              aria-label="Your profile"
+            >
               G
-            </div>
+            </Link>
           </div>
         </div>
 
@@ -65,16 +69,19 @@ export default function Header({ searchQuery, onSearchChange }: HeaderProps) {
         </div>
 
         <Link
-          href="/discover"
+          href="/ai"
           className="flex items-center gap-2 rounded-full bg-[var(--kahoot-purple)] px-5 py-2.5 text-sm font-bold text-white transition-colors hover:bg-[var(--kahoot-purple-dark)]"
         >
           <PlusIcon className="h-5 w-5" />
           Create
         </Link>
 
-        <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--kahoot-purple)] text-sm font-bold text-white">
+        <Link
+          href="/you"
+          className="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--kahoot-purple)] text-sm font-bold text-white"
+        >
           G
-        </div>
+        </Link>
       </div>
     </header>
   );

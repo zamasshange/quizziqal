@@ -4,10 +4,11 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const navItems = [
-  { label: "Home", href: "/discover", icon: HomeIcon },
+  { label: "Home", href: "/home", icon: HomeIcon },
   { label: "Discover", href: "/discover", icon: DiscoverIcon },
   { label: "AI Quiz", href: "/ai", icon: AiIcon },
-  { label: "Library", href: "/discover", icon: LibraryIcon },
+  { label: "Library", href: "/library", icon: LibraryIcon },
+  { label: "You", href: "/you", icon: ProfileIcon },
   { label: "Reports", href: "/discover", icon: ReportsIcon },
   { label: "Groups", href: "/discover", icon: GroupsIcon },
   { label: "Marketplace", href: "/discover", icon: MarketplaceIcon },
@@ -22,7 +23,7 @@ export default function Sidebar() {
       style={{ background: "var(--kahoot-sidebar)" }}
     >
       <Link
-        href="/discover"
+        href="/home"
         className="mb-6 flex items-center gap-2 px-3"
       >
         <KahootLogo />
@@ -30,9 +31,7 @@ export default function Sidebar() {
 
       <nav className="flex flex-1 flex-col gap-1">
         {navItems.map((item) => {
-          const isActive =
-            pathname === item.href &&
-            (item.label === "Discover" || item.label === "AI Quiz");
+          const isActive = pathname === item.href;
           const Icon = item.icon;
           return (
             <Link
@@ -96,6 +95,14 @@ function LibraryIcon({ className }: { className?: string }) {
   return (
     <svg className={className} viewBox="0 0 24 24" fill="currentColor">
       <path d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-1 9h-4v4h-2v-4H9V9h4V5h2v4h4v2z" />
+    </svg>
+  );
+}
+
+function ProfileIcon({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
     </svg>
   );
 }
