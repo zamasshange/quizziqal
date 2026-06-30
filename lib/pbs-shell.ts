@@ -1,5 +1,16 @@
+/** PBS homepage purple module — video/quiz picks row */
+export const PBS_HOME_MODULE_ID = "f0673b59";
+
 /** PBS games grid module context id — yellow summer pattern theme */
 export const PBS_GAMES_MODULE_ID = "e8fb4aca";
+
+const CMS_ASSETS = "https://cms-assets.prod.pbskids.org";
+
+/** PBS CMS asset URL (images load cross-origin in img tags). */
+export function pbsCmsAsset(path: string): string {
+  const normalized = path.startsWith("/") ? path : `/${path}`;
+  return `${CMS_ASSETS}${normalized}`;
+}
 
 const PBS_STYLESHEETS = [
   "/_next/static/css/c3c0a1b97ff938a8.css",

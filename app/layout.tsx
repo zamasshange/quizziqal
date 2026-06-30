@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import "@/components/skin/pbs-theme.css";
+import "@/components/skin/pbs-home-theme.css";
 import "@/components/skin/game-page.css";
 import "@/components/skin/sonke-shell.css";
 import "@/components/skin/sonke-play-shell.css";

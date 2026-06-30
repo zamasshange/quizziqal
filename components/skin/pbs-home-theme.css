@@ -1,0 +1,44 @@
+/* PBS Kids homepage — purple picks row + celebrate masthead background */
+
+[data-theme-context="module"][data-theme-module-contextid="f0673b59"] {
+  --pbsk-theme-status: LIVE;
+  --pbsk-theme-bodyTextColor: #ffffff;
+  --pbsk-theme-bodyTextColor-rgb: 255 255 255;
+  --pbsk-theme-bodyBackgroundColor: #a220df;
+  --pbsk-theme-bodyBackgroundColor-rgb: 162 32 223;
+  --pbsk-theme-accentBackgroundColor: rgb(0 0 0 / 0);
+  --pbsk-theme-featureBackgroundColor: #ffffff;
+  --pbsk-theme-featureHighlightColor: #08ab4e;
+  --pbsk-theme-calloutTextColor: #ffffff;
+  --pbsk-theme-calloutBackgroundColor: #2fc0eb;
+  --pbsk-theme-badgeTextColor: #ffffff;
+  --pbsk-theme-badgeBackgroundColor: #08ab4e;
+  --pbsk-theme-navBackgroundColor: rgb(0 0 0 / 0);
+  --pbsk-theme-uiControlColor: #131d8c;
+  --pbsk-theme-uiLabelColor: #ffffff;
+  --pbsk-theme-uiHighlightColor: #ffffff;
+}
+
+[data-theme-context="masthead"][data-masthead-content-module-name="MastheadContentModulesGamesVideosButtonsFeature"] {
+  --pbsk-theme-bodyBackgroundColor: #2638c4;
+}
+
+.MastheadContentWrapper_image__YwX_8.MastheadContentWrapper_scaleMasthead__kGXtO {
+  background-image: image-set(
+    url("https://cms-assets.prod.pbskids.org/global/Themes/MainPagePUMA_Background_celebrate_03.svg") 1x,
+    url("https://cms-assets.prod.pbskids.org/global/Themes/MainPagePUMA_Background_celebrate_03.svg") 2x
+  );
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  background-size: cover;
+}
+
+.pbs-home-shell {
+  min-height: 100vh;
+  color: var(--pbsk-theme-bodyTextColor, #fff);
+}
+
+.pbs-home-shell a {
+  text-decoration: none;
+  color: inherit;
+}
