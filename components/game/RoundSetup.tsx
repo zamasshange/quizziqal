@@ -45,127 +45,99 @@ export default function RoundSetup({
   const startLabel = useMemo(() => pickRandom(SETUP_START_LINES), []);
 
   return (
-    <div className="play-arena relative flex min-h-screen flex-col items-center justify-center overflow-hidden p-5">
-      <div className="play-arena-glow pointer-events-none absolute inset-0" aria-hidden />
-      <span className="pointer-events-none absolute left-8 top-12 text-5xl opacity-30 animate-float" aria-hidden>🎪</span>
-      <span className="pointer-events-none absolute right-10 top-20 text-4xl opacity-30 animate-float-slow" aria-hidden>🤡</span>
-      <span className="pointer-events-none absolute bottom-16 left-12 text-4xl opacity-25 animate-wiggle" aria-hidden>🃏</span>
+    <div
+      className="sonke-play-page"
+      style={{
+        background: `linear-gradient(180deg, #2638c4 0%, #0081ca 55%, #99cf16 100%)`,
+      }}
+    >
+      <div className="sonke-play-sky" aria-hidden="true" />
+      <div className="sonke-play-hills" aria-hidden="true" />
 
-      <div className="relative w-full max-w-md overflow-hidden rounded-3xl border-4 border-white/25 bg-white p-6 shadow-2xl lg:p-8">
-        <div
-          className="pointer-events-none absolute -right-6 -top-6 text-6xl opacity-20 animate-wiggle"
-          aria-hidden
-        >
-          {quiz.coverIcon}
-        </div>
+      <main className="sonke-play-main">
+        <div className="sonke-play-stage">
+          <div className="sonke-play-splash">
+            <div className="sonke-play-splash-emoji" aria-hidden="true">
+              {quiz.coverIcon}
+            </div>
+            <h1 className="sonke-play-title">{quiz.title}</h1>
+            <p className="sonke-play-tagline">
+              Configure your round — then play!
+            </p>
 
-        <div className="relative mb-6 text-center">
-          <div
-            className="mx-auto mb-4 flex h-20 w-20 items-center justify-center rounded-2xl border-3 border-black/10 text-5xl shadow-lg animate-bounce-in"
-            style={{ background: quiz.coverGradient }}
-          >
-            {quiz.coverIcon}
-          </div>
-          <h1 className="text-2xl font-extrabold text-gray-900">{quiz.title}</h1>
-          <p className="mt-1 text-sm font-semibold text-gray-500">
-            Configure your chaos — then dominate (maybe) 🎯
-          </p>
-        </div>
+            <div className="sonke-play-frame w-full max-w-md text-left">
+              {error ? (
+                <div role="alert" className="sonke-badge-note mb-4">
+                  {error}
+                </div>
+              ) : null}
 
-        {error ? (
-          <div
-            role="alert"
-            className="mb-5 rounded-xl border-2 border-red-200 bg-red-50 px-4 py-3 text-sm font-semibold text-red-700"
-          >
-            😬 {error}
-          </div>
-        ) : null}
+              <p className="sonke-subsection-title">Difficulty</p>
+              <div className="sonke-category-nav mb-4">
+                {DIFFICULTIES.map((d) => (
+                  <button
+                    key={d}
+                    type="button"
+                    onClick={() => onDifficulty(d)}
+                    className={
+                      difficulty === d ? "sonke-category-pill active" : "sonke-category-pill"
+                    }
+                    title={DIFFICULTY_FLAVOR[d]}
+                  >
+                    {d}
+                  </button>
+                ))}
+              </div>
 
-        <div className="mb-5">
-          <label className="mb-2 block text-xs font-extrabold uppercase tracking-wider text-gray-400">
-            How brave are you?
-          </label>
-          <div className="flex flex-col gap-2">
-            {DIFFICULTIES.map((d) => (
-              <button
-                key={d}
-                type="button"
-                onClick={() => onDifficulty(d)}
-                className={`game-pill rounded-xl px-4 py-2.5 text-left text-sm font-extrabold ${
-                  difficulty === d
-                    ? "game-pill-active bg-[var(--kahoot-purple)] text-white"
-                    : "bg-gray-50 text-gray-700 hover:bg-gray-100"
-                }`}
-              >
-                {d}
-                <span className="ml-2 text-xs font-semibold opacity-70">
-                  {DIFFICULTY_FLAVOR[d]}
-                </span>
-              </button>
-            ))}
-          </div>
-        </div>
+              <p className="sonke-subsection-title">Questions</p>
+              <div className="sonke-category-nav mb-4 flex-wrap">
+                {QUESTION_COUNT_OPTIONS.map((n) => (
+                  <button
+                    key={n}
+                    type="button"
+                    onClick={() => onQuestionCount(n)}
+                    className={
+                      questionCount === n ? "sonke-category-pill active" : "sonke-category-pill"
+                    }
+                  >
+                    {n}
+                  </button>
+                ))}
+              </div>
 
-        <div className="mb-5">
-          <label className="mb-2 block text-xs font-extrabold uppercase tracking-wider text-gray-400">
-            How many rounds of pain?
-          </label>
-          <div className="grid grid-cols-5 gap-2">
-            {QUESTION_COUNT_OPTIONS.map((n) => (
-              <button
-                key={n}
-                type="button"
-                onClick={() => onQuestionCount(n)}
-                className={`game-pill rounded-xl py-2.5 text-sm font-extrabold ${
-                  questionCount === n
-                    ? "game-pill-active bg-[var(--kahoot-purple)] text-white"
-                    : "bg-gray-100 text-gray-600"
-                }`}
-              >
-                {n}
-              </button>
-            ))}
-          </div>
-        </div>
+              <p className="sonke-subsection-title">Timer</p>
+              <div className="sonke-category-nav mb-4 flex-wrap">
+                {TIMER_OPTIONS.map((t) => (
+                  <button
+                    key={t}
+                    type="button"
+                    onClick={() => onTimer(t)}
+                    className={
+                      timerSeconds === t ? "sonke-category-pill active" : "sonke-category-pill"
+                    }
+                  >
+                    {t}s
+                  </button>
+                ))}
+              </div>
+            </div>
 
-        <div className="mb-6">
-          <label className="mb-2 block text-xs font-extrabold uppercase tracking-wider text-gray-400">
-            Seconds before panic
-          </label>
-          <div className="grid grid-cols-5 gap-2">
-            {TIMER_OPTIONS.map((t) => (
-              <button
-                key={t}
-                type="button"
-                onClick={() => onTimer(t)}
-                className={`game-pill rounded-xl py-2.5 text-sm font-extrabold ${
-                  timerSeconds === t
-                    ? "bg-[var(--kahoot-blue)] text-white shadow-[0_3px_0_#0a3d7a]"
-                    : "bg-gray-100 text-gray-600"
-                }`}
-              >
-                {t}s
-              </button>
-            ))}
+            <button
+              type="button"
+              disabled={loading}
+              onClick={onStart}
+              className="sonke-play-start-btn"
+            >
+              <span className="sonke-play-start-icon" aria-hidden="true">▶</span>
+              {loading ? "Loading…" : startLabel}
+            </button>
+
+            <Link href="/discover" className="sonke-play-attribution">
+              Back to Discover
+            </Link>
           </div>
         </div>
-
-        <button
-          type="button"
-          disabled={loading}
-          onClick={onStart}
-          className="game-pill w-full rounded-full bg-[var(--kahoot-green)] py-4 text-lg font-extrabold text-white shadow-[0_5px_0_#1a5c08] disabled:opacity-50"
-        >
-          {loading ? "Summoning questions…" : startLabel}
-        </button>
-
-        <Link
-          href="/discover"
-          className="mt-4 block text-center text-sm font-semibold text-gray-400 underline"
-        >
-          🏃 Chicken out — back to Discover
-        </Link>
-      </div>
+      </main>
     </div>
   );
 }

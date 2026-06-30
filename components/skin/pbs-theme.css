@@ -1,0 +1,234 @@
+[data-theme-context='module'][data-theme-module-contextid='e8fb4aca'] {
+  /* PBSK-All Games-Summer Topic Games Theme-v1 */
+  --pbsk-theme-status: LIVE;
+  --pbsk-theme-bodyTextColor: #000000;
+  --pbsk-theme-bodyTextColor-rgb: 0 0 0;
+  --pbsk-theme-bodyBackgroundColor: #f7e03b;
+  --pbsk-theme-bodyBackgroundColor-rgb: 247 224 59;
+  --pbsk-theme-accentBackgroundColor: rgb(0 0 0 / 0);
+  --pbsk-theme-backgroundImage: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=');
+  --pbsk-theme-backgroundPattern-aspectRatio: 1;
+  --pbsk-theme-backgroundPattern-width: 200px;
+  --pbsk-theme-backgroundPattern-height: 200px;
+  --pbsk-theme-featureBackgroundColor: #bc005a;
+  --pbsk-theme-featureBackgroundColor-rgb: 188 0 90;
+  --pbsk-theme-featureHighlightColor: #bc005a;
+  --pbsk-theme-featureHighlightColor-rgb: 188 0 90;
+  --pbsk-theme-calloutTextColor: #ffffff;
+  --pbsk-theme-calloutTextColor-rgb: 255 255 255;
+  --pbsk-theme-calloutBackgroundColor: #e5296b;
+  --pbsk-theme-calloutBackgroundColor-rgb: 229 41 107;
+  --pbsk-theme-badgeTextColor: #ffffff;
+  --pbsk-theme-badgeTextColor-rgb: 255 255 255;
+  --pbsk-theme-badgeBackgroundColor: #0081ca;
+  --pbsk-theme-badgeBackgroundColor-rgb: 0 129 202;
+  --pbsk-theme-navBackgroundColor: rgb(0 0 0 / 0);
+  --pbsk-theme-uiControlColor: #e5296b;
+  --pbsk-theme-uiControlColor-rgb: 229 41 107;
+  --pbsk-theme-uiLabelColor: #ffffff;
+  --pbsk-theme-uiLabelColor-rgb: 255 255 255;
+  --pbsk-theme-uiHighlightColor: #bc005a;
+  --pbsk-theme-uiHighlightColor-rgb: 188 0 90;
+}
+
+[data-theme-context='module'][data-theme-module-contextid='e8fb4aca'] {
+  --pbsk-theme-backgroundPattern: image-set(
+    url('/pbs-assets/cms-assets.prod.pbskids.org/global/Topic_Summer_03.svg') 1x,
+    url('/pbs-assets/cms-assets.prod.pbskids.org/global/Topic_Summer_03.svg') 2x
+  );
+  --pbsk-theme-backgroundPattern: -webkit-image-set(
+    url('/pbs-assets/cms-assets.prod.pbskids.org/global/Topic_Summer_03.svg') 1x,
+    url('/pbs-assets/cms-assets.prod.pbskids.org/global/Topic_Summer_03.svg') 2x
+  );
+}
+
+@media only screen and (min-width: 568px) {
+  [data-theme-context='module'][data-theme-module-contextid='e8fb4aca'] {
+    --pbsk-theme-backgroundPattern: image-set(
+      url('/pbs-assets/cms-assets.prod.pbskids.org/global/Topic_Summer_03.svg') 1x,
+      url('/pbs-assets/cms-assets.prod.pbskids.org/global/Topic_Summer_03.svg') 2x
+    );
+    --pbsk-theme-backgroundPattern: -webkit-image-set(
+      url('/pbs-assets/cms-assets.prod.pbskids.org/global/Topic_Summer_03.svg') 1x,
+      url('/pbs-assets/cms-assets.prod.pbskids.org/global/Topic_Summer_03.svg') 2x
+    );
+  }
+}
+
+
+:root {
+  /* (Default Hardcoded Web Theme) */
+  --pbsk-theme-status: LIVE;
+  --pbsk-theme-bodyTextColor: #000000;
+  --pbsk-theme-bodyTextColor-rgb: 0 0 0;
+  --pbsk-theme-bodyBackgroundColor: #f7e03b;
+  --pbsk-theme-bodyBackgroundColor-rgb: 247 224 59;
+  --pbsk-theme-accentBackgroundColor: rgb(0 0 0 / 0);
+  --pbsk-theme-backgroundImage: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=');
+  --pbsk-theme-backgroundPattern: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=');
+  --pbsk-theme-featureBackgroundColor: #ffffff;
+  --pbsk-theme-featureBackgroundColor-rgb: 255 255 255;
+  --pbsk-theme-featureHighlightColor: #e4276a;
+  --pbsk-theme-featureHighlightColor-rgb: 228 39 106;
+  --pbsk-theme-calloutTextColor: #ffffff;
+  --pbsk-theme-calloutTextColor-rgb: 255 255 255;
+  --pbsk-theme-calloutBackgroundColor: #e4276a;
+  --pbsk-theme-calloutBackgroundColor-rgb: 228 39 106;
+  --pbsk-theme-badgeTextColor: #ffffff;
+  --pbsk-theme-badgeTextColor-rgb: 255 255 255;
+  --pbsk-theme-badgeBackgroundColor: #08aa4d;
+  --pbsk-theme-badgeBackgroundColor-rgb: 8 170 77;
+  --pbsk-theme-navBackgroundColor: rgb(0 0 0 / 0);
+  --pbsk-theme-uiControlColor: #a220df;
+  --pbsk-theme-uiControlColor-rgb: 162 32 223;
+  --pbsk-theme-uiLabelColor: #ffffff;
+  --pbsk-theme-uiLabelColor-rgb: 255 255 255;
+  --pbsk-theme-uiHighlightColor: #bc0159;
+  --pbsk-theme-uiHighlightColor-rgb: 188 1 89;
+}
+
+
+
+
+:root {
+  /* PBSK-All Games-Magenta Theme-v1 */
+  --pbsk-theme-status: LIVE;
+  --pbsk-theme-bodyTextColor: #ffffff;
+  --pbsk-theme-bodyTextColor-rgb: 255 255 255;
+  --pbsk-theme-bodyBackgroundColor: #e4276a;
+  --pbsk-theme-bodyBackgroundColor-rgb: 228 39 106;
+  --pbsk-theme-accentBackgroundColor: rgb(0 0 0 / 0);
+  --pbsk-theme-backgroundImage: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=');
+  --pbsk-theme-backgroundPattern: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=');
+  --pbsk-theme-featureBackgroundColor: #ffffff;
+  --pbsk-theme-featureBackgroundColor-rgb: 255 255 255;
+  --pbsk-theme-featureHighlightColor: #2538c4;
+  --pbsk-theme-featureHighlightColor-rgb: 37 56 196;
+  --pbsk-theme-calloutTextColor: #bc0159;
+  --pbsk-theme-calloutTextColor-rgb: 188 1 89;
+  --pbsk-theme-calloutBackgroundColor: #f7e03b;
+  --pbsk-theme-calloutBackgroundColor-rgb: 247 224 59;
+  --pbsk-theme-badgeTextColor: #ffffff;
+  --pbsk-theme-badgeTextColor-rgb: 255 255 255;
+  --pbsk-theme-badgeBackgroundColor: #08ab4e;
+  --pbsk-theme-badgeBackgroundColor-rgb: 8 171 78;
+  --pbsk-theme-navBackgroundColor: rgb(0 0 0 / 0);
+  --pbsk-theme-uiControlColor: #131d8c;
+  --pbsk-theme-uiControlColor-rgb: 19 29 140;
+  --pbsk-theme-uiLabelColor: #ffffff;
+  --pbsk-theme-uiLabelColor-rgb: 255 255 255;
+  --pbsk-theme-uiHighlightColor: #ffffff;
+  --pbsk-theme-uiHighlightColor-rgb: 255 255 255;
+}
+
+
+[data-theme-context='masthead'] {
+  /* XRID-Xavier Riddle and the Secret Museum-Portal Theme-v2 */
+  --pbsk-theme-status: LIVE;
+  --pbsk-theme-bodyTextColor: #000000;
+  --pbsk-theme-bodyTextColor-rgb: 0 0 0;
+  --pbsk-theme-bodyBackgroundColor: #16e4d8;
+  --pbsk-theme-bodyBackgroundColor-rgb: 22 228 216;
+  --pbsk-theme-accentBackgroundColor: rgb(0 0 0 / 0);
+  --pbsk-theme-backgroundImage-aspectRatio: 4.124378109452737;
+  --pbsk-theme-backgroundImage-width: 3316px;
+  --pbsk-theme-backgroundImage-height: 804px;
+  --pbsk-theme-backgroundPattern: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=');
+  --pbsk-theme-featureBackgroundColor: #ffffff;
+  --pbsk-theme-featureBackgroundColor-rgb: 255 255 255;
+  --pbsk-theme-featureHighlightColor: #772080;
+  --pbsk-theme-featureHighlightColor-rgb: 119 32 128;
+  --pbsk-theme-calloutTextColor: #ffffff;
+  --pbsk-theme-calloutTextColor-rgb: 255 255 255;
+  --pbsk-theme-calloutBackgroundColor: #0d810c;
+  --pbsk-theme-calloutBackgroundColor-rgb: 13 129 12;
+  --pbsk-theme-badgeTextColor: #ffffff;
+  --pbsk-theme-badgeTextColor-rgb: 255 255 255;
+  --pbsk-theme-badgeBackgroundColor: #8534a4;
+  --pbsk-theme-badgeBackgroundColor-rgb: 133 52 164;
+  --pbsk-theme-navBackgroundColor: #16e4d8;
+  --pbsk-theme-navBackgroundColor-rgb: 22 228 216;
+  --pbsk-theme-uiControlColor: #8534a4;
+  --pbsk-theme-uiControlColor-rgb: 133 52 164;
+  --pbsk-theme-uiLabelColor: #ffffff;
+  --pbsk-theme-uiLabelColor-rgb: 255 255 255;
+  --pbsk-theme-uiHighlightColor: #772080;
+  --pbsk-theme-uiHighlightColor-rgb: 119 32 128;
+}
+
+[data-theme-context='masthead'] {
+  --pbsk-theme-backgroundImage: image-set(
+    url('/pbs-assets/cms-assets.prod.pbskids.org/global/Property-Assets/XRID-Xavier-Riddle/Backgrounds/XRID-background-portal2-v1.jpg') 1x,
+    url('/pbs-assets/cms-assets.prod.pbskids.org/global/Property-Assets/XRID-Xavier-Riddle/Backgrounds/XRID-background-portal2-v1.jpg') 2x
+  );
+  --pbsk-theme-backgroundImage: -webkit-image-set(
+    url('/pbs-assets/cms-assets.prod.pbskids.org/global/Property-Assets/XRID-Xavier-Riddle/Backgrounds/XRID-background-portal2-v1.jpg') 1x,
+    url('/pbs-assets/cms-assets.prod.pbskids.org/global/Property-Assets/XRID-Xavier-Riddle/Backgrounds/XRID-background-portal2-v1.jpg') 2x
+  );
+}
+
+@media only screen and (min-width: 568px) {
+  [data-theme-context='masthead'] {
+    --pbsk-theme-backgroundImage: image-set(
+      url('/pbs-assets/cms-assets.prod.pbskids.org/global/Property-Assets/XRID-Xavier-Riddle/Backgrounds/XRID-background-portal2-v1.jpg') 1x,
+      url('/pbs-assets/cms-assets.prod.pbskids.org/global/Property-Assets/XRID-Xavier-Riddle/Backgrounds/XRID-background-portal2-v1.jpg') 2x
+    );
+    --pbsk-theme-backgroundImage: -webkit-image-set(
+      url('/pbs-assets/cms-assets.prod.pbskids.org/global/Property-Assets/XRID-Xavier-Riddle/Backgrounds/XRID-background-portal2-v1.jpg') 1x,
+      url('/pbs-assets/cms-assets.prod.pbskids.org/global/Property-Assets/XRID-Xavier-Riddle/Backgrounds/XRID-background-portal2-v1.jpg') 2x
+    );
+  }
+}
+
+@media only screen and (min-width: 675px) {
+  [data-theme-context='masthead'] {
+    --pbsk-theme-backgroundImage: image-set(
+      url('/pbs-assets/cms-assets.prod.pbskids.org/global/Property-Assets/XRID-Xavier-Riddle/Backgrounds/XRID-background-portal2-v1.jpg') 1x,
+      url('/pbs-assets/cms-assets.prod.pbskids.org/global/Property-Assets/XRID-Xavier-Riddle/Backgrounds/XRID-background-portal2-v1.jpg') 2x
+    );
+    --pbsk-theme-backgroundImage: -webkit-image-set(
+      url('/pbs-assets/cms-assets.prod.pbskids.org/global/Property-Assets/XRID-Xavier-Riddle/Backgrounds/XRID-background-portal2-v1.jpg') 1x,
+      url('/pbs-assets/cms-assets.prod.pbskids.org/global/Property-Assets/XRID-Xavier-Riddle/Backgrounds/XRID-background-portal2-v1.jpg') 2x
+    );
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  [data-theme-context='masthead'] {
+    --pbsk-theme-backgroundImage: image-set(
+      url('/pbs-assets/cms-assets.prod.pbskids.org/global/Property-Assets/XRID-Xavier-Riddle/Backgrounds/XRID-background-portal2-v1.jpg') 1x,
+      url('/pbs-assets/cms-assets.prod.pbskids.org/global/Property-Assets/XRID-Xavier-Riddle/Backgrounds/XRID-background-portal2-v1.jpg') 2x
+    );
+    --pbsk-theme-backgroundImage: -webkit-image-set(
+      url('/pbs-assets/cms-assets.prod.pbskids.org/global/Property-Assets/XRID-Xavier-Riddle/Backgrounds/XRID-background-portal2-v1.jpg') 1x,
+      url('/pbs-assets/cms-assets.prod.pbskids.org/global/Property-Assets/XRID-Xavier-Riddle/Backgrounds/XRID-background-portal2-v1.jpg') 2x
+    );
+  }
+}
+
+@media only screen and (min-width: 1440px) {
+  [data-theme-context='masthead'] {
+    --pbsk-theme-backgroundImage: image-set(
+      url('/pbs-assets/cms-assets.prod.pbskids.org/global/Property-Assets/XRID-Xavier-Riddle/Backgrounds/XRID-background-portal2-v1.jpg') 1x,
+      url('/pbs-assets/cms-assets.prod.pbskids.org/global/Property-Assets/XRID-Xavier-Riddle/Backgrounds/XRID-background-portal2-v1.jpg') 2x
+    );
+    --pbsk-theme-backgroundImage: -webkit-image-set(
+      url('/pbs-assets/cms-assets.prod.pbskids.org/global/Property-Assets/XRID-Xavier-Riddle/Backgrounds/XRID-background-portal2-v1.jpg') 1x,
+      url('/pbs-assets/cms-assets.prod.pbskids.org/global/Property-Assets/XRID-Xavier-Riddle/Backgrounds/XRID-background-portal2-v1.jpg') 2x
+    );
+  }
+}
+
+@media only screen and (min-width: 1920px) {
+  [data-theme-context='masthead'] {
+    --pbsk-theme-backgroundImage: image-set(
+      url('/pbs-assets/cms-assets.prod.pbskids.org/global/Property-Assets/XRID-Xavier-Riddle/Backgrounds/XRID-background-portal2-v1.jpg') 1x,
+      url('/pbs-assets/cms-assets.prod.pbskids.org/global/Property-Assets/XRID-Xavier-Riddle/Backgrounds/XRID-background-portal2-v1.jpg') 2x
+    );
+    --pbsk-theme-backgroundImage: -webkit-image-set(
+      url('/pbs-assets/cms-assets.prod.pbskids.org/global/Property-Assets/XRID-Xavier-Riddle/Backgrounds/XRID-background-portal2-v1.jpg') 1x,
+      url('/pbs-assets/cms-assets.prod.pbskids.org/global/Property-Assets/XRID-Xavier-Riddle/Backgrounds/XRID-background-portal2-v1.jpg') 2x
+    );
+  }
+}
+

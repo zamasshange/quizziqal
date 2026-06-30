@@ -2,9 +2,8 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import Sidebar from "@/components/layout/Sidebar";
-import Header from "@/components/layout/Header";
-import MobileBottomNav from "@/components/layout/MobileBottomNav";
+import SonkeAppShell from "@/components/skin/SonkeAppShell";
+import { ContentModule, SectionHeading } from "@/components/skin/content";
 import QuizCard from "@/components/discover/QuizCard";
 import CategoryChips from "@/components/discover/CategoryChips";
 import { discoverQuizzes, DISCOVER_CATEGORIES } from "@/lib/discoverData";
@@ -39,51 +38,46 @@ export default function LibraryPage() {
   };
 
   return (
-    <div className="flex min-h-screen">
-      <Sidebar />
+    <SonkeAppShell
+      pageTitle="Library"
+      searchQuery={searchQuery}
+      onSearchChange={setSearchQuery}
+      searchPlaceholder="Search library…"
+    >
+      <ContentModule className="sonke-game-hero-module">
+        <div className="sonke-game-hero-copy">
+          <p className="sonke-game-badge">Library</p>
+          <h1 className="sonke-game-title">Your collection</h1>
+          <p className="sonke-game-tagline">
+            {discoverQuizzes.length} quizzes to explore — pick one and play.
+          </p>
+        </div>
+      </ContentModule>
 
-      <div className="flex min-w-0 flex-1 flex-col lg:pl-[220px]">
-        <Header searchQuery={searchQuery} onSearchChange={setSearchQuery} />
+      <ContentModule>
+        <CategoryChips
+          categories={DISCOVER_CATEGORIES}
+          selected={selectedCategory}
+          onSelect={setSelectedCategory}
+        />
+      </ContentModule>
 
-        <main className="flex-1 p-3 pb-24 lg:p-8 lg:pb-8">
-          <div className="mb-4 lg:mb-6">
-            <h1 className="text-xl font-extrabold text-gray-900 lg:text-3xl">
-              📚 Library
-            </h1>
-            <p className="text-sm text-gray-500">
-              Your full collection — {discoverQuizzes.length} quizzes to explore
-            </p>
-          </div>
-
-          <section className="mb-4">
-            <CategoryChips
-              categories={DISCOVER_CATEGORIES}
-              selected={selectedCategory}
-              onSelect={setSelectedCategory}
-            />
-          </section>
-
-          <div className="grid grid-cols-2 gap-3 lg:grid-cols-3 lg:gap-5 xl:grid-cols-4">
-            {filtered.map((quiz) => (
-              <div key={quiz.id} onClick={() => handlePlay(quiz.id)}>
-                <QuizCard
-                  quiz={quiz}
-                  onPlay={handlePlay}
-                  loading={loadingQuiz === quiz.id}
-                />
-              </div>
-            ))}
-          </div>
-
-          {filtered.length === 0 && (
-            <div className="py-12 text-center">
-              <p className="text-gray-500">No quizzes match your search.</p>
-            </div>
-          )}
-        </main>
-      </div>
-
-      <MobileBottomNav />
-    </div>
+      <ContentModule>
+        <SectionHeading>
+          {selectedCategory === "All" ? "All quizzes" : selectedCategory}
+        </SectionHeading>
+        <ul className="GamesCollage_gamesGrid__jv6Iv sonke-related-grid">
+          {filtered.map((quiz) => (
+            <li key={quiz.id}>
+              <QuizCard
+                quiz={quiz}
+                onPlay={handlePlay}
+                loading={loadingQuiz === quiz.id}
+              />
+            </li>
+          ))}
+        </ul>
+      </ContentModule>
+    </SonkeAppShell>
   );
 }

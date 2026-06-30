@@ -25,22 +25,23 @@
 }
 
 :root {
-  --kahoot-purple: #46178f;
-  --kahoot-purple-dark: #33348e;
-  --kahoot-purple-darker: #2a0a5e;
-  --kahoot-purple-light: #864cbf;
-  --kahoot-bg: #f2f2f2;
-  --kahoot-sidebar: #33348e;
-  --kahoot-sidebar-hover: #3d3ea0;
-  --kahoot-red: #e21b3c;
-  --kahoot-blue: #1368ce;
-  --kahoot-yellow: #d89e00;
-  --kahoot-green: #26890c;
-  --kahoot-text: #333333;
-  --kahoot-text-light: #666666;
-  --game-ink: #1a0a33;
-  --background: #f2f2f2;
-  --foreground: #333333;
+  --kahoot-purple: #2638c4;
+  --kahoot-purple-dark: #1e2d9e;
+  --kahoot-purple-darker: #131d8c;
+  --kahoot-purple-light: #0081ca;
+  --kahoot-bg: #f7e03b;
+  --kahoot-sidebar: #2638c4;
+  --kahoot-sidebar-hover: #1e2d9e;
+  --kahoot-red: #e5296b;
+  --kahoot-blue: #0081ca;
+  --kahoot-yellow: #f7e03b;
+  --kahoot-green: #99cf16;
+  --kahoot-text: #000000;
+  --kahoot-text-light: #333333;
+  --game-ink: #2638c4;
+  --background: #f7e03b;
+  --foreground: #000000;
+  --pbsk-font-family-headline: "PBS Kids Headline", "Arial Rounded MT Bold", "Montserrat", Arial, sans-serif;
 }
 
 @theme inline {
@@ -52,7 +53,7 @@
   --color-kahoot-blue: var(--kahoot-blue);
   --color-kahoot-yellow: var(--kahoot-yellow);
   --color-kahoot-green: var(--kahoot-green);
-  --font-sans: "Montserrat", Arial, Helvetica, sans-serif;
+  --font-sans: var(--pbsk-font-family-headline);
 }
 
 * {
@@ -62,7 +63,7 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: "Montserrat", Arial, Helvetica, sans-serif;
+  font-family: var(--pbsk-font-family-headline);
   margin: 0;
   -webkit-tap-highlight-color: transparent;
 }

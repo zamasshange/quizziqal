@@ -1,0 +1,57 @@
+[data-theme-context='module'][data-theme-module-contextid='e8fb4aca'] {
+  /* PBSK-All Games-Summer Topic Games Theme-v1 */
+  --pbsk-theme-status: LIVE;
+  --pbsk-theme-bodyTextColor: #000000;
+  --pbsk-theme-bodyTextColor-rgb: 0 0 0;
+  --pbsk-theme-bodyBackgroundColor: #f7e03b;
+  --pbsk-theme-bodyBackgroundColor-rgb: 247 224 59;
+  --pbsk-theme-accentBackgroundColor: rgb(0 0 0 / 0);
+  --pbsk-theme-backgroundImage: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=');
+  --pbsk-theme-backgroundPattern-aspectRatio: 1;
+  --pbsk-theme-backgroundPattern-width: 200px;
+  --pbsk-theme-backgroundPattern-height: 200px;
+  --pbsk-theme-featureBackgroundColor: #bc005a;
+  --pbsk-theme-featureBackgroundColor-rgb: 188 0 90;
+  --pbsk-theme-featureHighlightColor: #bc005a;
+  --pbsk-theme-featureHighlightColor-rgb: 188 0 90;
+  --pbsk-theme-calloutTextColor: #ffffff;
+  --pbsk-theme-calloutTextColor-rgb: 255 255 255;
+  --pbsk-theme-calloutBackgroundColor: #e5296b;
+  --pbsk-theme-calloutBackgroundColor-rgb: 229 41 107;
+  --pbsk-theme-badgeTextColor: #ffffff;
+  --pbsk-theme-badgeTextColor-rgb: 255 255 255;
+  --pbsk-theme-badgeBackgroundColor: #0081ca;
+  --pbsk-theme-badgeBackgroundColor-rgb: 0 129 202;
+  --pbsk-theme-navBackgroundColor: rgb(0 0 0 / 0);
+  --pbsk-theme-uiControlColor: #e5296b;
+  --pbsk-theme-uiControlColor-rgb: 229 41 107;
+  --pbsk-theme-uiLabelColor: #ffffff;
+  --pbsk-theme-uiLabelColor-rgb: 255 255 255;
+  --pbsk-theme-uiHighlightColor: #bc005a;
+  --pbsk-theme-uiHighlightColor-rgb: 188 0 90;
+}
+
+[data-theme-context='module'][data-theme-module-contextid='e8fb4aca'] {
+  --pbsk-theme-backgroundPattern: image-set(
+    url('/pbs-assets/cms-assets.prod.pbskids.org/global/Topic_Summer_03.svg') 1x,
+    url('/pbs-assets/cms-assets.prod.pbskids.org/global/Topic_Summer_03.svg') 2x
+  );
+  --pbsk-theme-backgroundPattern: -webkit-image-set(
+    url('/pbs-assets/cms-assets.prod.pbskids.org/global/Topic_Summer_03.svg') 1x,
+    url('/pbs-assets/cms-assets.prod.pbskids.org/global/Topic_Summer_03.svg') 2x
+  );
+}
+
+@media only screen and (min-width: 568px) {
+  [data-theme-context='module'][data-theme-module-contextid='e8fb4aca'] {
+    --pbsk-theme-backgroundPattern: image-set(
+      url('/pbs-assets/cms-assets.prod.pbskids.org/global/Topic_Summer_03.svg') 1x,
+      url('/pbs-assets/cms-assets.prod.pbskids.org/global/Topic_Summer_03.svg') 2x
+    );
+    --pbsk-theme-backgroundPattern: -webkit-image-set(
+      url('/pbs-assets/cms-assets.prod.pbskids.org/global/Topic_Summer_03.svg') 1x,
+      url('/pbs-assets/cms-assets.prod.pbskids.org/global/Topic_Summer_03.svg') 2x
+    );
+  }
+}
+</style><link rel="preload" as="image" imageSrcSet="/pbs-assets/cms-assets.prod.pbskids.org/global/Property-Assets/WEHU-Weather-Hunters/Game-Cards/WEHU-WeatherReporter-FeatureGraphic-Generic.png 375w, /pbs-assets/cms-assets.prod.pbskids.org/global/Property-Assets/WEHU-Weather-Hunters/Game-Cards/WEHU-WeatherReporter-FeatureGraphic-Generic.png 448w, /pbs-assets/cms-assets.prod.pbskids.org/global/Property-Assets/WEHU-Weather-Hunters/Game-Cards/WEHU-WeatherReporter-FeatureGraphic-Generic.png 568w, /pbs-assets/cms-assets.prod.pbskids.org/global/Property-Assets/WEHU-Weather-Hunters/Game-Cards/WEHU-WeatherReporter-FeatureGraphic-Generic.png 675w, /pbs-assets/cms-assets.prod.pbskids.org/global/Property-Assets/WEHU-Weather-Hunters/Game-Cards/WEHU-WeatherReporter-FeatureGraphic-Generic.png 768w, /pbs-assets/cms-assets.prod.pbskids.org/global/Property-Assets/WEHU-Weather-Hunters/Game-Cards/WEHU-WeatherReporter-FeatureGraphic-Generic.png 1024w, /pbs-assets/cms-assets.prod.pbskids.org/global/Property-Assets/WEHU-Weather-Hunters/Game-Cards/WEHU-WeatherReporter-FeatureGraphic-Generic.png 1280w, /pbs-assets/cms-assets.prod.pbskids.org/global/Property-Assets/WEHU-Weather-Hunters/Game-Cards/WEHU-WeatherReporter-FeatureGraphic-Generic.png 1440w, /pbs-assets/cms-assets.prod.pbskids.org/global/Property-Assets/WEHU-Weather-Hunters/Game-Cards/WEHU-WeatherReporter-FeatureGraphic-Generic.png 1920w, /pbs-assets/cms-assets.prod.pbskids.org/global/Property-Assets/WEHU-Weather-Hunters/Game-Cards/WEHU-WeatherReporter-FeatureGraphic-Generic.png 3840w, /pbs-assets/cms-assets.prod.pbskids.org/global/Property-Assets/WEHU-Weather-Hunters/Game-Cards/WEHU-WeatherReporter-FeatureGraphic-Generic.png 5234w, /pbs-assets/cms-assets.prod.pbskids.org/global/Property-Assets/WEHU-Weather-Hunters/Game-Cards/WEHU-WeatherReporter-FeatureGraphic-Generic.png 7680w" imageSizes="(min-width: 1024px) 487px, (min-width: 768px) 630px, 90vw" fetchPriority="high" data-next-head=""/><link rel="preload" as="image" imageSrcSet="/pbs-assets/cms-assets.prod.pbskids.org/global/Games/weather-reporter/WH-lookinside-Weather-Reporter_4.png 375w, /pbs-assets/cms-assets.prod.pbskids.org/global/Games/weather-reporter/WH-lookinside-Weather-Reporter_4.png 448w, /pbs-assets/cms-assets.prod.pbskids.org/global/Games/weather-reporter/WH-lookinside-Weather-Reporter_4.png 568w, /pbs-assets/cms-assets.prod.pbskids.org/global/Games/weather-reporter/WH-lookinside-Weather-Reporter_4.png 675w, /pbs-assets/cms-assets.prod.pbskids.org/global/Games/weather-reporter/WH-lookinside-Weather-Reporter_4.png 768w, /pbs-assets/cms-assets.prod.pbskids.org/global/Games/weather-reporter/WH-lookinside-Weather-Reporter_4.png 1024w, /pbs-assets/cms-assets.prod.pbskids.org/global/Games/weather-reporter/WH-lookinside-Weather-Reporter_4.png 1280w, /pbs-assets/cms-assets.prod.pbskids.org/global/Games/weather-reporter/WH-lookinside-Weather-Reporter_4.png 1440w, /pbs-assets/cms-assets.prod.pbskids.org/global/Games/weather-reporter/WH-lookinside-Weather-Reporter_4.png 1920w, /pbs-assets/cms-assets.prod.pbskids.org/global/Games/weather-reporter/WH-lookinside-Weather-Reporter_4.png 3840w, /pbs-assets/cms-assets.prod.pbskids.org/global/Games/weather-reporter/WH-lookinside-Weather-Reporter_4.png 5234w, /pbs-assets/cms-assets.prod.pbskids.org/global/Games/weather-reporter/WH-lookinside-Weather-Reporter_4.png 7680w" imageSizes="(min-width: 1024px) 487px, (min-width: 768px) 630px, 90vw" fetchPriority="high" data-next-head=""/><link rel="preload" as="image" imageSrcSet="/pbs-assets/cms-assets.prod.pbskids.org/global/Games/weather-reporter/WH-lookinside-Weather-Reporter_5.png 375w, /pbs-assets/cms-assets.prod.pbskids.org/global/Games/weather-reporter/WH-lookinside-Weather-Reporter_5.png 448w, /pbs-assets/cms-assets.prod.pbskids.org/global/Games/weather-reporter/WH-lookinside-Weather-Reporter_5.png 568w, /pbs-assets/cms-assets.prod.pbskids.org/global/Games/weather-reporter/WH-lookinside-Weather-Reporter_5.png 675w, /pbs-assets/cms-assets.prod.pbskids.org/global/Games/weather-reporter/WH-lookinside-Weather-Reporter_5.png 768w, /pbs-assets/cms-assets.prod.pbskids.org/global/Games/weather-reporter/WH-lookinside-Weather-Reporter_5.png 1024w, /pbs-assets/cms-assets.prod.pbskids.org/global/Games/weather-reporter/WH-lookinside-Weather-Reporter_5.png 1280w, /pbs-assets/cms-assets.prod.pbskids.org/global/Games/weather-reporter/WH-lookinside-Weather-Reporter_5.png 1440w, /pbs-assets/cms-assets.prod.pbskids.org/global/Games/weather-reporter/WH-lookinside-Weather-Reporter_5.png 1920w, /pbs-assets/cms-assets.prod.pbskids.org/global/Games/weather-reporter/WH-lookinside-Weather-Reporter_5.png 3840w, /pbs-assets/cms-assets.prod.pbskids.org/global/Games/weather-reporter/WH-lookinside-Weather-Reporter_5.png 5234w, /pbs-assets/cms-assets.prod.pbskids.org/global/Games/weather-reporter/WH-lookinside-Weather-Reporter_5.png 7680w" imageSizes="(min-width: 1024px) 487px, (min-width: 768px) 630px, 90vw" fetchPriority="high" data-next-head=""/><link rel="preload" as="image" imageSrcSet="/pbs-assets/cms-assets.prod.pbskids.org/global/Games/weather-reporter/WH-lookinside-Weather-Reporter_7.png 375w, /pbs-assets/cms-assets.prod.pbskids.org/global/Games/weather-reporter/WH-lookinside-Weather-Reporter_7.png 448w, /pbs-assets/cms-assets.prod.pbskids.org/global/Games/weather-reporter/WH-loo

@@ -1,0 +1,421 @@
+/* Sonke Kids unified play shell — PBS play-page look, owned by us */
+
+.sonke-play-page {
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  position: relative;
+  overflow: hidden;
+  font-family: var(--pbsk-theme-headline-font-family, "PBS Kids Headline", "Arial Rounded MT Bold", sans-serif);
+  color: #fff;
+}
+
+.sonke-play-sky,
+.sonke-play-hills {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.sonke-play-sky {
+  background: radial-gradient(ellipse at 30% 10%, rgba(255, 255, 255, 0.35), transparent 55%);
+}
+
+.sonke-play-hills {
+  background:
+    radial-gradient(ellipse 120% 40% at 50% 100%, rgba(0, 0, 0, 0.08), transparent 60%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120'%3E%3Cpath fill='%2378b159' fill-opacity='.45' d='M0 80 C200 20 400 100 600 60 C800 20 1000 90 1200 50 L1200 120 L0 120Z'/%3E%3C/svg%3E")
+      bottom center / 100% auto no-repeat;
+}
+
+.sonke-play-header {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  flex-wrap: wrap;
+}
+
+.sonke-play-back {
+  display: grid;
+  place-items: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 999px;
+  background: #0081ca;
+  color: #fff;
+  font-size: 2rem;
+  font-weight: 900;
+  text-decoration: none;
+  line-height: 1;
+  box-shadow: 0 3px 0 rgba(0, 0, 0, 0.2);
+}
+
+.sonke-play-logo {
+  width: 4.5rem;
+  height: 4.5rem;
+  flex-shrink: 0;
+}
+
+.sonke-play-logo svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.sonke-play-nav {
+  display: flex;
+  gap: 0.5rem;
+  margin-left: auto;
+}
+
+.sonke-play-nav-btn {
+  display: grid;
+  place-items: center;
+  min-width: 4.5rem;
+  padding: 0.35rem 0.6rem 0.5rem;
+  border-radius: 12px;
+  color: #fff;
+  font-weight: 800;
+  font-size: 0.75rem;
+  text-decoration: none;
+  text-transform: uppercase;
+  box-shadow: 0 3px 0 rgba(0, 0, 0, 0.2);
+}
+
+.sonke-play-nav-games {
+  background: #7b2cbf;
+}
+
+.sonke-play-nav-videos {
+  background: #e5296b;
+}
+
+.sonke-play-main {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  padding: 0.5rem 1rem 1rem;
+}
+
+.sonke-play-stage {
+  width: min(960px, 100%);
+  min-height: min(70vh, 640px);
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(2px);
+}
+
+.sonke-play-stage-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 0.75rem;
+  position: absolute;
+  inset: 0 0 auto 0;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.sonke-play-stage-top > * {
+  pointer-events: auto;
+}
+
+.sonke-play-big-btn {
+  display: grid;
+  place-items: center;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 999px;
+  background: #111;
+  color: #fff;
+  border: none;
+  font-weight: 800;
+  font-size: 0.65rem;
+  cursor: pointer;
+  box-shadow: 0 3px 0 rgba(0, 0, 0, 0.35);
+}
+
+.sonke-play-big-icon {
+  font-size: 1.1rem;
+  line-height: 1;
+}
+
+.sonke-play-exit {
+  display: grid;
+  place-items: center;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 999px;
+  background: #f7941d;
+  color: #fff;
+  font-size: 2rem;
+  font-weight: 900;
+  text-decoration: none;
+  line-height: 1;
+  box-shadow: 0 3px 0 rgba(0, 0, 0, 0.2);
+}
+
+.sonke-play-splash {
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 0.75rem;
+  min-height: min(70vh, 640px);
+  padding: 4rem 1.5rem 2rem;
+  text-align: center;
+}
+
+.sonke-play-splash-art {
+  max-width: 280px;
+  max-height: 160px;
+  object-fit: contain;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+}
+
+.sonke-play-splash-emoji {
+  font-size: 5rem;
+  line-height: 1;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+}
+
+.sonke-play-title {
+  margin: 0;
+  font-size: clamp(1.75rem, 5vw, 2.75rem);
+  font-weight: 900;
+  color: #fff;
+  text-shadow:
+    2px 2px 0 #e5296b,
+    -1px -1px 0 #2638c4;
+  letter-spacing: 0.02em;
+}
+
+.sonke-play-tagline {
+  margin: 0;
+  max-width: 32rem;
+  font-size: 1rem;
+  font-weight: 600;
+  opacity: 0.95;
+}
+
+.sonke-play-start-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #5cb85c 0%, #3d9a3d 100%);
+  color: #fff;
+  font-size: 1.25rem;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  box-shadow: 0 5px 0 #2d6a2d, 0 8px 20px rgba(0, 0, 0, 0.25);
+  transition: transform 0.1s;
+}
+
+.sonke-play-start-btn:hover {
+  transform: translateY(-2px);
+}
+
+.sonke-play-start-btn:active {
+  transform: translateY(2px);
+  box-shadow: 0 2px 0 #2d6a2d;
+}
+
+.sonke-play-start-icon {
+  font-size: 1.1rem;
+}
+
+.sonke-play-active {
+  display: grid;
+  gap: 0.75rem;
+  padding: 4rem 1rem 1.5rem;
+  min-height: min(70vh, 640px);
+}
+
+.sonke-play-active-title {
+  margin: 0;
+  text-align: center;
+  font-size: 1.25rem;
+  font-weight: 800;
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.3);
+}
+
+.sonke-play-frame {
+  flex: 1;
+  background: #fff;
+  border-radius: 12px;
+  padding: 1rem;
+  min-height: 320px;
+  color: #2638c4;
+}
+
+.sonke-play-frame-embed {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  overflow: hidden;
+  min-height: min(72vh, 640px);
+}
+
+.sonke-pg-embed {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.sonke-pg-embed-topic {
+  margin: 0 0 0.65rem;
+  padding: 0.55rem 0.85rem;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #2638c4 0%, #0081ca 100%);
+  color: #fff;
+  font-size: clamp(1rem, 2.8vw, 1.35rem);
+  font-weight: 800;
+  text-align: center;
+  line-height: 1.25;
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.12);
+}
+
+.sonke-pg-embed-frame {
+  flex: 1;
+  width: 100%;
+  min-height: min(68vh, 600px);
+  border: none;
+  border-radius: 12px;
+  background: #000;
+}
+
+.sonke-pg-embed-fallback {
+  display: block;
+  padding: 0.35rem 0.75rem;
+  font-size: 0.75rem;
+  text-align: center;
+  color: #2638c4;
+  text-decoration: underline;
+}
+
+.sonke-play-attribution {
+  color: #fff;
+  text-decoration: underline;
+}
+
+.sonke-play-frame .player-shell {
+  min-height: 280px;
+}
+
+.sonke-play-caption {
+  margin: 0;
+  text-align: center;
+  font-size: 0.95rem;
+  font-weight: 700;
+  background: rgba(0, 0, 0, 0.35);
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+}
+
+.sonke-play-footer {
+  position: relative;
+  z-index: 2;
+  padding: 0.75rem 1rem 1.25rem;
+  display: grid;
+  gap: 0.75rem;
+  justify-items: center;
+}
+
+.sonke-play-settings {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: center;
+  background: #f7e03b;
+  border-radius: 16px;
+  padding: 0.75rem 1rem;
+  box-shadow: 0 4px 0 rgba(0, 0, 0, 0.12);
+}
+
+.sonke-play-setting {
+  display: grid;
+  justify-items: center;
+  gap: 0.25rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  min-width: 4.5rem;
+}
+
+.sonke-play-setting-icon {
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 999px;
+  background: #0081ca;
+  color: #fff;
+  font-weight: 900;
+  font-size: 0.9rem;
+}
+
+.sonke-play-setting-off .sonke-play-setting-icon {
+  background: #888;
+  opacity: 0.7;
+}
+
+.sonke-play-setting-label {
+  font-size: 0.6rem;
+  font-weight: 800;
+  color: #0081ca;
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 1.2;
+}
+
+.sonke-play-setting-off .sonke-play-setting-label {
+  opacity: 0.6;
+}
+
+.sonke-play-credits {
+  margin: 0;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #2638c4;
+  background: rgba(255, 255, 255, 0.75);
+  padding: 0.35rem 0.75rem;
+  border-radius: 8px;
+}
+
+.sonke-play-page:fullscreen .sonke-play-stage {
+  width: 100%;
+  min-height: 100vh;
+  border-radius: 0;
+}
+
+@media (max-width: 600px) {
+  .sonke-play-nav-btn {
+    min-width: 3.5rem;
+    font-size: 0.65rem;
+  }
+
+  .sonke-play-settings {
+    gap: 0.5rem;
+    padding: 0.5rem;
+  }
+
+  .sonke-play-setting {
+    min-width: 3.5rem;
+  }
+}

@@ -1,0 +1,98 @@
+/* Standalone Sonke shell — themed page background + grid fallbacks */
+
+.sonke-pbs-shell {
+  min-height: 100vh;
+  color: var(--pbsk-theme-bodyTextColor, #000);
+}
+
+.sonke-pbs-shell a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.sonke-page-module {
+  position: relative;
+  min-height: calc(100vh - 5.5rem);
+}
+
+.ThemedModule_moduleWrapper__8K1_V {
+  position: relative;
+  overflow: hidden;
+}
+
+.ThemedModule_bgLayers__8BKwC {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.ThemedModule_solidColor__mtJEd {
+  position: absolute;
+  inset: 0;
+  background: var(--pbsk-theme-bodyBackgroundColor, #f7e03b);
+}
+
+.ThemedModule_pattern__rqwkC {
+  position: absolute;
+  inset: 0;
+  background-image: var(--pbsk-theme-backgroundPattern);
+  background-repeat: repeat;
+  background-size: var(--pbsk-theme-backgroundPattern-width, 200px)
+    var(--pbsk-theme-backgroundPattern-height, 200px);
+  opacity: 1;
+}
+
+.ThemedModule_innerContent__58wFN {
+  position: relative;
+  z-index: 1;
+}
+
+/* Games collage grid — fallback when PBS CSS hasn't loaded yet */
+.GamesCollage_gamesGrid__jv6Iv {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 0.85rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+@media (min-width: 568px) {
+  .GamesCollage_gamesGrid__jv6Iv {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .GamesCollage_gamesGrid__jv6Iv {
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  }
+}
+
+.GamesCollage_gamesGrid__jv6Iv .sonke-related-card {
+  background: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+  transition: transform 0.15s ease;
+}
+
+.GamesCollage_gamesGrid__jv6Iv .sonke-related-card:hover {
+  transform: translateY(-3px);
+}
+
+.sonke-search-bar-wrap {
+  padding: 0 0.75rem 0.5rem;
+  max-width: 48rem;
+  margin: 0 auto;
+}
+
+.sonke-mobile-nav-spacer {
+  height: calc(4.5rem + env(safe-area-inset-bottom));
+}
+
+@media (min-width: 1024px) {
+  .sonke-mobile-nav-spacer {
+    height: 0;
+  }
+}
